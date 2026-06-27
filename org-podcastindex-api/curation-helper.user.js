@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-06-27-1619
+// @version      2026-06-27-2253
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard?q=*
@@ -24,6 +24,8 @@
     const TEXT_SPAMMENU_6 = "6 — Hijack";
 
     const targetTLDs = [
+        "info",
+        "live",
         "cc",
         "top",
         "online",
@@ -37,6 +39,25 @@
 
     const descriptionTexts = [
 
+        "escorts agency",
+        "escort service",
+        "model escort",
+        "call girl",
+        "injury law firm",
+        "cabin rental",
+        "home rental",
+        "junk removal",
+        "dumpster rental",
+        "search engine optimisation",
+        "referral code",
+        "discount opportunity",
+        "cleaning services",
+        "Free Credit",
+        "SEO service",
+        "car leasing",
+        "SEO training",
+        "coupon code",
+        "discount code",
         "offers referral-based",
         "BNBMAX",
         "Signup Discount",
@@ -52,33 +73,6 @@
     ];
 
     const ownersTexts = [
-
-        "Michela Bertazzo",
-        "Raghvendra Singh",
-        "Lumen Audio Studio",
-        "Heritage Radio Vault",
-        "Quiet. Please",
-        "Inception Point AI"
-    ];
-
-    const titleTexts = [
-
-
-        "Referral Entry",
-        "Signup Discount",
-        "Coupon Code",
-        "Coupons Code",
-        "Discount Code",
-        "Rabattcode",
-        "Rabatecode",
-        "Referral Code",
-        "Coupon code",
-        "Promo Code"
-    ];
-
-
-    const targetTexts = [
-
         "Action&Adventure Fiction Genre",
         "Ancient Genre",
         "Animals and Nature Genre",
@@ -86,7 +80,6 @@
         "Biographies  Genre",
         "Biographies Genre",
         "Christianity Genre",
-
         "Detective Fiction Genre",
         "Early Modern Genre",
         "Family Genre",
@@ -115,6 +108,48 @@
         "1800s Genre",
         "1900s genre",
         "Heritage Radio Vault",
+        "Autobiographies Genre",
+
+        "Appletfab LLC",
+        "Audiobooks by Librivox",
+        "Audiobooks On Line",
+        "Audiobooks, Podcasts and More",
+        "Popular Culture and Religion",
+        "Public Domain Books",
+        "Public Domain",
+
+        "Michela Bertazzo",
+        "Raghvendra Singh",
+        "Lumen Audio Studio",
+        "Heritage Radio Vault",
+        "Quiet. Please",
+        "podvertise",
+
+        "Inception Point AI"
+    ];
+
+    const titleTexts = [
+
+        "escort service",
+        "model escort",
+        "call girl",
+        "Old Time Radio",
+        "Email Marketing",
+        "Referral Entry",
+        "Signup Discount",
+        "Coupon Code",
+        "Coupons Code",
+        "Discount Code",
+        "Rabattcode",
+        "Rabatecode",
+        "Referral Code",
+        "Coupon code",
+        "Promo Code"
+    ];
+
+
+    const targetTexts = [
+
 
         "Appletfab LLC",
         "Audiobooks by Librivox",
@@ -212,7 +247,11 @@
                     if (title[0].innerText.match(pattern)) {
                         title[0].style.border = "2px solid red";
                         title[0].style.backgroundColor = "yellow";
-                        title[0].title = title[0].title ? "" + titleTexts[i] + " " : "*";
+                        //title[0].title = title[0].title ? "" + titleTexts[i] + " " : "*";
+                        title[0].hasAttribute('title')
+                            ? title[0].setAttribute('title', title[0].getAttribute('title') + " " + titleTexts[i])
+                            : title[0].setAttribute('title', titleTexts[i]);
+
                     }
                 }
             }
@@ -227,7 +266,10 @@
                     if (feedurl[0].href.match(pattern)) {
                         feedurl[0].style.border = "2px solid red";
                         feedurl[0].style.backgroundColor = "yellow";
-                        feedurl[0].title = feedurl[0].title ? "" + feedURLs[i] + " " : "*";
+                        // feedurl[0].title = feedurl[0].title ? "" + feedURLs[i] + " " : "*";
+                        feedurl[0].hasAttribute('title')
+                            ? feedurl[0].setAttribute('title', feedurl[0].getAttribute('title') + " " + feedURLs[i])
+                            : feedurl[0].setAttribute('title', feedURLs[i]);
                     }
                 }
             }
@@ -237,23 +279,33 @@
             if (description[0].innerText.length > 0) {
                 podcastDescription = description[0].innerText;
 
+                var domainHit = false;
+
                 /* Highlight anything with casino-typical domain names in description as naked link */
                 for(let i = (targetTLDs.length - 1); i >= 0; i--) {
                     const pattern = new RegExp("http(s)?\\x3a\\x2f\\x2f([a-z0-9]{1,})\\x2e" + targetTLDs[i] + "\\s", "gi");
                     if (description[0].innerText.match(pattern)) {
                         podcast.style.border = "2px solid red";
                         podcast.style.backgroundColor = "yellow";
-                        podcast.title = podcast.title ? "" + targetTLDs[i] + " " : "*";
+                        //podcast.title = podcast.title ? "" + targetTLDs[i] + " " : "*";
+                        podcast.hasAttribute('title')
+                            ? podcast.setAttribute('title', podcast.getAttribute('title') + " " + targetTLDs[i])
+                            : podcast.setAttribute('title', targetTLDs[i]);
+
                     }
                 }
 
                 /* Highlight anything with casino-typical domain names in description as naked domain */
                 for(let i = (targetTLDs.length - 1); i >= 0; i--) {
                     const pattern = new RegExp("([a-z0-9]{1,})\\x2e" + targetTLDs[i], "gi");
-                    if (description[0].innerText.match(pattern)) {
+                    if (description[0].innerText.match(pattern) && domainHit) {
                         podcast.style.border = "2px solid red";
                         podcast.style.backgroundColor = "yellow";
-                        podcast.title = podcast.title ? "" + targetTLDs[i] + " " : "*";
+                        //podcast.title = podcast.title ? "" + targetTLDs[i] + " " : "*";
+                        podcast.hasAttribute('title')
+                            ? podcast.setAttribute('title', podcast.getAttribute('title') + " " + targetTLDs[i])
+                            : podcast.setAttribute('title', targetTLDs[i]);
+
                     }
                 }
 
@@ -263,7 +315,32 @@
                     if (description[0].innerText.match(pattern)) {
                         description[0].style.border = "2px solid red";
                         description[0].style.backgroundColor = "yellow";
-                        description[0].title = description[0].title ? "" + descriptionTexts[i] + " " : "*";
+                        //description[0].title = description[0].title ? "" + descriptionTexts[i] + " " : "*";
+                        description[0].hasAttribute('title')
+                            ? description[0].setAttribute('title', description[0].getAttribute('title') + " " + descriptionTexts[i])
+                            : description[0].setAttribute('title', descriptionTexts[i]);
+
+                    }
+                }
+            }
+
+
+            /* Extract Owner */
+            const byline = podcast.querySelectorAll('div.by-line');
+            if (byline[0].innerText.length > 0) {
+                // console.log(byline[0].innerText);
+                for(let i = (ownersTexts.length - 1); i >= 0; i--) {
+                    // console.log(ownersTexts[i]);
+                    const pattern = new RegExp(regexify(ownersTexts[i]), "gi");
+                    if (byline[0].innerText.match(pattern)) {
+                        // console.log(pattern);
+                        byline[0].style.border = "2px solid red";
+                        byline[0].style.backgroundColor = "yellow";
+                        // byline[0].title = byline[0].title ? "" + ownersTexts[i] + " " : "*";
+                        byline[0].hasAttribute('title')
+                            ? byline[0].setAttribute('title', byline[0].getAttribute('title') + " " + ownersTexts[i])
+                            : byline[0].setAttribute('title', ownersTexts[i]);
+
                     }
                 }
             }
