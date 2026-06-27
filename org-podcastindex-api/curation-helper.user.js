@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-06-27-2253
+// @version      2026-06-27-2356
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard?q=*
@@ -14,14 +14,6 @@
 
 (function() {
     'use strict';
-
-    const TEXT_IPAI = "by Inception Point AI";
-
-    const TEXT_SPAMBUTTON = "✗ Spam ▾";
-
-    const TEXT_SPAMMENU_1 = "1 — Spam";
-    const TEXT_SPAMMENU_2 = "2 — AI Slop";
-    const TEXT_SPAMMENU_6 = "6 — Hijack";
 
     const targetTLDs = [
         "info",
@@ -173,60 +165,6 @@
         return data;
     }
 
-    function findTextElements() {
-        targetTexts.forEach(text => {
-            const lowerText = text.toLowerCase();
-            const xpath = `//descendant-or-self::*[text()[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${lowerText}')]]` +
-                  `[not(self::script)][not(self::style)][not(self::noscript)]`;
-
-            const result = document.evaluate(xpath, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
-
-            for (let i = 0; i < result.snapshotLength; i++) {
-                const element = result.snapshotItem(i);
-                element.style.border = "2px solid red";
-                element.style.backgroundColor = "yellow";
-                element.title = text;
-            }
-        });
-    }
-
-
-    function walkPodcasts() {
-        // Find all matching div elements
-        const podcastResults = document.querySelectorAll('div.result.podcast');
-
-        // Loop through the collection
-        podcastResults.forEach((podcast, index) => {
-
-            /* Uncheck all checkboxes - non memory */
-            const checkbox = podcast.querySelectorAll('input.markedForAction');
-            if (checkbox[0].getAttribute('type') == 'checkbox') {
-                if(checkbox[0].checked == true) {
-                    checkbox[0].checked = false;
-                }
-            }
-
-            /* This handles cases where byline is "Inception Point AI" */
-            const byLine = podcast.querySelectorAll('div.result-row p');
-            if (byLine[0].innerText == TEXT_IPAI) {
-
-                const spamButton = podcast.querySelectorAll('div.spam-dropdown a.feedSpamMenu');
-                if(spamButton[0].innerText == TEXT_SPAMBUTTON) {
-                    spamButton[0].click();
-
-                    const spam2Button = podcast.querySelectorAll('div.spam-menu a[data-reason="2"]');
-                    setTimeout(function() {
-                        spam2Button[0].click();
-                    }, 300); // 0.3 seconds
-                }
-            }
-
-
-
-
-        });
-    }
-
     function curatenew() {
         /* find all feeds */
         const cards = document.querySelectorAll('div.curate-card');
@@ -356,10 +294,6 @@
 
 
     // Execute the function
-    // window.addEventListener('load', findTextElements);
-
-    // window.addEventListener('load', walkPodcasts);
-
     if (window.location.href.match(/curatenew/gi)) {
         console.log('we are in curate');
         window.addEventListener('load', curatenew);
