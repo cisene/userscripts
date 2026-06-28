@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-06-28-1631
+// @version      2026-06-28-1917
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard?q=*
@@ -16,7 +16,17 @@
 
     // --- Configurations ---
     const targetTLDs = [
-        "info", "live", "cc", "top", "online", "app"
+        "app",
+        "cab",
+        "cc",
+        "info",
+        "live",
+        "menu",
+        "mobi",
+        "online",
+        "tel",
+        "top",
+        "xxx"
     ];
 
     const titleTexts = [
@@ -76,11 +86,15 @@
     ];
 
     const feedURLprefixes = [
+        "https://booksreader.space/", /* Booksreader - Audible */
         "https://s3.amazonaws.com/aplt1rss/", /* Appletfab LLC */
         "https://feeds.megaphone.fm/NPTNI" /* Inception Point AI */
     ];
 
 
+    const descriptionPhonenumbers = [
+        new RegExp("\\x2b91(\\x2d)?([\\d\\x2d\\s]{8,12})", "gi") /* India */
+    ];
 
 
     // --- Helper Functions ---
@@ -108,8 +122,9 @@
     const descPatterns = descriptionTexts.map(text => ({ text, regex: new RegExp(escapeRegExp(text), "gi") }));
     const ownerPatterns = ownersTexts.map(text => ({ text, regex: new RegExp(escapeRegExp(text), "gi") }));
 
-    const nakedLinkPatterns = targetTLDs.map(tld => ({ tld, regex: new RegExp(`https?:\\x2f\\x2f[a-z0-9]+\\x2e${tld}\\s`, "gi") }));
-    const nakedDomainPatterns = targetTLDs.map(tld => ({ tld, regex: new RegExp(`[a-z0-9]+\\x2e${tld}`, "gi") }));
+    const nakedLinkPatterns = targetTLDs.map(tld => ({ tld, regex: new RegExp(`http(s)?\\x3a\\x2f\\x2f[a-z0-9]{1,}\\x2e${tld}\\s`, "gi") }));
+    const nakedLinkDomainPatterns = targetTLDs.map(tld => ({ tld, regex: new RegExp(`([a-z0-9]{1,})\\x2e${tld}`, "gi") }));
+    const nakedDomainPatterns = targetTLDs.map(tld => ({ tld, regex: new RegExp(`([a-z0-9]{1,})\\x2e${tld}`, "gi") }));
 
     // --- Main Curation Logic ---
     function curate() {
@@ -145,19 +160,34 @@
             const descEl = podcast.querySelector('div.description');
             if (descEl && descEl.innerText.trim().length > 0) {
                 const descText = descEl.innerText;
-                let isFlaggedDomain = false;
 
                 // Highlight naked link formats
                 nakedLinkPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
                         flagElement(podcast, item.tld);
-                        isFlaggedDomain = true; // Fixed logic: registers that we found a TLD hit!
                     }
                 });
+                // console.log(nakedLinkPatterns);
 
                 // Highlight naked domains (Runs correctly now if a domain hit occurred)
                 nakedDomainPatterns.forEach(item => {
-                    if (descText.match(item.regex) && isFlaggedDomain) {
+                    if (descText.match(item.regex)) {
+                        flagElement(podcast, item.tld);
+                    }
+                });
+                // console.log(nakedDomainPatterns);
+
+                /* Different domain struct */
+                nakedLinkDomainPatterns.forEach(item => {
+                    if (descText.match(item.regex)) {
+                        flagElement(podcast, item.tld);
+                    }
+                });
+                // console.log(nakedLinkDomainPatterns);
+
+                /* Look for feedPrefixes */
+                feedPrefixPatterns.forEach(item => {
+                    if (descText.match(item.regex)) {
                         flagElement(podcast, item.tld);
                     }
                 });
