@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-06-28-1917
+// @version      2026-06-29-2321
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard?q=*
@@ -36,6 +36,7 @@
     ];
 
     const descriptionTexts = [
+        "daily investor", "trading day",
         "escorts agency", "escort service", "model escort", "call girl", "injury law firm",
         "cabin rental", "home rental", "junk removal", "dumpster rental", "search engine optimisation",
         "referral code", "discount opportunity", "cleaning services", "Free Credit", "SEO service",
@@ -60,6 +61,7 @@
         "Nature Genre", "Non Fiction Genre",
         "Philosophy Genre", "Plays Genre", "Poetry Genre", "Politics Genre",
         "Religion Genre",
+        "Romance Genre",
 
         "Appletfab LLC",
         "Audiobooks by Librivox",
