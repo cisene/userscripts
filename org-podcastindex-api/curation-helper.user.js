@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-07-09-2047
+// @version      2026-07-14-1847
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard*
@@ -62,13 +62,25 @@
         "signup discount",
         "fast cash",
 
+        "Nhật Code",
+
+
         "apk"
     ];
 
     const descriptionTexts = [
         "lorem ipsum dolor sit amet",
 
+        "AI generated",
+        "garage cleanout",
+        "yard cleanout",
+        "CALL US TODAY",
 
+        "Nhật Code",
+        "SEO strategy",
+        "Generative Search optimization",
+        "Search optimization",
+        "keyword rankings",
 
         "100save",
         "accident lawyer",
@@ -528,7 +540,16 @@
         "short stories genre",
         "short works genre",
 
+        "early modern",
         "single author genre",
+        "war and military genre",
+        "westerns genre",
+        "assorted non fiction",
+        "animals & nature",
+        "family and culture",
+        "popular audiobooks",
+        "Legends and Fairy Tales",
+        "Short Stories",
 
 
         "advertising campaign",
@@ -536,6 +557,10 @@
         "call girls",
         "spellbound audio",
 
+
+        "AudioScholar",
+        "solgoodmedia.com",
+        "The Oldies Radio",
         "ANDREA MILANO AI",
         "Hidden Voices",
 
@@ -560,6 +585,14 @@
         "Public Domain",
 
         "FIXME",
+        "AI generated",
+        "Neon Nights Studio",
+        "Sol Good Media",
+        "Sol Good Network",
+        "TeeSnee AI",
+        "The Podcast Network",
+        "GSMC Podcast Network",
+        "Audiobooks",
 
         "Rabbit Hole Brief",
         "Classic Stories on Audio!",
@@ -676,6 +709,9 @@
         "https://ohdieux.ligature.ca/rss",
         "https://radiorfa.com/feed/podcast/",
 
+        "https://feeds.megaphone.fm/CNE",
+        "https://feeds.megaphone.fm/JXL",
+        "https://feeds.megaphone.fm/RSU",
         "https://feeds.megaphone.fm/ESP",
         "https://feeds.megaphone.fm/POM",
         "https://feeds.megaphone.fm/COR",
@@ -695,7 +731,17 @@
 
         "https://duelinggenre.com/category/podcasts/",
         "https://indiesats.com/api/feed",
+        "https://podcast.gsmc.cloud/feed/",
 
+        "https://feeds.soundcloud.com/users/soundcloud:users:",
+        "https://feeds.libsyn.com/",
+        "https://rss.libsyn.com/shows/",
+        "https://rss.art19.com/",
+        "https://media.rss.com/",
+        "https://feeds.soundon.fm/podcasts/",
+        "https://rss.alivepodcastnetwork.com/",
+        "https://api.substack.com/feed/podcast/",
+        "https://feeds.fountain.fm/",
         "https://feeds.godcaster.fm/",
         "https://feeds.audiomeans.fr/feed/",
         "https://latvijasradio.lsm.lv/",
@@ -829,7 +875,7 @@
     function curate() {
         const cards = document.querySelectorAll('div.curate-card');
 
-        var markNumber = 15;
+        var markNumber = 30; /* mark number when hijcked */
         var podcast_byline = false;
         var podcast_desc = false;
         var podcast_url = false;
@@ -1083,12 +1129,13 @@
 
     }
 
-    function SearchButtonRandom() {
+    function searchbuttonrandom() {
         console.log('SearchButtonRandom - start');
-        const targetNav = document.querySelectorAll('form.form-inline'); /* form.form-inline */
+        const targetNav = document.querySelectorAll('form.form-inline')[0]; /* form.form-inline */
         console.log(targetNav);
 
         const randomBtn = document.createElement('button');
+        randomBtn.style = "width:80px;height:25px";
         randomBtn.class = "btn btn-outline";
         randomBtn.textContent = 'Random Author';
 
@@ -1109,6 +1156,7 @@
             const searchInput = document.getElementById('searchText');
             if (searchInput) {
                 searchInput.value = randomAuthor;
+                searchInput.name = "q";
 
                 // Dispatch an input event in case the site relies on framework listeners (like React/Vue)
                 searchInput.dispatchEvent(new Event('input', { bubbles: true }));
@@ -1117,9 +1165,13 @@
             // Find the trigger button and click it
             const searchTrigger = document.getElementById('searchTrigger');
             if (searchTrigger) {
-                searchTrigger.click();
+                if(searchInput.value.length > 0) {
+                    searchInput.keyup();
+                    searchTrigger.click();
+                }
             }
         });
+        targetNav.appendChild(randomBtn);
         console.log('SearchButtonRandom - end');
     }
 
@@ -1134,6 +1186,7 @@
         console.log('PodcastIndex Curation Helper Active.');
         window.addEventListener('load', searchpages);
         window.addEventListener('ready', searchpages);
+        window.addEventListener('load', searchbuttonrandom);
     }
 
 
