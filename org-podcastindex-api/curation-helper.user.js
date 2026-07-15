@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-07-14-1907
+// @version      2026-07-15-1707
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard*
@@ -33,7 +33,6 @@
         "online",
         "tel",
         "top",
-        "win",
         "wiki",
         "win",
         "vip",
@@ -44,7 +43,6 @@
     const titleTexts = [
         "call girl",
         "call girls",
-        "coupon code",
         "coupon code",
         "coupons code",
         "discount code",
@@ -61,6 +59,7 @@
         "referral entry",
         "signup discount",
         "fast cash",
+        "HappyMod",
 
         "Nhật Code",
 
@@ -75,12 +74,82 @@
         "garage cleanout",
         "yard cleanout",
         "CALL US TODAY",
+        "entertainment platform",
+        "cricket news",
+        "car insurance",
+        "Verified Seller Accounts",
 
+        "Instagram",
+        "LinkedIn",
         "Nhật Code",
         "SEO strategy",
         "Generative Search optimization",
         "Search optimization",
         "keyword rankings",
+        "automated interactions",
+        "YouTube",
+        "super clone",
+        "luxury-inspired watches",
+        "marketing professional",
+        "Referans Kodu",
+        "roofing service",
+        "bodybuilding",
+        "peptides",
+        "creatine",
+        "Resume Builder",
+        "recruiter-approved template",
+        "Payoneer",
+        "Buying a Verified",
+        "Buy Verified",
+        "Minecraft",
+        "Western Union",
+        "Paylentra",
+        "mobile games",
+
+        "Guinness",
+        "Dolce & Gabbana",
+        "A. Lange & Söhne",
+        "Adidas",
+        "Audemars Piguet",
+        "Balenciaga",
+        "Balmain",
+        "Berluti",
+        "Bottega Veneta",
+        "Brunello Cucinelli",
+        "Burberry",
+        "Cartier",
+        "Chanel",
+        "Christian Louboutin",
+        "Crockett & Jones",
+        "Dior",
+        "Edward Green",
+        "Fendi",
+        "Givenchy",
+        "Goyard",
+        "Gucci",
+        "Hermès",
+        "Jaeger-LeCoultre",
+        "Jimmy Choo",
+        "John Lobb",
+        "Loewe",
+        "Loro Piana",
+        "Louis Vuitton",
+        "Manolo Blahnik",
+        "Nike",
+        "Omega",
+        "Patek Philippe",
+        "Prada",
+        "Ralph Lauren Purple Label",
+        "Richard Mille",
+        "Rolex",
+        "Saint Laurent",
+        "Salvatore Ferragamo",
+        "The Row",
+        "Tom Ford",
+        "Vacheron Constantin",
+        "Zegna",
+
+
 
         "100save",
         "accident lawyer",
@@ -491,6 +560,10 @@
         "Your Podcast Name"
     ];
 
+    const ownersTextsLegit = [
+        "Podcast WABCRadio",
+    ];
+
     const ownersTexts = [
         "1800s genre",
         "1900s genre",
@@ -550,12 +623,16 @@
         "popular audiobooks",
         "Legends and Fairy Tales",
         "Short Stories",
+        "Fexingo",
 
 
         "advertising campaign",
         "escorts service",
         "call girls",
         "spellbound audio",
+        "storyflo",
+        "dinlex.org",
+        "3Peaks",
 
 
         "AudioScholar",
@@ -624,6 +701,10 @@
         "https://feeds.megaphone.fm/NPTNI" /* Inception Point AI */
     ];
 
+
+    const feedURLsecurity = [
+        { text: "Auth Token", regex: new RegExp("auth\x5ftoken\x3d", "gi")}
+    ];
 
     const feedURLlegit = [
         "https://librivox.org/rss/",
@@ -789,6 +870,77 @@
 
 
     ];
+
+    const extraGenerators = [
+
+        { text: "ShowPlatform", regex: new RegExp("^ShowPlatform\\s", "gi")},
+        { text: "NASDAQ", regex: new RegExp("^podcastnasdaq\\sstatic\\spublisher", "gi")},
+        { text: "FlightCast", regex: new RegExp("^Flightcast\\sRSS\\sFeed\\sGenerator", "gi")},
+        { text: "Podcastics", regex: new RegExp("^Podcastics", "gi")},
+        { text: "LetsCast.fm", regex: new RegExp("^LetsCast\\x2efm", "gi")},
+        { text: "PRX Feeder", regex: new RegExp("^PRX\\sFeeder", "gi")},
+        { text: "HubHopper", regex: new RegExp("^Hubhopper\\x28https\\x3a\\x2f\\x2fhubhopper\\x2ecom\\x29", "gi")},
+        { text: "Podster", regex: new RegExp("^Podster", "gi")},
+        { text: "podcaster.de", regex: new RegExp("^podcaster\\x2ede\\sFeedarator\\s", "gi")},
+        { text: "JellyPod", regex: new RegExp("^Powered\\sby\\sJellypod", "gi")},
+        { text: "Podcast for Node", regex: new RegExp("^Podcast\\sfor\\sNode", "gi")},
+        { text: "smarttalk-podcast (Cloudflare)", regex: new RegExp("^smarttalk\\x2dpodcast", "gi")},
+        { text: "Fexingo", regex: new RegExp("^fexingo\\x2dgenerate\\x2dfeeds\\s", "gi")},
+
+        { text: "PodcastMachine", regex: new RegExp("^podcastmachine\\x2ecom", "gi")},
+        { text: "Beamly", regex: new RegExp("^Beamly\\x2ecom", "gi")},
+        { text: "Acast", regex: new RegExp("^acast\\x2ecom", "gi")},
+        { text: "Ausha", regex: new RegExp("^Ausha", "gi")},
+        { text: "iVoox", regex: new RegExp("^iVoox", "gi")},
+        { text: "Podigee", regex: new RegExp("^Podigee", "gi")},
+        { text: "SimpleCast", regex: new RegExp("^https\\x3a\\x2f\\x2fsimplecast\\x2ecom", "gi")},
+        { text: "Substack", regex: new RegExp("^Substack", "gi")},
+        { text: "SoundOn", regex: new RegExp("^SoundOn", "gi")},
+        { text: "Castos/SSP", regex: new RegExp("^Castos\\x2fSSP", "gi")},
+        { text: "Transistor", regex: new RegExp("^Transistor\\s", "gi")},
+        { text: "PodBean", regex: new RegExp("^https\\x3a\\x2f\\x2fpodbean\\x2ecom\\x2f\\x3fv\\x3d", "gi")},
+        { text: "Captivate.fm", regex: new RegExp("^Captivate\\x2efm", "gi")},
+        { text: "Riverside.fm", regex: new RegExp("^Riverside\\x2efm\\s", "gi")},
+        { text: "Podigee", regex: new RegExp("^Podig\\s", "gi")},
+        { text: "Libsyn", regex: new RegExp("^Libsyn\\sRSSgen\\s", "gi")},
+        { text: "RSS.com", regex: new RegExp("^RSS\\x2ecom\\s", "gi")},
+        { text: "Firstory v2", regex: new RegExp("^Firstory\\sv2", "gi")},
+        { text: "RedCircle", regex: new RegExp("^RedCircle\\sVERIFY\\x5fTOKEN\\x5f", "gi")},
+        { text: "Anchor Podcasts", regex: new RegExp("^Anchor\\sPodcasts", "gi")},
+        { text: "Buzzsprout", regex: new RegExp("^Buzzsprout", "gi")}
+    ];
+
+    const extraLanguages = [
+
+        { text: "Hindi", regex: new RegExp("^hi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Russian", regex: new RegExp("^ru((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Farsi", regex: new RegExp("^fa((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Czech", regex: new RegExp("^cs((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Tagalog", regex: new RegExp("^tl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Vietnamese", regex: new RegExp("^vi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+
+        { text: "Greek", regex: new RegExp("^el((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Burmese", regex: new RegExp("^my((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Azerbaijani", regex: new RegExp("^az((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Catalan", regex: new RegExp("^ca((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Turkish", regex: new RegExp("^tr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Icelandic", regex: new RegExp("^is((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Yiddish", regex: new RegExp("^yi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Hebrew", regex: new RegExp("^he((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Arabic", regex: new RegExp("^ar((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Portugese", regex: new RegExp("^pt((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Chinese", regex: new RegExp("^zh((\\x2d|\\x5f)([a-z]{2,4}))?$", "gi")},
+        { text: "Norwegian", regex: new RegExp("^no((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Swedish", regex: new RegExp("^sv((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Dutch", regex: new RegExp("^nl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Italian", regex: new RegExp("^it((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "German", regex: new RegExp("^de((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Japanese", regex: new RegExp("^ja((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Spanish", regex: new RegExp("^es((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "French", regex: new RegExp("^fr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "English", regex: new RegExp("^en((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")}
+    ];
+
 
     const authors = [
         "Aeschylus",
@@ -1007,18 +1159,30 @@
 
 
     // --- Helper Functions ---
+    function extractiTunesId(string) {
+        string = string.replace(/^itunes\x3a\s/gi,'');
+        string = string.replace(/[^\d]/gi, '');
+        if(string.match(/^\d{1,}$/gi)) {
+            string = parseInt(string, 10);
+        } else {
+            string = 0;
+        }
+        return string;
+    }
+
     function escapeRegExp(string) {
         // Automatically and safely escapes all regex special characters globally
         return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '\\s');
     }
 
-    // Helper to avoid duplicate style and title updating logic
+    /* Helper to avoid duplicate style and title updating logic */
     function flagElement(element, matchText, highlightWholeCard = false) {
         const target = highlightWholeCard ? element.closest('div.curate-card') : element;
         if (!target) return;
 
         target.style.border = "2px solid red";
         target.style.backgroundColor = "yellow";
+        target.style.padding = "2px";
 
         const existingTitle = target.getAttribute('title');
         target.setAttribute('title', existingTitle ? `${existingTitle}, ${matchText}` : matchText);
@@ -1031,11 +1195,24 @@
         target.style.color = "white";
         target.style.border = "2px solid yellow";
         target.style.backgroundColor = "green";
+        target.style.padding = "2px";
 
         const existingTitle = target.getAttribute('title');
         target.setAttribute('title', existingTitle ? `${existingTitle}, ${matchText}` : matchText);
     }
 
+    function flagElementSecurity(element, matchText, highlightWholeCard = false) {
+        const target = highlightWholeCard ? element.closest('div.curate-card') : element;
+        if (!target) return;
+
+        target.style.color = "white";
+        target.style.border = "2px solid red";
+        target.style.backgroundColor = "orange";
+        target.style.padding = "2px";
+
+        const existingTitle = target.getAttribute('title');
+        target.setAttribute('title', existingTitle ? `${existingTitle}, ${matchText}` : matchText);
+    }
 
     // --- Pre-compile Regexes once to save computing power ---
     const titlePatterns = titleTexts.map(text => ({ text, regex: new RegExp(escapeRegExp(text), "gi") }));
@@ -1059,12 +1236,18 @@
         var podcast_byline = false;
         var podcast_desc = false;
         var podcast_url = false;
+        var podcast_itunes = false;
+        var podcast_language = false;
+        var podcast_generator = false;
 
         cards.forEach((podcast) => {
 
             podcast_byline = false;
             podcast_desc = false;
             podcast_url = false;
+            podcast_itunes = false;
+            podcast_language = false;
+            podcast_generator = false;
 
 
             /* 1. Extract & Test Title */
@@ -1105,6 +1288,14 @@
                         podcast_url = true;
                     }
                 });
+
+                feedURLsecurity.forEach(item => {
+                    if (url.match(item.regex)) {
+                        flagElementSecurity(feedUrlEl, item.text);
+                    }
+                });
+
+
 
             }
 
@@ -1177,15 +1368,67 @@
                 });
             }
 
-            console.log(podcast_desc, podcast_byline, podcast_url);
+
+            /* 5. Check for iTunes */
+            const extrasEl = podcast.querySelectorAll('div.extras span');
+            extrasEl.forEach((extra) => {
+
+                // console.log(extra);
+                if (extra.innerText.match(/^iTunes\x3a/gi)) {
+                    if (extractiTunesId(extra.innerText) > 0) {
+                        flagElementLegit(extra, 'iTunes');
+                        podcast_itunes = true;
+                    }
+                }
+
+                if (extra.innerText.match(/Lang\x3a/gi)) {
+                    const language = extra.innerText.replace('lang: ', '');
+                    extraLanguages.forEach(item => {
+                        if (language.match(item.regex)) {
+                            flagElementLegit(extra, item.text);
+                            podcast_language = true;
+                        }
+                    });
+                    if (podcast_language === false) {
+                        console.log('language', language, ascii_to_hexadecimal(language));
+                    }
+                }
+
+                if (extra.innerText.match(/gen\x3a/gi)) {
+                    const generator = extra.innerText.replace('gen: ', '');
+                    extraGenerators.forEach(item => {
+                        if (generator.match(item.regex)) {
+                            flagElementLegit(extra, item.text);
+                            podcast_generator = true;
+                        }
+
+                    });
+
+                    if (podcast_generator === false) {
+                        console.log('generator', generator, ascii_to_hexadecimal(generator));
+                    }
+
+                }
+
+            });
+
             if (podcast_url == true && podcast_byline == true && markNumber > 0) {
                 const podcastCheckbox = podcast.querySelector('div.col-image input.checkbox-overlay');
-                console.log(podcastCheckbox);
                 podcastCheckbox.checked = true;
                 markNumber -= 1;
             }
         });
     }
+
+    function ascii_to_hexadecimal(str) {
+    var arr1 = [];
+    for (var n = 0, l = str.length; n < l; n++) {
+        var hex = str.charCodeAt(n).toString(16).padStart(2, '0');
+        arr1.push(hex + ' ');
+    }
+    return arr1.join('').trim();
+}
+
 
     function searchpages() {
         console.log('searchPages - start');
@@ -1316,7 +1559,7 @@
 
         const randomBtn = document.createElement('button');
         randomBtn.style = "width:80px;height:25px";
-        randomBtn.class = "btn btn-outline";
+        randomBtn.class = "btn btn-outline-success my-2 my-sm-0";
         randomBtn.textContent = 'Random Author';
 
         if (targetNav) {
@@ -1339,14 +1582,15 @@
                 searchInput.name = "q";
 
                 // Dispatch an input event in case the site relies on framework listeners (like React/Vue)
-                searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+                // searchInput.dispatchEvent(new Event('input', { bubbles: true }));
             }
 
             // Find the trigger button and click it
             const searchTrigger = document.getElementById('searchTrigger');
             if (searchTrigger) {
                 if(searchInput.value.length > 0) {
-                    searchInput.keyup();
+                    // searchInput.keyup();
+                    searchInput.dispatchEvent(new KeyboardEvent('keyup', { bubbles: true }));
                     searchTrigger.click();
                 }
             }
@@ -1365,7 +1609,6 @@
     if (/dashboard/gi.test(window.location.href)) {
         console.log('PodcastIndex Curation Helper Active.');
         window.addEventListener('load', searchpages);
-        window.addEventListener('ready', searchpages);
         window.addEventListener('load', searchbuttonrandom);
     }
 
