@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-07-15-1707
+// @version      2026-07-16-0223
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard*
@@ -612,6 +612,7 @@
         "science genre",
         "short stories genre",
         "short works genre",
+        "travel genre",
 
         "early modern",
         "single author genre",
@@ -623,6 +624,12 @@
         "popular audiobooks",
         "Legends and Fairy Tales",
         "Short Stories",
+        "Politics, Philosophy, Religion",
+        "Science Stories",
+        "Nature and Animals",
+        "Tragedy Genre",
+
+
         "Fexingo",
 
 
@@ -633,6 +640,7 @@
         "storyflo",
         "dinlex.org",
         "3Peaks",
+        "Referans Kodu",
 
 
         "AudioScholar",
@@ -669,6 +677,7 @@
         "TeeSnee AI",
         "The Podcast Network",
         "GSMC Podcast Network",
+        "GSMC SciFi Network",
         "Audiobooks",
 
         "Rabbit Hole Brief",
@@ -897,6 +906,7 @@
         { text: "Substack", regex: new RegExp("^Substack", "gi")},
         { text: "SoundOn", regex: new RegExp("^SoundOn", "gi")},
         { text: "Castos/SSP", regex: new RegExp("^Castos\\x2fSSP", "gi")},
+        { text: "Castos", regex: new RegExp("^Castos$", "gi")},
         { text: "Transistor", regex: new RegExp("^Transistor\\s", "gi")},
         { text: "PodBean", regex: new RegExp("^https\\x3a\\x2f\\x2fpodbean\\x2ecom\\x2f\\x3fv\\x3d", "gi")},
         { text: "Captivate.fm", regex: new RegExp("^Captivate\\x2efm", "gi")},
