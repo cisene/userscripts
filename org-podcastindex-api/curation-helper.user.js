@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-07-16-0223
+// @version      2026-07-16-1822
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard*
@@ -60,7 +60,7 @@
         "signup discount",
         "fast cash",
         "HappyMod",
-
+        "Roblox",
         "Nhật Code",
 
 
@@ -78,6 +78,8 @@
         "cricket news",
         "car insurance",
         "Verified Seller Accounts",
+        "iguana extermination",
+        "Roblox",
 
         "Instagram",
         "LinkedIn",
@@ -105,6 +107,7 @@
         "Western Union",
         "Paylentra",
         "mobile games",
+        "sports betting",
 
         "Guinness",
         "Dolce & Gabbana",
@@ -679,6 +682,7 @@
         "GSMC Podcast Network",
         "GSMC SciFi Network",
         "Audiobooks",
+        "HustleStudios Podcast Network",
 
         "Rabbit Hole Brief",
         "Classic Stories on Audio!",
@@ -742,6 +746,7 @@
         "https://www.ijpr.org/podcast/",
         "https://www.southcarolinapublicradio.org/podcast/",
         "https://www.hpr2.org/podcasts/",
+        "https://rss.amperwave.net/v2/feed/",
 
         "https://podcasts.files.bbci.co.uk/",
         "https://www.twr.org.uk/podcast_feed/",
@@ -821,7 +826,6 @@
 
         "https://duelinggenre.com/category/podcasts/",
         "https://indiesats.com/api/feed",
-        "https://podcast.gsmc.cloud/feed/",
 
         "https://feeds.soundcloud.com/users/soundcloud:users:",
         "https://feeds.libsyn.com/",
@@ -882,6 +886,8 @@
 
     const extraGenerators = [
 
+        { text: "Pinecast", regex: new RegExp("^Pinecast\\s", "gi")},
+        { text: "Podspace.com", regex: new RegExp("^Podspace\\x2ecom", "gi")},
         { text: "ShowPlatform", regex: new RegExp("^ShowPlatform\\s", "gi")},
         { text: "NASDAQ", regex: new RegExp("^podcastnasdaq\\sstatic\\spublisher", "gi")},
         { text: "FlightCast", regex: new RegExp("^Flightcast\\sRSS\\sFeed\\sGenerator", "gi")},
@@ -922,6 +928,16 @@
 
     const extraLanguages = [
 
+        { text: "Slovak", regex: new RegExp("^sk((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Lingala", regex: new RegExp("^ln((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Albanian", regex: new RegExp("^sq((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Polish", regex: new RegExp("^pl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Wolof", regex: new RegExp("^wo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Welsh", regex: new RegExp("^cy((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Yoruba", regex: new RegExp("^yo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Malay", regex: new RegExp("^ms((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Indonesian", regex: new RegExp("^id((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Kirghiz", regex: new RegExp("^ky((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Hindi", regex: new RegExp("^hi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Russian", regex: new RegExp("^ru((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Farsi", regex: new RegExp("^fa((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
@@ -940,6 +956,7 @@
         { text: "Arabic", regex: new RegExp("^ar((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Portugese", regex: new RegExp("^pt((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Chinese", regex: new RegExp("^zh((\\x2d|\\x5f)([a-z]{2,4}))?$", "gi")},
+        { text: "Danish", regex: new RegExp("^da((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Norwegian", regex: new RegExp("^no((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Swedish", regex: new RegExp("^sv((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Dutch", regex: new RegExp("^nl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
@@ -949,6 +966,67 @@
         { text: "Spanish", regex: new RegExp("^es((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "French", regex: new RegExp("^fr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "English", regex: new RegExp("^en((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")}
+    ];
+
+    const owners = [
+
+        "3 peaks studios",
+        "3peaks",
+        "advertising campaign",
+        "ai generated",
+        "andrea milano ai",
+        "appletfab llc",
+        "audiobooks by librivox",
+        "audiobooks on line",
+        "audiobooks",
+        "audiobooks, podcasts and more",
+        "audioscholar",
+        "ciesse",
+        "classic stories on audio!",
+        "crime of the truest kind",
+        "dinlex.org",
+        "dream audio books",
+        "elite personas llc",
+        "escorts service",
+        "fexingo",
+        "fixme",
+        "gmb unlimited, llc",
+        "gsmc podcast network",
+        "gsmc scifi network",
+        "heritage radio vault",
+        "hidden voices",
+        "hustlestudios podcast network",
+        "inception point ai",
+        "launchpod studios",
+        "let's work this sh*t out",
+        "lumen audio studio",
+        "michela bertazzo",
+        "neon nights network",
+        "neon nights studio",
+        "obomedia entertainment",
+        "pigeon publishing house",
+        "podvertise",
+        "popular culture and religion",
+        "public domain books",
+        "public domain",
+        "quiet. please",
+        "rabbit hole brief",
+        "raghvendra singh",
+        "referans kodu",
+        "sol good media",
+        "sol good network",
+        "solgoodmedia.com",
+        "spellbound audio",
+        "storyflo",
+        "sunnyverse ai labs",
+        "teesnee ai",
+        "the daily news now!",
+        "the oldies radio",
+        "the podcast network",
+        "tvweo",
+        "Launchpod Studio",
+
+        "xyz"
     ];
 
 
@@ -1167,6 +1245,81 @@
         "William Shakespeare"
     ];
 
+    const genres = [
+        "1800s genre",
+        "1900s genre",
+        "19th and 20th century fiction",
+        "action and adventure genre",
+        "action&adventure fiction genre",
+        "ancient genre",
+        "animals & nature",
+        "animals and nature genre",
+        "anthologies genre",
+        "assorted non fiction",
+        "audiobooks by librivox",
+        "audiobooks on line",
+        "audiobooks",
+        "audiobooks, podcasts and more",
+        "autobiographies genre",
+        "biographies  genre",
+        "biographies genre",
+        "christianity genre",
+        "culture and heritage classics",
+        "detective fiction genre",
+        "early modern genre",
+        "early modern",
+        "family and culture",
+        "family genre",
+        "fantasy genre",
+        "fiction classics",
+        "general fiction genre",
+        "general genre",
+        "gothic genre",
+        "greek and latin classics genre",
+        "heritage radio vault",
+        "historical genre",
+        "history genre",
+        "horror genre",
+        "humor genre",
+        "humorous fiction genre",
+        "legends and fairy tales",
+        "literary collections genre",
+        "literary fiction genre",
+        "memoirs genre",
+        "modern genre",
+        "myths genre",
+        "nature and animals",
+        "nature genre",
+        "non fiction genre",
+        "philosophy genre",
+        "plays genre",
+        "poetry genre",
+        "politics genre",
+        "politics, philosophy, religion",
+        "popular audiobooks",
+        "popular culture and religion",
+        "public domain books",
+        "public domain",
+        "religion genre",
+        "romance genre",
+        "romance stories",
+        "satire genre",
+        "science fiction genre",
+        "science genre",
+        "science stories",
+        "short stories genre",
+        "short stories",
+        "short works genre",
+        "single author genre",
+        "tragedy genre",
+        "travel genre",
+        "war and military genre",
+        "westerns genre",
+
+
+
+        "easy listening"
+    ];
 
     // --- Helper Functions ---
     function extractiTunesId(string) {
@@ -1223,6 +1376,20 @@
         const existingTitle = target.getAttribute('title');
         target.setAttribute('title', existingTitle ? `${existingTitle}, ${matchText}` : matchText);
     }
+
+    function flagElementInvalid(element, matchText, highlightWholeCard = false) {
+        const target = highlightWholeCard ? element.closest('div.curate-card') : element;
+        if (!target) return;
+
+        target.style.color = "white";
+        target.style.border = "2px solid black";
+        target.style.backgroundColor = "red";
+        target.style.padding = "2px";
+
+        const existingTitle = target.getAttribute('title');
+        target.setAttribute('title', existingTitle ? `${existingTitle}, ${matchText}` : matchText);
+    }
+
 
     // --- Pre-compile Regexes once to save computing power ---
     const titlePatterns = titleTexts.map(text => ({ text, regex: new RegExp(escapeRegExp(text), "gi") }));
@@ -1401,6 +1568,7 @@
                     });
                     if (podcast_language === false) {
                         console.log('language', language, ascii_to_hexadecimal(language));
+                        flagElementInvalid(extra, 'invalid language code');
                     }
                 }
 
@@ -1565,17 +1733,26 @@
     function searchbuttonrandom() {
         console.log('SearchButtonRandom - start');
         const targetNav = document.querySelectorAll('form.form-inline')[0]; /* form.form-inline */
-        console.log(targetNav);
 
+        /* Create button and set up */
         const randomBtn = document.createElement('button');
-        randomBtn.style = "width:80px;height:25px";
-        randomBtn.class = "btn btn-outline-success my-2 my-sm-0";
-        randomBtn.textContent = 'Random Author';
+        randomBtn.id = "randomAuthor";
+        randomBtn.classList.add("btn", "btn-outline-success", "my-2", "my-sm-0");
+        randomBtn.innerText = 'Random Author';
 
-        if (targetNav) {
-            // targetNav.appendChild(randomBtn);
-            // targetNav.prependChild(randomBtn);
-        } else {
+        /* Create button and set up */
+        const genreBtn = document.createElement('button');
+        genreBtn.id = "randomGenre";
+        genreBtn.classList.add("btn", "btn-outline-success", "my-2", "my-sm-0");
+        genreBtn.innerText = 'Random Genre';
+
+        /* Create button and set up */
+        const ownerBtn = document.createElement('button');
+        ownerBtn.id = "randomOwner";
+        ownerBtn.classList.add("btn", "btn-outline-success", "my-2", "my-sm-0");
+        ownerBtn.innerText = 'Random Owner';
+
+        if (!targetNav) {
             console.warn("Element with id 'navbarSupportedContent' not found.");
         }
 
@@ -1590,22 +1767,66 @@
             if (searchInput) {
                 searchInput.value = randomAuthor;
                 searchInput.name = "q";
-
-                // Dispatch an input event in case the site relies on framework listeners (like React/Vue)
-                // searchInput.dispatchEvent(new Event('input', { bubbles: true }));
             }
 
             // Find the trigger button and click it
             const searchTrigger = document.getElementById('searchTrigger');
             if (searchTrigger) {
                 if(searchInput.value.length > 0) {
-                    // searchInput.keyup();
                     searchInput.dispatchEvent(new KeyboardEvent('keyup', { bubbles: true }));
                     searchTrigger.click();
                 }
             }
         });
+
+        genreBtn.addEventListener('click', () => {
+            // Pick a random author
+            const randomGenre = genres[Math.floor(Math.random() * genres.length)];
+
+            // Find the input element and populate it
+            const searchInput = document.getElementById('searchText');
+            if (searchInput) {
+                searchInput.value = randomGenre;
+                searchInput.name = "q";
+            }
+
+            // Find the trigger button and click it
+            const searchTrigger = document.getElementById('searchTrigger');
+            if (searchTrigger) {
+                if(searchInput.value.length > 0) {
+                    searchInput.dispatchEvent(new KeyboardEvent('keyup', { bubbles: true }));
+                    searchTrigger.click();
+                }
+            }
+        });
+
+        ownerBtn.addEventListener('click', () => {
+            // Pick a random author
+            const randomOwner = owners[Math.floor(Math.random() * owners.length)];
+
+            // Find the input element and populate it
+            const searchInput = document.getElementById('searchText');
+            if (searchInput) {
+                searchInput.value = randomOwner;
+                searchInput.name = "q";
+            }
+
+            // Find the trigger button and click it
+            const searchTrigger = document.getElementById('searchTrigger');
+            if (searchTrigger) {
+                if(searchInput.value.length > 0) {
+                    searchInput.dispatchEvent(new KeyboardEvent('keyup', { bubbles: true }));
+                    searchTrigger.click();
+                }
+            }
+        });
+
+
         targetNav.appendChild(randomBtn);
+        targetNav.appendChild(genreBtn);
+        targetNav.appendChild(ownerBtn);
+
+
         console.log('SearchButtonRandom - end');
     }
 
@@ -1620,6 +1841,7 @@
         console.log('PodcastIndex Curation Helper Active.');
         window.addEventListener('load', searchpages);
         window.addEventListener('load', searchbuttonrandom);
+        console.log('PodcastIndex Curation Helper Buttons loaded.');
     }
 
 
