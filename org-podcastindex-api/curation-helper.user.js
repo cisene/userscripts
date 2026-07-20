@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-07-16-1822
+// @version      2026-07-20-1100
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard*
-// @match        https://api.podcastindex.org/dashboard?q=*
+// @match        https://api.podcastindex.org/dashboard?q=.*
 // @match        https://api.podcastindex.org/curatekilled*
 // @match        https://api.podcastindex.org/curatenew*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=podcastindex.org
@@ -17,30 +17,59 @@
 
     // --- Configurations ---
     const targetTLDs = [
+        "ae\\x2eorg",
         "ai",
         "app",
+        "army",
         "bet",
         "black",
         "cab",
         "casino",
         "cc",
+        "com",
+        "com\\x2epk",
+        "contact",
         "club",
+        "cn\\x2ecom",
+        "design",
+        "gb\\x2enet",
+        "green",
         "info",
+        "life",
         "live",
         "ltd",
         "menu",
         "mobi",
+        "moda",
+        "my",
+        "name",
         "online",
+        "org\\x2epk",
+        "shopping",
+        "store",
         "tel",
+        "tech",
         "top",
+        "us\\x2ecom",
+        "wales",
         "wiki",
         "win",
+        "win\\x2epk",
+        "world",
+        "works",
+        "video",
         "vip",
         "xyz",
+        "zone",
         "xxx"
     ];
 
     const titleTexts = [
+
+
+
+        "2 Minutes with Joey",
+        "partner code",
         "call girl",
         "call girls",
         "coupon code",
@@ -62,14 +91,22 @@
         "HappyMod",
         "Roblox",
         "Nhật Code",
-
-
         "apk"
     ];
 
     const descriptionTexts = [
         "lorem ipsum dolor sit amet",
 
+
+        "2 Minutes with Joey",
+
+        "luxury market",
+        "market signal",
+        "partner code",
+        "Rekommendationskod",
+        "Gutscheine",
+        "Rabattcode",
+        "Kasyno Online",
         "AI generated",
         "garage cleanout",
         "yard cleanout",
@@ -79,7 +116,38 @@
         "car insurance",
         "Verified Seller Accounts",
         "iguana extermination",
-        "Roblox",
+        "roblox",
+        "bike rental",
+        "commercial real estate",
+        "eliminate infestations",
+        "pest control",
+        "BONUSPROMO",
+        "Web Marketing",
+        "car rental",
+        "yacht rental",
+        "chauffeured",
+        "non-chauffeured",
+        "limousine",
+        "premium brand",
+        "shelf company",
+        "taxi service",
+        "heavy vehicle use tax",
+        "truck owner",
+        "fleet manager",
+        "owner-operator",
+        "transportation professional",
+        "medical care center",
+        "dental care center",
+        "healthcare solution",
+        "quality care",
+        "Evidence Based Investing",
+        "raamkozijnen",
+
+        "Mercedes-Benz\b",
+        "BMW\b",
+        "Porsche\b",
+        "Audi\b",
+        "Lamborghini\b",
 
         "Instagram",
         "LinkedIn",
@@ -409,7 +477,7 @@
 
         "bit.ly",
         "tinyurl.com",
-        "t.co",
+        // "t.co",
         "cutt.ly",
         "rb.gy",
         "is.gd",
@@ -564,7 +632,46 @@
     ];
 
     const ownersTextsLegit = [
+
+        "Rádio Escola",
+        "RadioPlus Shows",
+        "Radio Nacional",
+        "RTVE",
+        "Ona 92 FM",
+        "GDS Radio TV Internacional",
+        "RCN RADIO",
+        "Delfi Meedia",
+        "Klubrádió",
+        "Polskie Radio S.A.",
+        "Sud Radio",
+
+        "BBC World Service",
+        "BBC Gahuza Radio",
+        "CBeebies Radio",
+        "BBC Radio Ulster",
+        "BBC Radio Scotland",
+        "BBC Radio Leicester",
+        "BBC Burmese Radio",
+        "BBC Arabic Radio",
+        "BBC Arabic",
+        "BBC Hindi Radio",
+        "BBC Hindi",
+        "BBC Radio 5",
+        "BBC Radio 4",
+        "BBC Radio 3",
+        "BBC Radio 2",
+        "BBC Radio 1",
+        "BBC Radio",
+        "BBC News",
+        "BBC Sounds",
+        "BBC Local Radio",
+
+        "Weather Alert Radio Network",
+        "Wavlake",
+        "Loyal Books",
+        "LibriVox",
         "Podcast WABCRadio",
+        "WBEZ Chicago"
     ];
 
     const ownersTexts = [
@@ -632,7 +739,7 @@
         "Nature and Animals",
         "Tragedy Genre",
 
-
+        "2 Minutes with Joey",
         "Fexingo",
 
 
@@ -645,7 +752,9 @@
         "3Peaks",
         "Referans Kodu",
 
+        "TheSoul Publishing",
 
+        "Novecho",
         "AudioScholar",
         "solgoodmedia.com",
         "The Oldies Radio",
@@ -683,6 +792,8 @@
         "GSMC SciFi Network",
         "Audiobooks",
         "HustleStudios Podcast Network",
+        "Launchpod Studio",
+        "ISMG Content Intelligence & AI Innovation",
 
         "Rabbit Hole Brief",
         "Classic Stories on Audio!",
@@ -706,7 +817,9 @@
     ];
 
     const feedURLprefixes = [
-        "https://www.spreaker.com/show/",
+        /* The usual suspects ... */
+        "https://podcast.gsmc.cloud/feed/", /* GSMC Cloud */
+        "https://www.spreaker.com/show/", /* Spreaker */
         "https://([a-z0-9]{1,}).supabase.co/", /* Supabase.co */
         "https://feeds.fastcast.ai/", /* AI newsfeeds */
         "https://booksreader.space/", /* Booksreader - Audible */
@@ -748,12 +861,19 @@
         "https://www.hpr2.org/podcasts/",
         "https://rss.amperwave.net/v2/feed/",
 
+        "http://www.rtve.es/api/programas/",
+        "https://www.klubradio.hu/rss/podcast/",
+        "https://www.sudradio.fr/programme/",
+
+        "https://shows.radioplus.co.il/feed/podcast/",
+        "https://www.rtp.pt/play/itunes/",
         "https://podcasts.files.bbci.co.uk/",
         "https://www.twr.org.uk/podcast_feed/",
 
         "https://radiofrance-podcast.net/",
         "https://podcast.college-de-france.fr/",
         "http://mauvaisgenre.org/",
+        "https://app.kajabi.com/podcasts/",
 
         "https://www.voanews.com/podcast/",
         "https://www.voaindonesia.com/podcast/",
@@ -793,6 +913,7 @@
         "http://www.radioomega.fr/site/specific/rssEmission",
         "https://feeds.360.audion.fm/",
 
+        "https://feed.symbol.fm/",
         "https://feeds.yle.fi/areena/v1/series/",
 
         "https://www.cbc.ca/podcasting/",
@@ -811,6 +932,9 @@
         "https://feeds.megaphone.fm/POM",
         "https://feeds.megaphone.fm/COR",
         "https://feeds.megaphone.fm/FOX",
+        "https://feeds.megaphone.fm/ACECREATORSPTYLTD",
+        "https://feeds.megaphone.fm/YOSHIMOTOKOGYOCOLTD",
+        "https://feeds.megaphone.fm/MP9",
         "https://rss.podplaystudio.com/",
         "https://podcast.stream.schibsted.media/",
         "https://feed.pod.space/",
@@ -856,11 +980,17 @@
         "https://rss.acast.com/",
         "https://access.acast.com/rss/",
         "https://feeds.acast.com/public/shows/",
+        "https://indiesats.com/api/feed?npub=",
         "https://wavlake.com/feed/music/"
     ];
 
     const descriptionPhonenumbers = [
         { text: "USA/Canada", regex: new RegExp("\\x2b1(\\x2d)?([\\d\\x2d\\s]{8,10})", "gi")},
+
+        { text: "Spain", regex: new RegExp("\\x2b34(\\x2d)?([\\d\\x2d\\s]{8,12})", "gi")},
+
+        { text: "Finland/Åland", regex: new RegExp("\\x2b358(\\x2d)?([\\d\\x2d\\s]{8,12})", "gi")},
+
 
         { text: "Malaysia", regex: new RegExp("\\x2b60(\\x2d)?([\\d\\x2d\\s]{8,12})", "gi")},
         { text: "Philippines", regex: new RegExp("\\x2b63(\\x2d)?([\\d\\x2d\\s]{8,12})", "gi")},
@@ -886,6 +1016,23 @@
 
     const extraGenerators = [
 
+
+
+        { text: "Patreon", regex: new RegExp("^Patreon", "gi")},
+        { text: "Audiomeans", regex: new RegExp("^Audiomeans", "gi")},
+        { text: "Symbol.fm", regex: new RegExp("^Symbol\\x2efm", "gi")},
+        { text: "PrestoCast", regex: new RegExp("^PrestoCast", "gi")},
+        { text: "Podlove", regex: new RegExp("^Podlove\\sPodcast\\sPublisher\\sv\\d{1,}\\x2e\\d{1,}\\x2e\\d{1,}", "gi")},
+        { text: "Castopod", regex: new RegExp("^Castopod\\s\\x2d\\shttps\\x3a\\x2f\\x2fcastopod\\x2eorg\\x2f", "gi")},
+        { text: "Shenoto", regex: new RegExp("^Shenoto", "gi")},
+        { text: "stand.fm", regex: new RegExp("^stand\\x2efm", "gi")},
+        { text: "beehiiv", regex: new RegExp("^beehiiv", "gi")},
+        { text: "Vodio", regex: new RegExp("^Vodio\\s\\x28https\\x3a\\x2f\\x2fwww\\x2evodio\\x2efr\\x29", "gi")},
+        { text: "Fireside", regex: new RegExp("^Fireside\\s\\x28https\\x3a\\x2f\\x2ffireside\\x2efm\\x29", "gi")},
+        { text: "Wavlake", regex: new RegExp("^Wavlake", "gi")},
+        { text: "Radiotalk", regex: new RegExp("^Radiotalk", "gi")},
+        { text: "Fusebox", regex: new RegExp("^Fusebox", "gi")},
+        { text: "Springcast Pro Generator", regex: new RegExp("^Springcast\\sPro\\sGenerator", "gi")},
         { text: "Pinecast", regex: new RegExp("^Pinecast\\s", "gi")},
         { text: "Podspace.com", regex: new RegExp("^Podspace\\x2ecom", "gi")},
         { text: "ShowPlatform", regex: new RegExp("^ShowPlatform\\s", "gi")},
@@ -928,44 +1075,79 @@
 
     const extraLanguages = [
 
-        { text: "Slovak", regex: new RegExp("^sk((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Lingala", regex: new RegExp("^ln((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Albanian", regex: new RegExp("^sq((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Polish", regex: new RegExp("^pl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Wolof", regex: new RegExp("^wo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Welsh", regex: new RegExp("^cy((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Yoruba", regex: new RegExp("^yo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Malay", regex: new RegExp("^ms((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Indonesian", regex: new RegExp("^id((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Kirghiz", regex: new RegExp("^ky((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Hindi", regex: new RegExp("^hi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Russian", regex: new RegExp("^ru((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Farsi", regex: new RegExp("^fa((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Czech", regex: new RegExp("^cs((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Tagalog", regex: new RegExp("^tl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Vietnamese", regex: new RegExp("^vi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
 
-        { text: "Greek", regex: new RegExp("^el((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Burmese", regex: new RegExp("^my((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Azerbaijani", regex: new RegExp("^az((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Catalan", regex: new RegExp("^ca((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Turkish", regex: new RegExp("^tr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Icelandic", regex: new RegExp("^is((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Yiddish", regex: new RegExp("^yi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Hebrew", regex: new RegExp("^he((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Armenian", regex: new RegExp("^hy((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Lao", regex: new RegExp("^lo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Finnish", regex: new RegExp("^fi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Estonian", regex: new RegExp("^et((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Sanskrit", regex: new RegExp("^sa((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Xhosa", regex: new RegExp("^xh((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Kurdish", regex: new RegExp("^ku((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Slovenian", regex: new RegExp("^sl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Serbian", regex: new RegExp("^sr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Sinhala", regex: new RegExp("^si((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Hungarian", regex: new RegExp("^hu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Filipino", regex: new RegExp("^fil((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Tamil", regex: new RegExp("^ta((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Korean", regex: new RegExp("^ko((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Lithuanian", regex: new RegExp("^lt((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Bosnian", regex: new RegExp("^bs((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Bengali", regex: new RegExp("^bn((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Ukrainian", regex: new RegExp("^uk((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Latvian", regex: new RegExp("^lv((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Amharic", regex: new RegExp("^am((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Tatar", regex: new RegExp("^tt((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Telugu", regex: new RegExp("^te((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Cornish", regex: new RegExp("^kw((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Zulu", regex: new RegExp("^zu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Bulgarian", regex: new RegExp("^bg((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Quechua", regex: new RegExp("^qu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Basque", regex: new RegExp("^eu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Norwegian Nynorsk", regex: new RegExp("^nn((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Tigrinya", regex: new RegExp("^ti((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Swahili", regex: new RegExp("^sw((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Urdu", regex: new RegExp("^ur((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Thai", regex: new RegExp("^th((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+
+
+        { text: "Albanian", regex: new RegExp("^sq((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Arabic", regex: new RegExp("^ar((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Portugese", regex: new RegExp("^pt((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Azerbaijani", regex: new RegExp("^az((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Burmese", regex: new RegExp("^my((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Catalan", regex: new RegExp("^ca((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Chinese", regex: new RegExp("^zh((\\x2d|\\x5f)([a-z]{2,4}))?$", "gi")},
+        { text: "Czech", regex: new RegExp("^cs((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Danish", regex: new RegExp("^da((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Norwegian", regex: new RegExp("^no((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Swedish", regex: new RegExp("^sv((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Dutch", regex: new RegExp("^nl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Italian", regex: new RegExp("^it((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "German", regex: new RegExp("^de((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Japanese", regex: new RegExp("^ja((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Spanish", regex: new RegExp("^es((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "English", regex: new RegExp("^en((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Farsi", regex: new RegExp("^fa((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "French", regex: new RegExp("^fr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "English", regex: new RegExp("^en((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")}
+        { text: "German", regex: new RegExp("^de((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Greek", regex: new RegExp("^el((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Hebrew", regex: new RegExp("^he((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Hindi", regex: new RegExp("^hi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Hindi", regex: new RegExp("^hin$", "gi")},
+        { text: "Icelandic", regex: new RegExp("^is((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Indonesian", regex: new RegExp("^id((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Italian", regex: new RegExp("^it((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Japanese", regex: new RegExp("^ja((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Kirghiz", regex: new RegExp("^ky((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Lingala", regex: new RegExp("^ln((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Malay", regex: new RegExp("^ms((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Norwegian", regex: new RegExp("^no((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Polish", regex: new RegExp("^pl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Portugese", regex: new RegExp("^pt((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Russian", regex: new RegExp("^ru((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Slovak", regex: new RegExp("^sk((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Spanish", regex: new RegExp("^es((\\x2d|\\x5f)([a-z0-9]{2,3}))?$", "gi")},
+        { text: "Swedish", regex: new RegExp("^sv((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Tagalog", regex: new RegExp("^tl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Turkish", regex: new RegExp("^tr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Vietnamese", regex: new RegExp("^vi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Welsh", regex: new RegExp("^cy((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Wolof", regex: new RegExp("^wo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Yiddish", regex: new RegExp("^yi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Yoruba", regex: new RegExp("^yo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")}
     ];
 
     const owners = [
@@ -1390,6 +1572,15 @@
         target.setAttribute('title', existingTitle ? `${existingTitle}, ${matchText}` : matchText);
     }
 
+    function ascii_to_hexadecimal(str) {
+        var arr1 = [];
+        for (var n = 0, l = str.length; n < l; n++) {
+            var hex = str.charCodeAt(n).toString(16).padStart(2, '0');
+            arr1.push(hex + ' ');
+        }
+        return arr1.join('').trim();
+    }
+
 
     // --- Pre-compile Regexes once to save computing power ---
     const titlePatterns = titleTexts.map(text => ({ text, regex: new RegExp(escapeRegExp(text), "gi") }));
@@ -1397,6 +1588,7 @@
     const feedPrefixPatterns = feedURLprefixes.map(text => ({ text, regex: new RegExp(escapeRegExp(text), "gi") }));
     const descPatterns = descriptionTexts.map(text => ({ text, regex: new RegExp(escapeRegExp(text), "gi") }));
     const ownerPatterns = ownersTexts.map(text => ({ text, regex: new RegExp(escapeRegExp(text), "gi") }));
+    const ownerLegitPatterns = ownersTextsLegit.map(text => ({ text, regex: new RegExp(escapeRegExp(text), "gi") }));
 
     const feedLegit = feedURLlegit.map(text => ({ text, regex: new RegExp(escapeRegExp(text), "gi") }));
 
@@ -1543,6 +1735,13 @@
                         podcast_byline = true;
                     }
                 });
+
+                ownerLegitPatterns.forEach(item => {
+                    if (bylineText.match(item.regex)) {
+                        flagElementLegit(bylineEl, item.text);
+                        podcast_byline = true;
+                    }
+                });
             }
 
 
@@ -1579,11 +1778,11 @@
                             flagElementLegit(extra, item.text);
                             podcast_generator = true;
                         }
-
                     });
 
                     if (podcast_generator === false) {
                         console.log('generator', generator, ascii_to_hexadecimal(generator));
+                        flagElementInvalid(extra, 'Not recognized');
                     }
 
                 }
@@ -1597,16 +1796,6 @@
             }
         });
     }
-
-    function ascii_to_hexadecimal(str) {
-    var arr1 = [];
-    for (var n = 0, l = str.length; n < l; n++) {
-        var hex = str.charCodeAt(n).toString(16).padStart(2, '0');
-        arr1.push(hex + ' ');
-    }
-    return arr1.join('').trim();
-}
-
 
     function searchpages() {
         console.log('searchPages - start');
@@ -1693,11 +1882,21 @@
             const bylineEl = podcast.querySelector('div.result-info p');
             if (bylineEl && bylineEl.innerText.trim().length > 0) {
                 bylineText = bylineEl.innerText;
+
+                /* Mark questionable owners */
                 ownerPatterns.forEach(item => {
                     if (bylineText.match(item.regex)) {
                         flagElement(bylineEl, item.text);
                     }
                 });
+
+                /* Mark legit owners */
+                ownerLegitPatterns.forEach(item => {
+                    if (bylineText.match(item.regex)) {
+                        flagElementLegit(bylineEl, item.text);
+                    }
+                });
+
             }
 
 
@@ -1726,12 +1925,25 @@
 
             }
 
+            if (url.match(/https\x3a\x2f\x2fpodcast\x2egsmc\x2ecloud\x2ffeed\x2f\d{1,}\x2frss/gi)) {
+                const spamButton = podcast.querySelector('div.spam-dropdown a.feedSpamMenu');
+                spamButton.click();
+                const spamMenu = podcast.querySelector('div.spam-menu a[data-reason="6"]');
+                setTimeout(() => {
+                    if (spamMenu) {
+                        spamMenu.click();
+                    }
+                }, 250);
+
+            }
+
+
+
         });
 
     }
 
     function searchbuttonrandom() {
-        console.log('SearchButtonRandom - start');
         const targetNav = document.querySelectorAll('form.form-inline')[0]; /* form.form-inline */
 
         /* Create button and set up */
@@ -1825,9 +2037,6 @@
         targetNav.appendChild(randomBtn);
         targetNav.appendChild(genreBtn);
         targetNav.appendChild(ownerBtn);
-
-
-        console.log('SearchButtonRandom - end');
     }
 
 
