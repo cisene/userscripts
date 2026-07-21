@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-07-20-1100
+// @version      2026-07-21-1949
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard*
@@ -21,7 +21,10 @@
         "ai",
         "app",
         "army",
+        "art",
         "bet",
+        "bet\\x2eph",
+        "biz",
         "black",
         "cab",
         "casino",
@@ -30,11 +33,16 @@
         "com\\x2epk",
         "contact",
         "club",
+        "click",
         "cn\\x2ecom",
         "design",
+        "expert",
         "gb\\x2enet",
         "green",
         "info",
+        "io",
+        "im",
+        "lat",
         "life",
         "live",
         "ltd",
@@ -45,10 +53,13 @@
         "name",
         "online",
         "org\\x2epk",
+        "plus",
+        "run",
         "shopping",
         "store",
         "tel",
         "tech",
+        "tips",
         "top",
         "us\\x2ecom",
         "wales",
@@ -100,6 +111,11 @@
 
         "2 Minutes with Joey",
 
+
+        "promo kodu",
+        "Online Retail",
+        "Retail Clothing",
+        "Clothing Store",
         "luxury market",
         "market signal",
         "partner code",
@@ -474,6 +490,7 @@
         "win big",
         "window glass",
         "window replacement",
+        "money game",
 
         "bit.ly",
         "tinyurl.com",
@@ -1017,7 +1034,9 @@
     const extraGenerators = [
 
 
-
+        { text: "Podomatic RSS Generator", regex: new RegExp("^Podomatic\\sRSS\\sGenerator", "gi")},
+        { text: "Blubrry Account Management", regex: new RegExp("^Blubrry\\sAccount\\sManagement\\x3a", "gi")},
+        { text: "Blubrry PowerPress", regex: new RegExp("^Blubrry\\sPowerPress", "gi")},
         { text: "Patreon", regex: new RegExp("^Patreon", "gi")},
         { text: "Audiomeans", regex: new RegExp("^Audiomeans", "gi")},
         { text: "Symbol.fm", regex: new RegExp("^Symbol\\x2efm", "gi")},
@@ -1076,6 +1095,13 @@
     const extraLanguages = [
 
 
+        { text: "Kinyarwanda", regex: new RegExp("^rw((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Kannada", regex: new RegExp("^kn((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Luba-Katanga", regex: new RegExp("^lu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Malagasy", regex: new RegExp("^mg((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Macedonian", regex: new RegExp("^mk((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Luxembourgish", regex: new RegExp("^lb((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Croatian", regex: new RegExp("^hr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Armenian", regex: new RegExp("^hy((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Lao", regex: new RegExp("^lo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Finnish", regex: new RegExp("^fi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
@@ -1148,6 +1174,61 @@
         { text: "Wolof", regex: new RegExp("^wo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Yiddish", regex: new RegExp("^yi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Yoruba", regex: new RegExp("^yo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")}
+    ];
+
+    const inlineFragments = [
+
+        { text: "@usaChang", regex: new RegExp("\\x40usachang", "gi")},
+        { text: "mifenXXXXXXXX@gmail.com", regex: new RegExp("mifen\\d{4,8}\\x40gmail\\x2ecom", "gi")},
+
+        { text: "@giugnoXXXX", regex: new RegExp("\\x40giugno\\d{1,5}", "gi")},
+        { text: "kolkocXXX@gmail.com", regex: new RegExp("kolkoc\\d{1,5}\\x40gmail\\x2ecom", "gi")},
+
+        { text: "@twlXXXtech", regex: new RegExp("\\x40twl\\d{1,5}tech", "gi")},
+        { text: "aotelaisichn@gmail.com", regex: new RegExp("aotelaisichn\\x40gmail\\x2ecom", "gi")},
+
+        { text: "OFFTAKExxx", regex: new RegExp("offtake\\d{1,5}", "gi")},
+        { text: "GETxxx", regex: new RegExp("get\\d{1,5}", "gi")},
+        { text: "JEAM", regex: new RegExp("jeam", "gi")},
+        { text: "BETxxx", regex: new RegExp("bet\\d{1,5}", "gi")},
+        { text: "xxxBET", regex: new RegExp("\\d{1,5}bet", "gi")},
+        { text: "xxxSAVE", regex: new RegExp("\\d{1,5}save", "gi")},
+
+        { text: "XXXDY", regex: new RegExp("\\d{1,5}dy", "gi")},
+
+        { text: "XXXFEN", regex: new RegExp("[a-z]{1,5}fen", "gi")},
+
+        { text: "ZANSU", regex: new RegExp("zansu", "gi")},
+        { text: "ZANUP", regex: new RegExp("zanup", "gi")},
+
+        { text: "Mxxx", regex: new RegExp("m\\d{1,5}", "gi")},
+
+        { text: "DHAXXX", regex: new RegExp("dha\\d{1,5}", "gi")},
+        { text: "DHXXX", regex: new RegExp("dh\\d{1,5}", "gi")},
+
+        { text: "FENSIXXX", regex: new RegExp("fensi\\d{1,3}", "gi")},
+        { text: "XXXFENSI", regex: new RegExp("[a-z]{1,3}fensi", "gi")},
+
+        { text: "xxxKOL", regex: new RegExp("\\d{1,}kol", "gi")},
+        { text: "xxxFEN", regex: new RegExp("\\d{1,}fen", "gi")},
+
+        { text: "xxxDY", regex: new RegExp("\\d{1,}dy", "gi")},
+        { text: "DKxxx", regex: new RegExp("dk\\{1,}", "gi")},
+
+        { text: "xxxZAN", regex: new RegExp("\\d{1,}zan", "gi")},
+        { text: "ZANxxx", regex: new RegExp("zan\\d{1,}", "gi")},
+
+        { text: "VAxxx", regex: new RegExp("va\\d{1,}", "gi")},
+        { text: "KPxxx", regex: new RegExp("kp\\d{1,}", "gi")},
+        { text: "JJxxx", regex: new RegExp("jj\\d{1,}", "gi")},
+
+        { text: "XHSxxx", regex: new RegExp("xhs\\d{1,}", "gi")},
+
+        { text: "xxxWIN", regex: new RegExp("\\d{1,}win", "gi")},
+        { text: "WINxxx", regex: new RegExp("win\\d{1,}", "gi")},
+
+        { text: "xxxJILI", regex: new RegExp("\\d{1,}jili", "gi")},
+        { text: "JILIxxx", regex: new RegExp("jili\\d{2,}", "gi")}
     ];
 
     const owners = [
@@ -1628,6 +1709,13 @@
                         flagElement(titleEl, item.text);
                     }
                 });
+
+                inlineFragments.forEach(item => {
+                    if (text.match(item.regex)) {
+                        flagElement(titleEl, item.text);
+                    }
+                });
+
             }
 
             /* 2. Extract & Test feedURL */
@@ -1673,6 +1761,11 @@
             if (descEl && descEl.innerText.trim().length > 0) {
                 const descText = descEl.innerText;
 
+                /* Add fancy expand functionality to description block */
+                descEl.addEventListener('click', () => {
+                    descEl.style = "-webkit-line-clamp: none;";
+                });
+
                 // Highlight naked link formats
                 nakedLinkPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
@@ -1680,7 +1773,6 @@
                         podcast_desc = true;
                     }
                 });
-                // console.log(nakedLinkPatterns);
 
                 // Highlight naked domains (Runs correctly now if a domain hit occurred)
                 nakedDomainPatterns.forEach(item => {
@@ -1719,6 +1811,13 @@
                 descriptionPhonenumbers.forEach(item => {
                     if (descText.match(item.regex)) {
                         flagElement(descEl, 'Phonenumber ' + item.text);
+                        podcast_desc = true;
+                    }
+                });
+
+                inlineFragments.forEach(item => {
+                    if (descText.match(item.regex)) {
+                        flagElement(descEl, 'Fragment ' + item.text);
                         podcast_desc = true;
                     }
                 });
@@ -1852,6 +1951,7 @@
             /* 3. Extract & Test Description */
             const descEl = podcast.querySelector('li.result-description');
             if (descEl && descEl.innerText.trim().length > 0) {
+
                 let descText = descEl.innerText;
                 let isFlaggedDomain = false;
 
