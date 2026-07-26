@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-07-21-1949
+// @version      2026-07-26-1930
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard*
@@ -22,6 +22,7 @@
         "app",
         "army",
         "art",
+        "baby",
         "bet",
         "bet\\x2eph",
         "biz",
@@ -29,6 +30,7 @@
         "cab",
         "casino",
         "cc",
+        "cheap",
         "com",
         "com\\x2epk",
         "contact",
@@ -37,14 +39,17 @@
         "cn\\x2ecom",
         "design",
         "expert",
+        "fund",
         "gb\\x2enet",
         "green",
         "info",
+        "investments",
         "io",
         "im",
         "lat",
         "life",
         "live",
+        "llc",
         "ltd",
         "menu",
         "mobi",
@@ -62,7 +67,9 @@
         "tips",
         "top",
         "us\\x2ecom",
+        "vegas",
         "wales",
+        "watch",
         "wiki",
         "win",
         "win\\x2epk",
@@ -77,8 +84,8 @@
 
     const titleTexts = [
 
-
-
+        "PayPal Account",
+        "slot games",
         "2 Minutes with Joey",
         "partner code",
         "call girl",
@@ -107,11 +114,72 @@
 
     const descriptionTexts = [
         "lorem ipsum dolor sit amet",
-
+        "Gemini Notebook",
 
         "2 Minutes with Joey",
 
-
+        "AI narration",
+        "A Gemini generated podcast",
+        "Codice sconto",
+        "IPTV services",
+        "trading account",
+        "earning methods",
+        "earn from bonuses",
+        "referral programs",
+        "quick rewards",
+        "easy withdrawals",
+        "casino-style gaming",
+        "earning chances",
+        "welcome rewards",
+        "Save Up to",
+        "Roofing Professional",
+        "Roofing Pros",
+        "boost SEO",
+        "salvage car",
+        "marketing system",
+        "Code promo",
+        "kortingscode",
+        "store promotions",
+        "seasonal sales",
+        "limited-time discounts",
+        "required identity verification",
+        "digital trading platform",
+        "structural repair",
+        "cash payment",
+        "Escort Girl",
+        "PayPal Accounts",
+        "recruiting tips",
+        "social media needs",
+        "promotional policies",
+        "commercial properties",
+        "Promotional offers",
+        "AI tools",
+        "experimental AI",
+        "AI flagged",
+        "Trading Fees",
+        "Invitation Code",
+        "gross salary",
+        "peptides",
+        "Soap2day",
+        "weight loss",
+        "call girl service",
+        "General Contracting Services",
+        "Coupon de réduction",
+        "premium jewellery",
+        "custom jewellery",
+        "jewellery shop",
+        "interior design",
+        "Dumpster Rental",
+        "winning potential",
+        "win big",
+        "slot game",
+        "Will Preparation",
+        "estate planning",
+        "business succession",
+        "Rajaslot",
+        "eucode",
+        "Slevový Kód",
+        "slevového kódu",
         "promo kodu",
         "Online Retail",
         "Retail Clothing",
@@ -158,6 +226,24 @@
         "quality care",
         "Evidence Based Investing",
         "raamkozijnen",
+        "online toto",
+        "lottery",
+        "dark toto",
+        "Tile Setter",
+        "glazing company",
+        "frameless shower",
+        "cash quotes",
+        "vehicle disposal",
+        "Cash for Cars",
+        "car removal",
+        "ID Verification",
+        "identity verification",
+        "Tiger Exchange ID",
+        "mailing services",
+        "accurate addressing",
+        "direct mail marketing",
+        "wheel loaders",
+        "Credit Union",
 
         "Mercedes-Benz\b",
         "BMW\b",
@@ -247,8 +333,6 @@
         "affiliate code",
         "affiliate link",
         "affiliate program",
-        "agency",
-        "agent",
         "apk download",
         "apk game",
         "apk",
@@ -278,7 +362,6 @@
         "call girl",
         "call girls",
         "campaign",
-        "captivating",
         "car finance",
         "car leasing",
         "car loan",
@@ -494,7 +577,6 @@
 
         "bit.ly",
         "tinyurl.com",
-        // "t.co",
         "cutt.ly",
         "rb.gy",
         "is.gd",
@@ -621,7 +703,7 @@
         "ag真人",
         "bc网",
         "bc網",
-        "bbin",
+        " bbin ",
         "dubo",
         "da kuan",
         "hga",
@@ -650,6 +732,9 @@
 
     const ownersTextsLegit = [
 
+        "MindBodySpirit.fm",
+
+
         "Rádio Escola",
         "RadioPlus Shows",
         "Radio Nacional",
@@ -661,6 +746,27 @@
         "Klubrádió",
         "Polskie Radio S.A.",
         "Sud Radio",
+        "Radio Catskill",
+        "Radio OTM",
+        "RSU Radio Sorbonne Université",
+        "Catalunya Ràdio",
+        "Townsquare Media, Inc.",
+
+        "Colorado Public Radio",
+        "St. Louis Public Radio",
+        "Wyoming Public Media",
+        "Nashville Public Radio",
+        "Radio ARA",
+        "Raiplay Sound",
+        "Radio Maria",
+
+        "Rebel Without a Clue Media",
+        "Condé Nast",
+        "Le Monde",
+        "LTL TV",
+        "Radio Grenouille",
+        "CFRC Podcast Network",
+        "Belarus FM",
 
         "BBC World Service",
         "BBC Gahuza Radio",
@@ -682,6 +788,11 @@
         "BBC News",
         "BBC Sounds",
         "BBC Local Radio",
+
+
+        "Digi FM - Newsic Radio",
+        "Banquise FM",
+        "Tilos Rádió",
 
         "Weather Alert Radio Network",
         "Wavlake",
@@ -758,7 +869,14 @@
 
         "2 Minutes with Joey",
         "Fexingo",
+        "Worlds Before Us",
+        "Abby Histories",
+        "AI Roller",
+        "Momentum Media Advertising",
+        "Mythic Frame Studios",
 
+
+        "AI narration",
 
         "advertising campaign",
         "escorts service",
@@ -777,6 +895,7 @@
         "The Oldies Radio",
         "ANDREA MILANO AI",
         "Hidden Voices",
+        "Skyrim Bedtime Stories",
 
         "Let's Work This Sh*t Out",
         "Cloudcast",
@@ -800,6 +919,7 @@
 
         "FIXME",
         "AI generated",
+        "Sundays from Aware",
         "Neon Nights Studio",
         "Sol Good Media",
         "Sol Good Network",
@@ -811,7 +931,11 @@
         "HustleStudios Podcast Network",
         "Launchpod Studio",
         "ISMG Content Intelligence & AI Innovation",
+        "The Oldies Radio",
+        "Free Audiobook Library",
 
+
+        "AudioVerse Archives",
         "Rabbit Hole Brief",
         "Classic Stories on Audio!",
         "OBOMEDIA ENTERTAINMENT",
@@ -877,16 +1001,21 @@
         "https://www.southcarolinapublicradio.org/podcast/",
         "https://www.hpr2.org/podcasts/",
         "https://rss.amperwave.net/v2/feed/",
+        "https://www.radiomaria.be/feed/podcast/",
 
+        "https://www.southeastradio.ie/podcasts/",
         "http://www.rtve.es/api/programas/",
         "https://www.klubradio.hu/rss/podcast/",
         "https://www.sudradio.fr/programme/",
+        "https://radiotuungane.info/feed/podcast/",
+        "https://www.radioara.org/feed/podcast/",
 
         "https://shows.radioplus.co.il/feed/podcast/",
         "https://www.rtp.pt/play/itunes/",
         "https://podcasts.files.bbci.co.uk/",
         "https://www.twr.org.uk/podcast_feed/",
 
+        "https://www.raiplaysound.it/programmi/",
         "https://radiofrance-podcast.net/",
         "https://podcast.college-de-france.fr/",
         "http://mauvaisgenre.org/",
@@ -909,6 +1038,7 @@
         "https://learningenglish.voanews.com/rss/",
 
         "https://podcast.cism893.ca/radioshows/",
+        "https://promodj.com/",
 
         "https://www.rte.ie/radio1/podcast/",
         "https://realsmartmedia.ie/podcasts/",
@@ -942,6 +1072,7 @@
         "https://ohdieux.ligature.ca/rss",
         "https://radiorfa.com/feed/podcast/",
 
+        "https://feeds.megaphone.fm/NBN",
         "https://feeds.megaphone.fm/CNE",
         "https://feeds.megaphone.fm/JXL",
         "https://feeds.megaphone.fm/RSU",
@@ -1034,6 +1165,12 @@
     const extraGenerators = [
 
 
+        { text: "Fourble", regex: new RegExp("^Fourble", "gi")},
+        { text: "Podhome", regex: new RegExp("^Podhome", "gi")},
+        { text: "iono.fm", regex: new RegExp("^iono\\x2efm", "gi")},
+        { text: "ART19", regex: new RegExp("^ART19", "gi")},
+        { text: "Fountain", regex: new RegExp("^Fountain", "gi")},
+        { text: "GodCaster", regex: new RegExp("^Godcaster\\x2efm\\x2f\\d{1,}\\x2e\\d{1,}", "gi")},
         { text: "Podomatic RSS Generator", regex: new RegExp("^Podomatic\\sRSS\\sGenerator", "gi")},
         { text: "Blubrry Account Management", regex: new RegExp("^Blubrry\\sAccount\\sManagement\\x3a", "gi")},
         { text: "Blubrry PowerPress", regex: new RegExp("^Blubrry\\sPowerPress", "gi")},
@@ -1094,7 +1231,12 @@
 
     const extraLanguages = [
 
-
+        { text: "Chichewa", regex: new RegExp("^ny((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Tonga", regex: new RegExp("^to((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Gujarati", regex: new RegExp("^gu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Marathi", regex: new RegExp("^mr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Romanian", regex: new RegExp("^ro((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Afrikaans", regex: new RegExp("^af((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Kinyarwanda", regex: new RegExp("^rw((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Kannada", regex: new RegExp("^kn((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Luba-Katanga", regex: new RegExp("^lu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
@@ -1178,6 +1320,9 @@
 
     const inlineFragments = [
 
+        { text: "UTM chatgpt", regex: new RegExp("\\x3futm\\x5fsource\\x3dchatgpt\\x2ecom", "gi")},
+
+
         { text: "@usaChang", regex: new RegExp("\\x40usachang", "gi")},
         { text: "mifenXXXXXXXX@gmail.com", regex: new RegExp("mifen\\d{4,8}\\x40gmail\\x2ecom", "gi")},
 
@@ -1188,20 +1333,57 @@
         { text: "aotelaisichn@gmail.com", regex: new RegExp("aotelaisichn\\x40gmail\\x2ecom", "gi")},
 
         { text: "OFFTAKExxx", regex: new RegExp("offtake\\d{1,5}", "gi")},
-        { text: "GETxxx", regex: new RegExp("get\\d{1,5}", "gi")},
+
+        { text: "GETXXX", regex: new RegExp("get\\d{1,5}", "gi")},
+        { text: "GETXXX", regex: new RegExp("get([a-z\\x2d]{1,3})", "gi")},
+
+
+
+        { text: "Get xx%", regex: new RegExp("Get\s(\\d{1,2})\x25", "gi")},
+        { text: "Up to xx%", regex: new RegExp("Up\\sto\\s(\\d{1,2})\\x25", "gi")},
+        { text: "fino al xx%", regex: new RegExp("fino\\sal\\s(\\d{1,2})\\x25", "gi")},
+
+        { text: "123XXX", regex: new RegExp("123([a-z\\x2d]{1,})", "gi")},
+
+
+        { text: "XOXXX", regex: new RegExp("xo\\d{1,5}", "gi")},
+        { text: "XOXXX", regex: new RegExp("xo([a-z\\x2d]{1,})", "gi")},
+
         { text: "JEAM", regex: new RegExp("jeam", "gi")},
-        { text: "BETxxx", regex: new RegExp("bet\\d{1,5}", "gi")},
+        { text: "JENY", regex: new RegExp("jeny", "gi")},
+
+        { text: "BETxxx", regex: new RegExp("bet(\\d{1,5})\\b", "gi")},
+        { text: "BETxxx", regex: new RegExp("bet([a-z\\x2d]{1,2})\\b", "gi")},
+
         { text: "xxxBET", regex: new RegExp("\\d{1,5}bet", "gi")},
+        { text: "xxxBET", regex: new RegExp("\\b([a-z\\x2d]{1,})bet", "gi")},
+
+        { text: "TOPxxx", regex: new RegExp("top(\\d{1,5})\\b", "gi")},
+        { text: "TOPxxx", regex: new RegExp("top([a-z\\x2d]{1,2})\\b", "gi")},
+
+        { text: "xxxTOP", regex: new RegExp("\\d{1,5}top", "gi")},
+        { text: "xxxTOP", regex: new RegExp("\\b([a-z\\x2d]{1,3})top", "gi")},
+
+        { text: "KINGxxx", regex: new RegExp("king(\\d{1,5})\\b", "gi")},
+        { text: "KINGxxx", regex: new RegExp("king([a-z\\x2d]{1,2})\\b", "gi")},
+
+        { text: "xxxKING", regex: new RegExp("\\b\\d{1,4}king\\b", "gi")},
+        { text: "xxxKING", regex: new RegExp("\\b([a-z\\x2d]{1,2})king\\b", "gi")},
+
+
         { text: "xxxSAVE", regex: new RegExp("\\d{1,5}save", "gi")},
 
-        { text: "XXXDY", regex: new RegExp("\\d{1,5}dy", "gi")},
+        { text: "XXXDY", regex: new RegExp("\\b\\d{1,5}dy", "gi")},
 
-        { text: "XXXFEN", regex: new RegExp("[a-z]{1,5}fen", "gi")},
+        { text: "XXXFEN", regex: new RegExp("\\b[a-z]{1,5}fen", "gi")},
+        { text: "XXXFEN", regex: new RegExp("\\b\\d{1,}fen", "gi")},
 
         { text: "ZANSU", regex: new RegExp("zansu", "gi")},
         { text: "ZANUP", regex: new RegExp("zanup", "gi")},
 
         { text: "Mxxx", regex: new RegExp("m\\d{1,5}", "gi")},
+        { text: "HELLOxxx", regex: new RegExp("\\bhello\\d{1,5}", "gi")},
+        { text: "LUCKxxx", regex: new RegExp("\\bluck\\d{1,5}", "gi")},
 
         { text: "DHAXXX", regex: new RegExp("dha\\d{1,5}", "gi")},
         { text: "DHXXX", regex: new RegExp("dh\\d{1,5}", "gi")},
@@ -1209,8 +1391,7 @@
         { text: "FENSIXXX", regex: new RegExp("fensi\\d{1,3}", "gi")},
         { text: "XXXFENSI", regex: new RegExp("[a-z]{1,3}fensi", "gi")},
 
-        { text: "xxxKOL", regex: new RegExp("\\d{1,}kol", "gi")},
-        { text: "xxxFEN", regex: new RegExp("\\d{1,}fen", "gi")},
+        { text: "xxxKOL", regex: new RegExp("\\b\\d{1,}kol", "gi")},
 
         { text: "xxxDY", regex: new RegExp("\\d{1,}dy", "gi")},
         { text: "DKxxx", regex: new RegExp("dk\\{1,}", "gi")},
@@ -1218,9 +1399,12 @@
         { text: "xxxZAN", regex: new RegExp("\\d{1,}zan", "gi")},
         { text: "ZANxxx", regex: new RegExp("zan\\d{1,}", "gi")},
 
-        { text: "VAxxx", regex: new RegExp("va\\d{1,}", "gi")},
-        { text: "KPxxx", regex: new RegExp("kp\\d{1,}", "gi")},
-        { text: "JJxxx", regex: new RegExp("jj\\d{1,}", "gi")},
+        { text: "PKxxx", regex: new RegExp("pk\\d{1,}", "gi")},
+        { text: "VAxxx", regex: new RegExp("\\bva\\d{1,}", "gi")},
+        { text: "KPxxx", regex: new RegExp("\\bkp\\d{1,}", "gi")},
+        { text: "JJxxx", regex: new RegExp("\\bjj\\d{1,}", "gi")},
+        { text: "Jxxx", regex: new RegExp("\\bj\\d{1,}", "gi")},
+        { text: "BJxxx", regex: new RegExp("\\bbj\\d{1,}", "gi")},
 
         { text: "XHSxxx", regex: new RegExp("xhs\\d{1,}", "gi")},
 
@@ -1251,6 +1435,9 @@
         "dream audio books",
         "elite personas llc",
         "escorts service",
+
+
+        "Worlds Before Us",
         "fexingo",
         "fixme",
         "gmb unlimited, llc",
@@ -1584,6 +1771,72 @@
         "easy listening"
     ];
 
+    const deepLinks = [
+
+        { text: "Google Drive Link", regex: new RegExp("https\\x3a\\x2f\\x2fdrive\\x2egoogle\\x2ecom\\x2fdrive\\x2ffolders\\x2f([a-z0-9\\x2\\x5f])", "gi")},
+        { text: "Google Share Link", regex: new RegExp("https\\x3a\\x2f\\x2fshare\\x2egoogle\\x2f([a-z0-9]{1,})", "gi")},
+
+        /* Social Media */
+        { text: "Instagram.com Username", regex: new RegExp("https\\x3a\\x2f\\x2finstagram\\x2ecom\\x2f([a-z0-9\\x2d\\x5f]{1,})", "gi")},
+        { text: "LinkedIn Username", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2elinkedin\\x2ecom\\x2fin\\x2f([a-z0-9\\x2d\\x5f]{1,})\\x2f", "gi")},
+        { text: "Youtube Username", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2eyoutube\\x2ecom\\x2f\\x40([a-z0-9\\x2d\\x5f]{1,})(\\x2f)?", "gi")},
+
+        /* Telegram */
+        { text: "Telegram Phonenumber", regex: new RegExp("https\\x3a\\x2f\\x2ft\\x2eme\\x2f\\x2b(\\d{1,})", "gi")},
+        { text: "Telegram Username", regex: new RegExp("https\\x3a\\x2f\\x2ft\\x2eme\\x2f([a-z0-9\\x2d\\x5f]{1,})", "gi")},
+
+        /* WhatsApp */
+        { text: "WhatsApp Phonenumber", regex: new RegExp("https\\x3a\\x2f\\x2fwa\\x2eme\\x2f(\\d{1,})", "gi")},
+        { text: "WhatsApp Chat", regex: new RegExp("https\\x3a\\x2f\\x2fchat\\x2ewhatsapp\\x2ecom\\x2f([a-z0-9\\x2d\\x5f]{1,})", "gi")},
+
+        { text: "LinkTr.ee Username", regex: new RegExp("https\\x3a\\x2f\\x2flinktr\\x2eee\\x2f([a-z0-9\\x2d\\x5f]{1,})", "gi")},
+
+        /* Blogs */
+        { text: "Blogspot", regex: new RegExp("https\\x3a\\x2f\\x2f([a-z0-9]{1,})\\x2eblogspot\\x2ecom", "gi")},
+        { text: "Substack", regex: new RegExp("https\\x3a\\x2f\\x2f([a-z0-9]{1,})\\x2esubstack\\x2ecom", "gi")},
+
+        /* Twitter */
+        { text: "Twitter Username", regex: new RegExp("https\\x3a\\x2f\\x2ftwitter\\x2ecom\\x2f([a-z0-9\\x2d\\x5f]{1,})", "gi")},
+
+        /* Payments */
+        { text: "CashApp", regex: new RegExp("https\\x3a\\x2f\\x2fcash\\x2eapp\\x2f\\x24([a-z0-9\\x2d]{1,})", "gi")},
+        { text: "PayPalMe", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2epaypal\\x2ecom\\x2fpaypalme\\x2f([a-z0-9\\x2d]{1,})", "gi")},
+        { text: "Venmo", regex: new RegExp("https\\x3a\\x2f\\x2fvenmo\\x2ecom\\x2fu\\x2f([a-z0-9\\x2d]{1,})", "gi")},
+
+
+        /* Shopping */
+        { text: "Audible", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2eaudible\\x2ecom\\x2fpd\\x2f([a-z0-9\\x2d]{1,})\\x2f([a-z0-9\\x2d]{1,})", "gi")},
+        { text: "Amazon", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2eamazon\\x2ecom\\x2f([a-z0-9\\x2d]{1,})\\x2fdp\\x2f(\\d{1,})\\x2f", "gi")}
+    ];
+
+    const whackyPhoneNumbers = [
+
+        { text: "UK", regex: new RegExp("\\x2b44\\x3a(\\d{3})\\x3a(\\d{3})\\x3a(\\d{3,4})", "gi")},
+        { text: "UK", regex: new RegExp("\\x2b44\\x28(\\d{3})\\x2d(\\d{3})\\x2d(\\d{4})\\x29", "gi")},
+        { text: "UK", regex: new RegExp("\\x2b44\\x28(\\d{3})\\x29(\\d{3})\\s(\\d{3})", "gi")},
+        { text: "UK", regex: new RegExp("\\x2b44\\s(\\d{3})\\x2d(\\d{3})\\x2d(\\d{3})", "gi")},
+
+
+        { text: "US", regex: new RegExp("\\x2b([\\d]{1,})\\x3a([\\dO]{3})(\\x3a|\\x28)([\\dO]{3})(\\x3a|\\x29)([\\dO]{4})", "gi")},
+        { text: "US", regex: new RegExp("\\x2b(\\d{1,})\\x3a(\\d{3})\\x3a(\\d{3})\\x3a([\\dO]{4})", "gi")},
+        { text: "US", regex: new RegExp("\\x2b(\\d{1,})\\x3a(\\d{3})\\x3a\\x28(\\d{3})\\x29\\x3a(\\d{4})", "gi")},
+        { text: "US", regex: new RegExp("\\b\\x28(\\d{1}OO|\\d{3})\\x3a\\x2d(\\d{3})\\x3a(\\d{4})\\x29", "gi")},
+        { text: "US", regex: new RegExp("\\d{1}\\x28(\\d{1}OO|\\d{3})\\x3a\\x2d(\\d{3})\\x3a(\\d{4})\\x29", "gi")},
+        { text: "US", regex: new RegExp("\\d{1}\\x2d\\\d{3}\\x2d\\d{3}\\x2d\\d{4}", "gi")},
+        { text: "US", regex: new RegExp("(\\d{3})\\u2012(\\d{3})\\u2012(\\d{4})", "gi")},
+        { text: "US", regex: new RegExp("1\\s\\x28(\\d{3})\\u2012(\\d{3})\\u2012(\\d{4})\\x29", "gi")},
+        { text: "US", regex: new RegExp("\\x28(\\d{3})\\x29\\s(\\d{3})\\x2d(\\d{4})", "gi")},
+
+        { text: "US", regex: new RegExp("\\x2b1\\x3a(\\d{3})\\x3a(\\d{3})\\x3a(\\d{4})", "gi")},
+        { text: "US", regex: new RegExp("\\x2b1\\x28(\\d{3})\\x29(\\d{3})\\s(\\d{4})", "gi")},
+        { text: "US", regex: new RegExp("\\x2b1\\x28(\\d{3})\\x29(\\d{3})\\x2d(\\d{4})", "gi")},
+        { text: "US", regex: new RegExp("\\x2b1\\s(\\d{3})\\x2d(\\d{3})\\x2d(\\d{4})", "gi")},
+        { text: "US", regex: new RegExp("\\x2b0\\x3a(\\d{3})\\x3a(\\d{3})\\x3a(\\d{4})", "gi")},
+        { text: "US", regex: new RegExp("\\x2b0\\s(\\d{3})\\x2d(\\d{3})\\x2d(\\d{4})", "gi")},
+        { text: "US", regex: new RegExp("\\x28(\\d{3})\\x29\\x2d(\\d{3}|\\d{1}OO)\\x2d(\\d{4})", "gi")}
+    ];
+
+
     // --- Helper Functions ---
     function extractiTunesId(string) {
         string = string.replace(/^itunes\x3a\s/gi,'');
@@ -1703,16 +1956,31 @@
             /* 1. Extract & Test Title */
             const titleEl = podcast.querySelector('h3 a');
             if (titleEl && titleEl.innerText.trim().length > 0) {
-                const text = titleEl.innerText;
+                const title = titleEl.innerText;
                 titlePatterns.forEach(item => {
-                    if (text.match(item.regex)) {
+                    if (title.match(item.regex)) {
                         flagElement(titleEl, item.text);
                     }
                 });
 
+
                 inlineFragments.forEach(item => {
-                    if (text.match(item.regex)) {
-                        flagElement(titleEl, item.text);
+                    if (title.match(item.regex)) {
+                        flagElement(titleEl, 'Fragment ' + item.text);
+                        podcast_desc = true;
+                    }
+                });
+
+                descriptionPhonenumbers.forEach(item => {
+                    if (title.match(item.regex)) {
+                        flagElement(titleEl, 'Phonenumber ' + item.text);
+                        podcast_desc = true;
+                    }
+                });
+
+                whackyPhoneNumbers.forEach(item => {
+                    if (title.match(item.regex)) {
+                        flagElement(titleEl, 'WhackyPhoneNumber ' + item.text);
                     }
                 });
 
@@ -1769,7 +2037,7 @@
                 // Highlight naked link formats
                 nakedLinkPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
-                        flagElement(podcast, item.tld);
+                        flagElement(descEl, item.tld);
                         podcast_desc = true;
                     }
                 });
@@ -1777,7 +2045,7 @@
                 // Highlight naked domains (Runs correctly now if a domain hit occurred)
                 nakedDomainPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
-                        flagElement(podcast, item.tld);
+                        flagElement(descEl, item.tld);
                         podcast_desc = true;
                     }
                 });
@@ -1786,7 +2054,7 @@
                 /* Different domain struct */
                 nakedLinkDomainPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
-                        flagElement(podcast, item.tld);
+                        flagElement(descEl, item.tld);
                         podcast_desc = true;
                     }
                 });
@@ -1795,7 +2063,7 @@
                 /* Look for feedPrefixes */
                 feedPrefixPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
-                        flagElement(podcast, item.tld);
+                        flagElement(descEl, item.tld);
                         podcast_desc = true;
                     }
                 });
@@ -1808,12 +2076,27 @@
                     }
                 });
 
+                deepLinks.forEach(item => {
+                    if (descText.match(item.regex)) {
+                        flagElement(descEl, 'DeepLink ' + item.text);
+                        podcast_desc = true;
+                    }
+                });
+
                 descriptionPhonenumbers.forEach(item => {
                     if (descText.match(item.regex)) {
                         flagElement(descEl, 'Phonenumber ' + item.text);
                         podcast_desc = true;
                     }
                 });
+
+                whackyPhoneNumbers.forEach(item => {
+                    if (descText.match(item.regex)) {
+                        flagElement(descEl, 'WhackyPhoneNumber ' + item.text);
+                        podcast_desc = true;
+                    }
+                });
+
 
                 inlineFragments.forEach(item => {
                     if (descText.match(item.regex)) {
@@ -1841,6 +2124,22 @@
                         podcast_byline = true;
                     }
                 });
+
+                // Highlight bad keywords
+                descPatterns.forEach(item => {
+                    if (bylineText.match(item.regex)) {
+                        flagElement(bylineEl, item.text);
+                        podcast_byline = true;
+                    }
+                });
+
+                inlineFragments.forEach(item => {
+                    if (bylineText.match(item.regex)) {
+                        flagElement(bylineEl, 'Fragment ' + item.text);
+                        podcast_byline = true;
+                    }
+                });
+
             }
 
 
@@ -1888,11 +2187,13 @@
 
             });
 
+            /*
             if (podcast_url == true && podcast_byline == true && markNumber > 0) {
                 const podcastCheckbox = podcast.querySelector('div.col-image input.checkbox-overlay');
                 podcastCheckbox.checked = true;
                 markNumber -= 1;
             }
+            */
         });
     }
 
@@ -1918,6 +2219,13 @@
                         flagElement(titleEl, item.text);
                     }
                 });
+
+                whackyPhoneNumbers.forEach(item => {
+                    if (title.match(item.regex)) {
+                        flagElement(titleEl, 'WhackyPhoneNumber ' + item.text);
+                    }
+                });
+
             }
 
             /* 2. Extract & Test feedURL */
@@ -1976,6 +2284,12 @@
                         flagElement(descEl, item.text);
                     }
                 });
+                whackyPhoneNumbers.forEach(item => {
+                    if (descText.match(item.regex)) {
+                        flagElement(descEl, 'WhackyPhoneNumber ' + item.text);
+                    }
+                });
+
             }
 
             /* 4. Extract & Test Owner / Byline */
