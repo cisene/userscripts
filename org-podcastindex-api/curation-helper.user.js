@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-07-26-1930
+// @version      2026-07-27-2207
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard*
@@ -118,6 +118,8 @@
 
         "2 Minutes with Joey",
 
+        "Facebook Accounts",
+        "MyBookie",
         "AI narration",
         "A Gemini generated podcast",
         "Codice sconto",
@@ -1231,6 +1233,9 @@
 
     const extraLanguages = [
 
+
+
+        { text: "Belarusian", regex: new RegExp("^be((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Chichewa", regex: new RegExp("^ny((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Tonga", regex: new RegExp("^to((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Gujarati", regex: new RegExp("^gu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
@@ -1334,85 +1339,64 @@
 
         { text: "OFFTAKExxx", regex: new RegExp("offtake\\d{1,5}", "gi")},
 
-        { text: "GETXXX", regex: new RegExp("get\\d{1,5}", "gi")},
-        { text: "GETXXX", regex: new RegExp("get([a-z\\x2d]{1,3})", "gi")},
+        { text: "GETXXX", regex: new RegExp("\\bget\\d{1,5}\\b", "gi")},
+        // { text: "GETXXX", regex: new RegExp("\\bget([a-z\\x2d]{1,3})\\b", "gi")},
+        { text: "JEAM", regex: new RegExp("\\bjeam\\b", "gi")},
+        { text: "JENY", regex: new RegExp("\\bjeny\\b", "gi")},
 
+        { text: "Course Code", regex: new RegExp("GA\\d{1}\\x2d(\\d{9})\\x2d([a-z]{2})\\d{1}\\x2d([a-z]{2})(\\d{2})", "gi")},
 
 
         { text: "Get xx%", regex: new RegExp("Get\s(\\d{1,2})\x25", "gi")},
         { text: "Up to xx%", regex: new RegExp("Up\\sto\\s(\\d{1,2})\\x25", "gi")},
         { text: "fino al xx%", regex: new RegExp("fino\\sal\\s(\\d{1,2})\\x25", "gi")},
 
-        { text: "123XXX", regex: new RegExp("123([a-z\\x2d]{1,})", "gi")},
+        { text: "123XXX", regex: new RegExp("\\b123([a-z\\x2d]{1,})\\b", "gi")},
 
-
-        { text: "XOXXX", regex: new RegExp("xo\\d{1,5}", "gi")},
-        { text: "XOXXX", regex: new RegExp("xo([a-z\\x2d]{1,})", "gi")},
-
-        { text: "JEAM", regex: new RegExp("jeam", "gi")},
-        { text: "JENY", regex: new RegExp("jeny", "gi")},
-
-        { text: "BETxxx", regex: new RegExp("bet(\\d{1,5})\\b", "gi")},
-        { text: "BETxxx", regex: new RegExp("bet([a-z\\x2d]{1,2})\\b", "gi")},
-
-        { text: "xxxBET", regex: new RegExp("\\d{1,5}bet", "gi")},
-        { text: "xxxBET", regex: new RegExp("\\b([a-z\\x2d]{1,})bet", "gi")},
-
-        { text: "TOPxxx", regex: new RegExp("top(\\d{1,5})\\b", "gi")},
-        { text: "TOPxxx", regex: new RegExp("top([a-z\\x2d]{1,2})\\b", "gi")},
-
-        { text: "xxxTOP", regex: new RegExp("\\d{1,5}top", "gi")},
-        { text: "xxxTOP", regex: new RegExp("\\b([a-z\\x2d]{1,3})top", "gi")},
-
-        { text: "KINGxxx", regex: new RegExp("king(\\d{1,5})\\b", "gi")},
-        { text: "KINGxxx", regex: new RegExp("king([a-z\\x2d]{1,2})\\b", "gi")},
-
-        { text: "xxxKING", regex: new RegExp("\\b\\d{1,4}king\\b", "gi")},
-        { text: "xxxKING", regex: new RegExp("\\b([a-z\\x2d]{1,2})king\\b", "gi")},
-
-
-        { text: "xxxSAVE", regex: new RegExp("\\d{1,5}save", "gi")},
-
-        { text: "XXXDY", regex: new RegExp("\\b\\d{1,5}dy", "gi")},
-
-        { text: "XXXFEN", regex: new RegExp("\\b[a-z]{1,5}fen", "gi")},
-        { text: "XXXFEN", regex: new RegExp("\\b\\d{1,}fen", "gi")},
-
-        { text: "ZANSU", regex: new RegExp("zansu", "gi")},
-        { text: "ZANUP", regex: new RegExp("zanup", "gi")},
-
-        { text: "Mxxx", regex: new RegExp("m\\d{1,5}", "gi")},
-        { text: "HELLOxxx", regex: new RegExp("\\bhello\\d{1,5}", "gi")},
-        { text: "LUCKxxx", regex: new RegExp("\\bluck\\d{1,5}", "gi")},
-
-        { text: "DHAXXX", regex: new RegExp("dha\\d{1,5}", "gi")},
-        { text: "DHXXX", regex: new RegExp("dh\\d{1,5}", "gi")},
-
-        { text: "FENSIXXX", regex: new RegExp("fensi\\d{1,3}", "gi")},
-        { text: "XXXFENSI", regex: new RegExp("[a-z]{1,3}fensi", "gi")},
-
-        { text: "xxxKOL", regex: new RegExp("\\b\\d{1,}kol", "gi")},
-
-        { text: "xxxDY", regex: new RegExp("\\d{1,}dy", "gi")},
-        { text: "DKxxx", regex: new RegExp("dk\\{1,}", "gi")},
-
-        { text: "xxxZAN", regex: new RegExp("\\d{1,}zan", "gi")},
-        { text: "ZANxxx", regex: new RegExp("zan\\d{1,}", "gi")},
-
-        { text: "PKxxx", regex: new RegExp("pk\\d{1,}", "gi")},
-        { text: "VAxxx", regex: new RegExp("\\bva\\d{1,}", "gi")},
-        { text: "KPxxx", regex: new RegExp("\\bkp\\d{1,}", "gi")},
+        // { text: "BETxxx", regex: new RegExp("\\bbet([a-z\\x2d]{1,2})\\b", "gi")},
+        { text: "BETxxx", regex: new RegExp("\\bbet(\\d{1,5})\\b", "gi")},
+        { text: "BJxxx", regex: new RegExp("\\bbj\\d{1,}\\b", "gi")},
+        { text: "DHAXXX", regex: new RegExp("\\bdha\\d{1,5}\\b", "gi")},
+        { text: "DHXXX", regex: new RegExp("\\bdh\\d{1,5}\\b", "gi")},
+        { text: "DKxxx", regex: new RegExp("\\bdk\\d{1,}\\b", "gi")},
+        { text: "FENSIXXX", regex: new RegExp("\\bfensi\\d{1,3}\\b", "gi")},
+        { text: "HELLOxxx", regex: new RegExp("\\bhello\\d{1,5}\\b", "gi")},
         { text: "JJxxx", regex: new RegExp("\\bjj\\d{1,}", "gi")},
         { text: "Jxxx", regex: new RegExp("\\bj\\d{1,}", "gi")},
-        { text: "BJxxx", regex: new RegExp("\\bbj\\d{1,}", "gi")},
+        //{ text: "KINGxxx", regex: new RegExp("\\bking([a-z\\x2d]{1,2})\\b", "gi")},
+        { text: "KINGxxx", regex: new RegExp("\\bking(\\d{1,5})\\b", "gi")},
+        { text: "KPxxx", regex: new RegExp("\\bkp\\d{1,}", "gi")},
+        { text: "LUCKxxx", regex: new RegExp("\\bluck\\d{1,5}", "gi")},
+        { text: "Mxxx", regex: new RegExp("\\bm\\d{1,5}\\b", "gi")},
+        { text: "PKxxx", regex: new RegExp("\\bpk\\d{1,}\\b", "gi")},
+        //{ text: "TOPxxx", regex: new RegExp("\\btop([a-z\\x2d]{1,2})\\b", "gi")},
+        { text: "TOPxxx", regex: new RegExp("\\btop(\\d{1,5})\\b", "gi")},
+        { text: "VAxxx", regex: new RegExp("\\bva\\d{1,}\\b", "gi")},
+        { text: "WINxxx", regex: new RegExp("\\bwin\\d{1,}\\b", "gi")},
+        { text: "XHSxxx", regex: new RegExp("\\bxhs\\d{1,}\\b", "gi")},
+        { text: "XOXXX", regex: new RegExp("\\bxo([a-z\\x2d]{1,})\\b", "gi")},
+        { text: "XOXXX", regex: new RegExp("\\bxo\\d{1,5}\\b", "gi")},
+        { text: "xxxBET", regex: new RegExp("\\b([a-z\\x2d]{1,5})bet\\b", "gi")},
+        { text: "xxxBET", regex: new RegExp("\\b\\d{1,5}bet\\b", "gi")},
+        { text: "XXXDY", regex: new RegExp("\\b\\d{1,5}dy\\b", "gi")},
+        { text: "xxxDY", regex: new RegExp("\\b\\d{1,}dy\\b", "gi")},
+        { text: "XXXFEN", regex: new RegExp("\\b[a-z]{1,3}fen\\b", "gi")},
+        { text: "XXXFEN", regex: new RegExp("\\b\\d{1,3}fen\\b", "gi")},
+        { text: "XXXFENSI", regex: new RegExp("\\b[a-z]{1,3}fensi\\b", "gi")},
+        //{ text: "xxxKING", regex: new RegExp("\\b([a-z\\x2d]{1,2})king\\b", "gi")},
+        { text: "xxxKING", regex: new RegExp("\\b\\d{1,4}king\\b", "gi")},
+        { text: "xxxKOL", regex: new RegExp("\\b\\d{1,}kol\\b", "gi")},
+        { text: "xxxSAVE", regex: new RegExp("\\b\\d{1,5}save\\b", "gi")},
+        // { text: "xxxTOP", regex: new RegExp("\\b([a-z\\x2d]{1,3})top\\b", "gi")},
+        { text: "xxxTOP", regex: new RegExp("\\b\\d{1,3}top\\b", "gi")},
+        { text: "xxxWIN", regex: new RegExp("\\b\\d{1,}win\\b", "gi")},
+        { text: "xxxZAN", regex: new RegExp("\\b\\d{1,}zan\\b", "gi")},
+        { text: "ZANSU", regex: new RegExp("\\bzansu\\b", "gi")},
+        { text: "ZANUP", regex: new RegExp("\\bzanup\\b", "gi")},
+        { text: "ZANxxx", regex: new RegExp("\\bzan\\d{1,}\\b", "gi")},
 
-        { text: "XHSxxx", regex: new RegExp("xhs\\d{1,}", "gi")},
-
-        { text: "xxxWIN", regex: new RegExp("\\d{1,}win", "gi")},
-        { text: "WINxxx", regex: new RegExp("win\\d{1,}", "gi")},
-
-        { text: "xxxJILI", regex: new RegExp("\\d{1,}jili", "gi")},
-        { text: "JILIxxx", regex: new RegExp("jili\\d{2,}", "gi")}
+        { text: "xxxJILI", regex: new RegExp("\\b\\d{1,}jili\\b", "gi")},
+        { text: "JILIxxx", regex: new RegExp("\\bjili\\d{2,}\\b", "gi")}
     ];
 
     const owners = [
@@ -1780,6 +1764,9 @@
         { text: "Instagram.com Username", regex: new RegExp("https\\x3a\\x2f\\x2finstagram\\x2ecom\\x2f([a-z0-9\\x2d\\x5f]{1,})", "gi")},
         { text: "LinkedIn Username", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2elinkedin\\x2ecom\\x2fin\\x2f([a-z0-9\\x2d\\x5f]{1,})\\x2f", "gi")},
         { text: "Youtube Username", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2eyoutube\\x2ecom\\x2f\\x40([a-z0-9\\x2d\\x5f]{1,})(\\x2f)?", "gi")},
+        { text: "BlueSky Username", regex: new RegExp("https\\x3a\\x2f\\x2fbsky\\x2eapp\\x2fprofile\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})", "gi")},
+
+
 
         /* Telegram */
         { text: "Telegram Phonenumber", regex: new RegExp("https\\x3a\\x2f\\x2ft\\x2eme\\x2f\\x2b(\\d{1,})", "gi")},
@@ -1817,6 +1804,8 @@
         { text: "UK", regex: new RegExp("\\x2b44\\s(\\d{3})\\x2d(\\d{3})\\x2d(\\d{3})", "gi")},
 
 
+        { text: "US", regex: new RegExp("\\x2b1\\x3a([0-9O]{3})\x7b([0-9O]{3})\x7d([0-9O]{4})", "gi")},
+        { text: "US", regex: new RegExp("\\b(\\d{3}|\\d{1,}OO)\\x3a(\\d{3}|\\d{1,}OO)\\x3a(\\d{4}|\\d{1,}OOO)\\b", "gi")},
         { text: "US", regex: new RegExp("\\x2b([\\d]{1,})\\x3a([\\dO]{3})(\\x3a|\\x28)([\\dO]{3})(\\x3a|\\x29)([\\dO]{4})", "gi")},
         { text: "US", regex: new RegExp("\\x2b(\\d{1,})\\x3a(\\d{3})\\x3a(\\d{3})\\x3a([\\dO]{4})", "gi")},
         { text: "US", regex: new RegExp("\\x2b(\\d{1,})\\x3a(\\d{3})\\x3a\\x28(\\d{3})\\x29\\x3a(\\d{4})", "gi")},
@@ -2035,30 +2024,35 @@
                 });
 
                 // Highlight naked link formats
+                /*
                 nakedLinkPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
-                        flagElement(descEl, item.tld);
+                        flagElement(descEl, 'NakedLinkPatterns ' + item.tld);
                         podcast_desc = true;
                     }
                 });
+                */
 
                 // Highlight naked domains (Runs correctly now if a domain hit occurred)
+                /*
                 nakedDomainPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
-                        flagElement(descEl, item.tld);
+                        flagElement(descEl, 'NakedDomainPatterns ' + item.tld);
                         podcast_desc = true;
                     }
                 });
-                // console.log(nakedDomainPatterns);
+                */
+
 
                 /* Different domain struct */
+                /*
                 nakedLinkDomainPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
-                        flagElement(descEl, item.tld);
+                        flagElement(descEl, 'NakedLinkDomainPatterns ' + item.tld);
                         podcast_desc = true;
                     }
                 });
-                // console.log(nakedLinkDomainPatterns);
+                */
 
                 /* Look for feedPrefixes */
                 feedPrefixPatterns.forEach(item => {
