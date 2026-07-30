@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-07-27-2207
+// @version      2026-07-31-0048
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard*
@@ -118,9 +118,106 @@
 
         "2 Minutes with Joey",
 
+        "Waldorf teachers",
+        "Waldorf school",
+        "Waldorf pedagogy",
+        "Montessori",
+
+        "decentralized education",
+        "free-ranged kids",
+        "soul-led education",
+        "no-schooling",
+        "unschooling",
+        "homeschooling",
+        "self-directed learning",
+        "natural learning",
+        "child-led education",
+        "interest-based education",
+        "autonomous education",
+        "worldschooling",
+        "deschooling",
+        "freedom-based learning",
+        "freeschooling",
+
+
+        "Party Store",
+        "colorful balloons",
+        "party-related",
+
+        "credit card",
+        "debit card",
+        "private banking",
+        "housing market",
+
+        "copper recycling",
+        "recycling solution",
+
+        "medical billing",
+        "revenue cycle management",
+        "healthcare reimbursement",
+        "billing operations",
+
+        "simplify invoicing",
+        "simplify estimates",
+        "simplify purchase orders",
+        "simplify receipts",
+
+        "professional flooring",
+        "flooring installation",
+        "flooring solution",
+
+
+        "packaging solution",
+        "packaging product",
+        "exceptional packaging",
+
+        "household plumbing",
+        "drainage system",
+        "drain blockage",
+        "blocked drain",
+        "plumbing repairs",
+        "drain maintenance",
+
+        "wedding venue",
+        "wedding package",
+        "wedding celebration",
+
+        "preventive dentistry",
+        "restorative dentistry",
+        "cosmetic dentistry",
+        "pediatric dentistry",
+        "emergency dentistry",
+        "implant dentistry",
+        "dental practice",
+
+        "airport transfers",
+        "Coach Hire",
+        "accounting",
+        "bookkeeping",
+        "Charter Bus",
+        "bus rentals",
+        "service apartment",
+        "Top Games",
+        "waste management",
+        "OSHA Compliance",
+        "dakbedekking",
+        "lokale dakdekker",
+        "bank account balance",
+        "Intelligenza Artificiale",
+        "structured curriculum",
+        "online tuition",
+        "not medical or legal advice",
+        "not medical advice",
+        "not legal advice",
+        "Chiropractor",
+        "Artificial Intelligence",
+        "hourly accommodation",
+        "book accommodations",
+        "hotel booking",
         "Facebook Accounts",
         "MyBookie",
         "AI narration",
+        "AI news",
         "A Gemini generated podcast",
         "Codice sconto",
         "IPTV services",
@@ -761,6 +858,11 @@
         "Radio ARA",
         "Raiplay Sound",
         "Radio Maria",
+        "Radio Mont Blanc",
+        "RSU Radio Sorbonne Université",
+        "WLRH Radio",
+
+        "JewishPodcasts.fm",
 
         "Rebel Without a Clue Media",
         "Condé Nast",
@@ -769,6 +871,12 @@
         "Radio Grenouille",
         "CFRC Podcast Network",
         "Belarus FM",
+        "Radio Dynamo",
+        "Roma Tre Radio Podcast",
+        "Next Nation",
+        "Kofifi FM 97.2",
+        "Southend City Radio",
+        "Maxiradio 103.3 FM",
 
         "BBC World Service",
         "BBC Gahuza Radio",
@@ -910,6 +1018,7 @@
         "GMB Unlimited, LLC",
         "Dream Audio Books",
         "Pigeon Publishing House",
+        "Pigeon Casa Editorial",
         "Appletfab LLC",
         "Audiobooks by Librivox",
         "Audiobooks On Line",
@@ -927,8 +1036,17 @@
         "Sol Good Network",
         "TeeSnee AI",
         "The Podcast Network",
-        "GSMC Podcast Network",
-        "GSMC SciFi Network",
+        "gsmc podcast network",
+        "gsmc scifi network",
+        "GSMC Classics",
+        "GSMC Sports Podcasts",
+        "GSMC News Podcasts",
+        "GSMC Music & Theater Network",
+        "GSMC Action Podcasts",
+        "GSMC Comedy & Family Network",
+        "GSMC Sports Network",
+        "GSMC Drama Network",
+        "GSMC Religion Network",
         "Audiobooks",
         "HustleStudios Podcast Network",
         "Launchpod Studio",
@@ -944,6 +1062,7 @@
         "Neon Nights Network",
         "Tvweo",
         "ciesse",
+        "Maria Tiffany",
         "Michela Bertazzo",
         "Raghvendra Singh",
         "Lumen Audio Studio",
@@ -1005,6 +1124,7 @@
         "https://rss.amperwave.net/v2/feed/",
         "https://www.radiomaria.be/feed/podcast/",
 
+        "https://podcasts.cityradioplayer.uk/",
         "https://www.southeastradio.ie/podcasts/",
         "http://www.rtve.es/api/programas/",
         "https://www.klubradio.hu/rss/podcast/",
@@ -1012,11 +1132,18 @@
         "https://radiotuungane.info/feed/podcast/",
         "https://www.radioara.org/feed/podcast/",
 
+        "https://radiodynamo.org/feed/podcast/",
         "https://shows.radioplus.co.il/feed/podcast/",
         "https://www.rtp.pt/play/itunes/",
         "https://podcasts.files.bbci.co.uk/",
         "https://www.twr.org.uk/podcast_feed/",
+        "https://tiftonmediaworks.com/shows/",
 
+        "https://wlrh.org/podcast-feed/",
+        "https://podcast.uniroma3.it/podcast/",
+        "https://nextnation.mx/feed/podcast/",
+
+        "https://rss.jewishpodcasts.fm/rss/",
         "https://www.raiplaysound.it/programmi/",
         "https://radiofrance-podcast.net/",
         "https://podcast.college-de-france.fr/",
@@ -1074,6 +1201,7 @@
         "https://ohdieux.ligature.ca/rss",
         "https://radiorfa.com/feed/podcast/",
 
+        "https://feeds.megaphone.fm/NSR",
         "https://feeds.megaphone.fm/NBN",
         "https://feeds.megaphone.fm/CNE",
         "https://feeds.megaphone.fm/JXL",
@@ -1166,7 +1294,10 @@
 
     const extraGenerators = [
 
-
+        { text: "Southend City Radio", regex: new RegExp("^Southend\\sCity\\sRadio\\scatalogue", "gi")},
+        { text: "Alitu", regex: new RegExp("^Alitu", "gi")},
+        { text: "Music Side Project", regex: new RegExp("^Music\\sSide\\sProject\\sStudio", "gi")},
+        { text: "Music Side Project", regex: new RegExp("^MSP\\s2\\x2e0\\s\\x2d\\sMusic\\sSide\\sProject\\sStudio", "gi")},
         { text: "Fourble", regex: new RegExp("^Fourble", "gi")},
         { text: "Podhome", regex: new RegExp("^Podhome", "gi")},
         { text: "iono.fm", regex: new RegExp("^iono\\x2efm", "gi")},
@@ -1233,93 +1364,93 @@
 
     const extraLanguages = [
 
-
-
-        { text: "Belarusian", regex: new RegExp("^be((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Chichewa", regex: new RegExp("^ny((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Tonga", regex: new RegExp("^to((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Gujarati", regex: new RegExp("^gu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Marathi", regex: new RegExp("^mr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Romanian", regex: new RegExp("^ro((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Panjabi", regex: new RegExp("^pa((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Afrikaans", regex: new RegExp("^af((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Kinyarwanda", regex: new RegExp("^rw((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Kannada", regex: new RegExp("^kn((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Luba-Katanga", regex: new RegExp("^lu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Malagasy", regex: new RegExp("^mg((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Macedonian", regex: new RegExp("^mk((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Luxembourgish", regex: new RegExp("^lb((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Croatian", regex: new RegExp("^hr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Armenian", regex: new RegExp("^hy((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Lao", regex: new RegExp("^lo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Finnish", regex: new RegExp("^fi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Estonian", regex: new RegExp("^et((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Sanskrit", regex: new RegExp("^sa((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Xhosa", regex: new RegExp("^xh((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Kurdish", regex: new RegExp("^ku((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Slovenian", regex: new RegExp("^sl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Serbian", regex: new RegExp("^sr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Sinhala", regex: new RegExp("^si((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Hungarian", regex: new RegExp("^hu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Filipino", regex: new RegExp("^fil((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Tamil", regex: new RegExp("^ta((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Korean", regex: new RegExp("^ko((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Lithuanian", regex: new RegExp("^lt((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Bosnian", regex: new RegExp("^bs((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Bengali", regex: new RegExp("^bn((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Ukrainian", regex: new RegExp("^uk((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Latvian", regex: new RegExp("^lv((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Amharic", regex: new RegExp("^am((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Tatar", regex: new RegExp("^tt((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Telugu", regex: new RegExp("^te((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Cornish", regex: new RegExp("^kw((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Zulu", regex: new RegExp("^zu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Bulgarian", regex: new RegExp("^bg((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Quechua", regex: new RegExp("^qu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Basque", regex: new RegExp("^eu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Norwegian Nynorsk", regex: new RegExp("^nn((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Tigrinya", regex: new RegExp("^ti((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Swahili", regex: new RegExp("^sw((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Urdu", regex: new RegExp("^ur((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-        { text: "Thai", regex: new RegExp("^th((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
-
-
         { text: "Albanian", regex: new RegExp("^sq((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Amharic", regex: new RegExp("^am((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Arabic", regex: new RegExp("^ar((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Armenian", regex: new RegExp("^hy((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Azerbaijani", regex: new RegExp("^az((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Basque", regex: new RegExp("^eu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Belarusian", regex: new RegExp("^be((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Bengali", regex: new RegExp("^bn((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Bosnian", regex: new RegExp("^bs((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Bulgarian", regex: new RegExp("^bg((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Burmese", regex: new RegExp("^my((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Catalan", regex: new RegExp("^ca((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Chichewa", regex: new RegExp("^ny((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Chinese", regex: new RegExp("^zh((\\x2d|\\x5f)([a-z]{2,4}))?$", "gi")},
+        { text: "Cornish", regex: new RegExp("^kw((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Croatian", regex: new RegExp("^hr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Czech", regex: new RegExp("^cs((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Danish", regex: new RegExp("^da((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Dutch", regex: new RegExp("^nl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "English", regex: new RegExp("^en((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Estonian", regex: new RegExp("^et((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Farsi", regex: new RegExp("^fa((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Filipino", regex: new RegExp("^fil((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Finnish", regex: new RegExp("^fi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "French", regex: new RegExp("^fr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "German", regex: new RegExp("^de((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Greek", regex: new RegExp("^el((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Greek", regex: new RegExp("^ell$", "gi")},
+        { text: "Gujarati", regex: new RegExp("^gu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Haitian", regex: new RegExp("^ht((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Hebrew", regex: new RegExp("^he((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Hindi", regex: new RegExp("^hi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Hindi", regex: new RegExp("^hin$", "gi")},
+        { text: "Hungarian", regex: new RegExp("^hu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Icelandic", regex: new RegExp("^is((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Indonesian", regex: new RegExp("^id((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Italian", regex: new RegExp("^it((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Japanese", regex: new RegExp("^ja((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Kannada", regex: new RegExp("^kn((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Kinyarwanda", regex: new RegExp("^rw((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Kirghiz", regex: new RegExp("^ky((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Korean", regex: new RegExp("^ko((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Kurdish", regex: new RegExp("^ku((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Lao", regex: new RegExp("^lo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Latvian", regex: new RegExp("^lv((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Lingala", regex: new RegExp("^ln((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Lithuanian", regex: new RegExp("^lt((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Luba-Katanga", regex: new RegExp("^lu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Luxembourgish", regex: new RegExp("^lb((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Macedonian", regex: new RegExp("^mk((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Malagasy", regex: new RegExp("^mg((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Malay", regex: new RegExp("^ms((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Marathi", regex: new RegExp("^mr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Norwegian Bokmål", regex: new RegExp("^nb((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Norwegian Nynorsk", regex: new RegExp("^nn((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Norwegian", regex: new RegExp("^no((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Polish", regex: new RegExp("^pl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Portugese", regex: new RegExp("^pt((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Quechua", regex: new RegExp("^qu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Romanian", regex: new RegExp("^ro((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Russian", regex: new RegExp("^ru((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Sanskrit", regex: new RegExp("^sa((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Serbian", regex: new RegExp("^sr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Sinhala", regex: new RegExp("^si((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Slovak", regex: new RegExp("^sk((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Slovenian", regex: new RegExp("^sl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Spanish", regex: new RegExp("^es((\\x2d|\\x5f)([a-z0-9]{2,3}))?$", "gi")},
+        { text: "Swahili", regex: new RegExp("^sw((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Swedish", regex: new RegExp("^sv((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Tagalog", regex: new RegExp("^tl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Tamil", regex: new RegExp("^ta((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Tatar", regex: new RegExp("^tt((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Telugu", regex: new RegExp("^te((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Thai", regex: new RegExp("^th((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Tigrinya", regex: new RegExp("^ti((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Tonga", regex: new RegExp("^to((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Turkish", regex: new RegExp("^tr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Ukrainian", regex: new RegExp("^uk((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Urdu", regex: new RegExp("^ur((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Vietnamese", regex: new RegExp("^vi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Welsh", regex: new RegExp("^cy((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Wolof", regex: new RegExp("^wo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Xhosa", regex: new RegExp("^xh((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Yiddish", regex: new RegExp("^yi((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Zulu", regex: new RegExp("^zu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Yoruba", regex: new RegExp("^yo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")}
     ];
 
@@ -1396,7 +1527,16 @@
         { text: "ZANxxx", regex: new RegExp("\\bzan\\d{1,}\\b", "gi")},
 
         { text: "xxxJILI", regex: new RegExp("\\b\\d{1,}jili\\b", "gi")},
-        { text: "JILIxxx", regex: new RegExp("\\bjili\\d{2,}\\b", "gi")}
+        { text: "JILIxxx", regex: new RegExp("\\bjili\\d{2,}\\b", "gi")},
+
+
+        { text: "currency symbol $ (Dollar)", regex: new RegExp("\\x24", "gi")},
+
+        { text: "currency symbol £ (Pound)", regex: new RegExp("\\xa3", "gi")},
+
+        { text: "currency symbol € (Euro)", regex: new RegExp("\\u20ac", "gi")},
+
+        { text: "currency symbol ₹ (Rupiee)", regex: new RegExp("\\u20b9", "gi")}
     ];
 
     const owners = [
@@ -1420,13 +1560,16 @@
         "elite personas llc",
         "escorts service",
 
-
+        "Bouncing Stories",
         "Worlds Before Us",
         "fexingo",
         "fixme",
         "gmb unlimited, llc",
         "gsmc podcast network",
         "gsmc scifi network",
+        "GSMC Classics",
+        "GSMC Sports Podcasts",
+        "GSMC News Podcasts",
         "heritage radio vault",
         "hidden voices",
         "hustlestudios podcast network",
@@ -1798,6 +1941,8 @@
 
     const whackyPhoneNumbers = [
 
+        { text: "AU", regex: new RegExp("\\x2b61(\\x2d|\\x3a|\\x28)([0-9O]{3})(\\x2d|\\x3a|\\x29)([0-9O]{3})(\\x2d|\\x3a)([0-9O]{3})", "gi")},
+
         { text: "UK", regex: new RegExp("\\x2b44\\x3a(\\d{3})\\x3a(\\d{3})\\x3a(\\d{3,4})", "gi")},
         { text: "UK", regex: new RegExp("\\x2b44\\x28(\\d{3})\\x2d(\\d{3})\\x2d(\\d{4})\\x29", "gi")},
         { text: "UK", regex: new RegExp("\\x2b44\\x28(\\d{3})\\x29(\\d{3})\\s(\\d{3})", "gi")},
@@ -1925,6 +2070,7 @@
         const cards = document.querySelectorAll('div.curate-card');
 
         var markNumber = 30; /* mark number when hijcked */
+        var podcast_id = null;
         var podcast_byline = false;
         var podcast_desc = false;
         var podcast_url = false;
@@ -1934,12 +2080,25 @@
 
         cards.forEach((podcast) => {
 
+            podcast_id = null;
             podcast_byline = false;
             podcast_desc = false;
             podcast_url = false;
             podcast_itunes = false;
             podcast_language = false;
             podcast_generator = false;
+
+            const podcastIdEl = podcast.querySelector('span.pcid');
+            if (podcastIdEl && podcastIdEl.innerText.trim().length > 0) {
+                podcast_id = podcastIdEl.innerText;
+                podcast_id = podcast_id.replace(/^id\s/gi, '');
+
+                const linkPodcastId = document.createElement('a');
+                linkPodcastId.target = '_blank'
+                linkPodcastId.href = 'https://api.podcastindex.org/dashboard?q=' + podcast_id;
+                linkPodcastId.innerText = 'id ' + podcast_id;
+                podcastIdEl.parentElement.replaceChild(linkPodcastId, podcastIdEl);
+            }
 
 
             /* 1. Extract & Test Title */
@@ -2188,7 +2347,65 @@
                 markNumber -= 1;
             }
             */
+
+            const episodebox = podcast.querySelector('div.episode-block div.episode-empty');
+            if (episodebox) {
+                var episodebox_p = episodebox.parentElement;
+                if (episodebox.innerText.match(/no\sepisodes\syet/gi)) {
+
+                    /* <a class="btn btn-success feedScan" title="Scanning a feed just fetches the latest RSS content.">Scan</a> */
+                    const scanBtn = document.createElement('a');
+                    scanBtn.classList.add("btn", "btn-success", "feedScan");
+                    scanBtn.innerText = 'Scan';
+
+                    scanBtn.addEventListener('click', () => {
+                        // var podcastId = podcast.querySelector('span.pcid').innerText;
+                        // podcastId = podcastId.replace(/^id\s/gi, '');
+                        // podcastId = parseInt(podcastId, 10);
+                        console.log(podcast_id);
+
+                        // var podcastTitle = podcast.parentElement.parentElement.find('.result-title a').text();
+
+                        if (parseInt(podcast_id, 10) > 0) {
+                            requestFeedScan(parseInt(podcast_id, 10));
+                        }
+                        return false;
+
+                    });
+
+                    episodebox_p.replaceChild(scanBtn, episodebox);
+
+
+                    /* <a class="btn btn-danger feedDelete" title="Deleting a feed marks it as dead in the database">Delete</a> */
+                    const deleteBtn = document.createElement('a');
+                    deleteBtn.classList.add("btn", "btn-danger", "feedDelete");
+                    deleteBtn.innerText = 'Delete';
+
+                    deleteBtn.addEventListener('click', () => {
+                        // var podcastId = podcast.querySelector('span.pcid').innerText;
+                        // podcastId = podcastId.replace(/^id\s/gi, '');
+                        // podcastId = parseInt(podcastId, 10);
+                        console.log(podcast_id);
+
+                        // var podcastTitle = podcast.parentElement.parentElement.find('.result-title a').text();
+
+                        if (parseInt(podcast_id, 10) > 0) {
+                            requestFeedDelete(parseInt(podcast_id, 10));
+                        }
+                        return false;
+
+                    });
+
+                    episodebox_p.appendChild(deleteBtn);
+                }
+            }
+
+
+
+
         });
+
+
     }
 
     function searchpages() {
@@ -2333,6 +2550,33 @@
 
             }
 
+            if (url.match(/spreaker\x2ecom/gi)) {
+                if (bylineText.match(/Maria\sTiffany/gi)) {
+                    const spamButton = podcast.querySelector('div.spam-dropdown a.feedSpamMenu');
+                    spamButton.click();
+                    const spamMenu = podcast.querySelector('div.spam-menu a[data-reason="6"]');
+                    setTimeout(() => {
+                        if (spamMenu) {
+                            spamMenu.click();
+                        }
+                    }, 250);
+                }
+            }
+
+            if (url.match(/spreaker\x2ecom/gi)) {
+                if (bylineText.match(/solgoodmedia\x2ecom/gi) || bylineText.match(/Sol\sGood\sMedia/gi)) {
+                    const spamButton = podcast.querySelector('div.spam-dropdown a.feedSpamMenu');
+                    spamButton.click();
+                    const spamMenu = podcast.querySelector('div.spam-menu a[data-reason="6"]');
+                    setTimeout(() => {
+                        if (spamMenu) {
+                            spamMenu.click();
+                        }
+                    }, 250);
+                }
+            }
+
+
             if (url.match(/https\x3a\x2f\x2fpodcast\x2egsmc\x2ecloud\x2ffeed\x2f\d{1,}\x2frss/gi)) {
                 const spamButton = podcast.querySelector('div.spam-dropdown a.feedSpamMenu');
                 spamButton.click();
@@ -2459,6 +2703,53 @@
         window.addEventListener('load', searchpages);
         window.addEventListener('load', searchbuttonrandom);
         console.log('PodcastIndex Curation Helper Buttons loaded.');
+    }
+
+    function requestFeedScan(pcid) {
+        // var url = "https://" + location.hostname + "/cgi/fc/feed.scan";
+        var url = "https://api.podcastindex.org/cgi/fc/feed.scan";
+        console.log(url);
+
+        const request = new Request(
+            url, {
+                method: "POST",
+                body: JSON.stringify({ id: pcid.toString() }),
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "Accept": "*/*",
+                    "Accept-Encoding": "gzip, deflate, br, zstd",
+                    "Accept-Language": "en-US,en;q=0.9",
+                    "Cache-Control": "no-cache",
+                    "Connection": "keep-alive",
+                    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                },
+        });
+
+        const response = fetch(request);
+        console.log(response);
+    }
+
+    function requestFeedDelete(pcid) {
+        var url = "https://api.podcastindex.org/cgi/fc/feed.delete";
+        console.log(url);
+
+        const request = new Request(
+            url, {
+                method: "POST",
+                body: JSON.stringify({ id: pcid.toString() }),
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "Accept": "*/*",
+                    "Accept-Encoding": "gzip, deflate, br, zstd",
+                    "Accept-Language": "en-US,en;q=0.9",
+                    "Cache-Control": "no-cache",
+                    "Connection": "keep-alive",
+                    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                },
+        });
+
+        const response = fetch(request);
+        console.log(response);
     }
 
 
