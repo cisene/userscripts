@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-07-31-0048
+// @version      2026-08-23-1754
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard*
@@ -84,6 +84,27 @@
 
     const titleTexts = [
 
+        "El podcast de ",
+        "'s Podcast",
+        "s Podcast",
+        "podcast de ",
+        "Il podcast di ",
+        "El show de",
+        "Prueba",
+        "Tripplo",
+
+
+        "Código",
+        "Casino",
+        "Betting",
+        "AI ",
+        "LLM",
+        "Reddit",
+        "Giveaway",
+        "Benefits",
+        "Código de Referência",
+        "Binance",
+        "Referans Kodu",
         "PayPal Account",
         "slot games",
         "2 Minutes with Joey",
@@ -93,6 +114,9 @@
         "coupon code",
         "coupons code",
         "discount code",
+        "referral id",
+        "Invite Code",
+        "Partner Code",
         "email marketing",
         "escort service",
         "escorts service",
@@ -116,12 +140,438 @@
         "lorem ipsum dolor sit amet",
         "Gemini Notebook",
 
+        "Adobe Audition",
+        "Adobe Illustrator",
+        "Adobe After Effects",
+        "Adobe Lightroom",
+        "eligible purchases",
+
         "2 Minutes with Joey",
 
         "Waldorf teachers",
         "Waldorf school",
         "Waldorf pedagogy",
+        "Waldorf educators",
         "Montessori",
+        "travel eSIM",
+
+        "car accidents",
+        "pedestrian accidents",
+        "slip accidents",
+        "fall accidents",
+        "trucking accidents",
+        "bus accidents",
+        "insurance",
+
+        "roofing company",
+        "common roofing issues",
+
+        "digital entertainment",
+        "wide range of games",
+        "online gaming experience",
+        "licensed games",
+
+        "opioids",
+        "Suboxone",
+        "𝐌𝐞𝐝𝐲𝐮𝐦",
+        "Medyum",
+
+        "Polymarket",
+        "binance",
+        "Tripplo",
+
+        "faith-based",
+        "Infinite Banking",
+        "Banking Coach",
+        "internationale Investoren",
+
+        "free on Audible",
+
+        "account access",
+        "examination results",
+        "attendance information",
+        "school notifications",
+        "academic progress",
+        "informational resource",
+        "student academic records",
+
+        "managing school records",
+        "academic performance",
+        "reviewing attendance",
+
+        "car valeting",
+        "paint correction",
+        "ceramic coating",
+
+        "orthopaedic-management services",
+        "dental-management services",
+        "trauma-management services",
+        "pain-management services",
+        "aesthetic-management services",
+        "weight-management services",
+        "Lipotropic injections",
+
+        "billion-dollar companies",
+        "business investing",
+        "due diligence",
+        "entrepreneurship",
+        "evaluate opportunities",
+        "failed investments",
+        "famous startup deals",
+        "fund structures",
+        "general partners",
+        "growth potential",
+        "high-growth companies",
+        "investment theses",
+        "later-stage funding",
+        "legendary investors",
+        "limited partners",
+        "market bubbles",
+        "portfolio construction",
+        "power-law outcomes",
+        "proven vc strategies",
+        "seed rounds",
+        "startup funding decisions",
+        "startup funding",
+        "startup investing",
+        "successful founders",
+        "technology shifts",
+        "term sheets",
+        "vc strategies",
+        "venture capital firms",
+        "venture capitalists",
+
+
+        "applying for loans",
+        "credit improvement",
+        "credit management",
+        "credit profile",
+        "credit repair process",
+        "credit-related challenges",
+        "credit-report concerns",
+        "financial goals",
+        "financial objectives",
+        "financing a vehicle",
+        "identify potentially questionable entries",
+        "inaccurate information",
+        "outdated accounts",
+        "professional credit repair",
+
+        "charter bus rental",
+        "travel for groups",
+        "indoor air quality",
+        "mold remediation",
+        "mold detection",
+        "residential interiors",
+        "commercial interiors",
+        "spatial flow",
+        "architectural details",
+        "fashionable products",
+        "plumbing solutions",
+        "commercial spaces",
+        "commercial environments",
+        "concept development",
+        "material selection",
+        "furniture specification",
+        "electrical estimating",
+        "project management",
+        "construction costs",
+        "bidding",
+        "labor productivity",
+        "contracts",
+        "change orders",
+
+        "Relocation Guide",
+        "coordinating building access",
+        "long-distance transportation",
+        "complicated moving",
+        "moving services",
+        "cross-country relocations",
+        "relocation requirements",
+        "moving professionals",
+        "moving day",
+        "residential moving",
+        "commercial moving",
+        "furniture moving",
+        "apartment moving",
+        "senior moving",
+        "corporate relocation",
+        "vehicle transportation",
+        "piano moving",
+        "long-distance relocation",
+
+        "financial wellbeing",
+        "academic journey",
+
+        "sobre gesso",
+        "rebaixamento de teto",
+        "acabamentos para projetos",
+
+        "Plumbing",
+        "professional plumber",
+        "drain cleaning",
+        "leak repairs",
+        "water heater solutions",
+        "sewer services",
+        "emergency plumbing",
+        "reliable workmanship",
+        "timely service",
+        "practical solutions",
+        "plumbing needs",
+
+        "haircare",
+        "vegan formulas",
+        "healthier-looking hair",
+        "root to end",
+
+        "mobile app developer",
+        "app launch strategies",
+        "mobile application designed",
+
+        "corporate travel",
+        "Airport Limo",
+        "Limo Service",
+        "cricket ID",
+        "cricket betting",
+
+        "Business vehicle",
+        "vehicle finance",
+        "business car",
+        "commercial vehicle",
+        "finance broker team",
+        "scrap silver valuation",
+        "silver purity",
+        "melt-value calculations",
+        "National Lottery",
+        "lotteries",
+        "jackpot stories",
+        "luxury chauffeur",
+        "luxury travel",
+        "transformative landscaping",
+        "luxurious landscape",
+        "Retirement offers",
+        "retirement decisions",
+        "retirement planning",
+        "retirement conversations",
+        "investing frameworks",
+        "betting show",
+        "biggest bets",
+        "traditional parenting",
+        "respectful parenting",
+        "conventional parenting",
+
+        "curb rash",
+        "wheel scratches",
+        "scuffs",
+        "wheel repair",
+        "bumper repair",
+        "auto body repairs",
+        "paint touch-ups",
+        "wheel repair services",
+        "bumper repair services",
+        "car body repair services",
+        "repair services",
+        "interior repairs",
+        "paintwork repair",
+        "alloy wheel refurbishment",
+        "paintwork dent removal",
+
+        "injections",
+        "oral delivery",
+        "pharmaceutical companies",
+        "biotech companies",
+        "healthcare companies",
+
+        "fashion industry",
+        "financial performance",
+        "dent removal",
+        "insurance claims",
+        "arranging repairs",
+        "vehicle devaluation",
+
+        "teeth whitening",
+        "Dental Implants",
+        "Orthodontic Treatment",
+        "Dental Prosthesis",
+        "Teeth Braces",
+        "General Dentistry",
+        "Orofacial Surgery",
+        "porcelain veneers",
+        "dental crowns",
+        "Invisalign",
+        "mechanical workshop",
+        "IPTV technology",
+        "birth injury",
+        "surgical error",
+        "nursing home neglect claims",
+        "neglect claims",
+
+        "medication management",
+        "pharmacy services",
+        "dispensing prescriptions",
+        "prescription refill organization",
+        "medication adherence",
+        "pharmacy consultations",
+        "medication compounding",
+        "vaccination awareness",
+        "home health supplies",
+        "prescription delivery",
+        "medication mailing",
+        "peptide administration",
+        "Research Peptides",
+        "Generic Peptides",
+        "GLP-1",
+        "weight loss medication",
+
+        "market analysis",
+        "Law Firm",
+        "family law",
+        "criminal defense",
+        "consultation",
+        "informational purposes only and does not constitute legal advice",
+
+        "BONUSPROMO",
+        "AI-powered SEO",
+        "AI-powered",
+        "SEO",
+
+        "Evidencia",
+
+        "selling unwanted vehicles",
+        "free car removal",
+        "instant cash quotes",
+        "eco-friendly vehicle disposal",
+        "top cash fast",
+
+
+        "Paid Subscriber",
+        "remodeling",
+        "classical refinement",
+        "contemporary flair",
+        "remodeling journey",
+        "complimentary consultation",
+        "transformed home",
+
+        "accounting system",
+        "accurate financial data",
+        "annual financial statements",
+        "balance sheets",
+        "financial reports",
+        "general ledger",
+        "income statements",
+        "keeping track of assets",
+        "keeping track of expenses",
+        "keeping track of liabilities",
+        "keeping track of revenues",
+        "managing business finance",
+        "quarterly financial statements",
+
+        "Welkom bij de podcast van",
+        "Welkom bij de officiële podcast van",
+        "De podcast van",
+        "Welkom bij het podcastkanaal van",
+
+        "inteligencia artificial",
+        "Copilot",
+        "scent chemistry",
+        "fragrance notes",
+        "luxury perfumes",
+        "telehealth platform",
+        "state-licensed",
+        "mental health professional",
+        "Emotional Support Animal",
+        "HIPAA-compliant",
+        "Clinical integrity",
+        "clinically appropriate",
+        "HVAC services",
+        "Download our app",
+        "specialized marketplace",
+        "All-in-one platform",
+        "craftsmanship",
+        "roofing business",
+        "commercial roofing solutions",
+        "Partner Code",
+        "professional translation",
+        "localization solutions",
+        "experienced linguists",
+        "work boots",
+        "Blockchain",
+        "drywall repair",
+        "Sheetrock",
+        "build or remodel",
+        "purchasing properties",
+        "real estate investor",
+        "debt relief",
+        "Woningontruiming",
+        "Windows & Door",
+        "uPVC windows",
+        "uPVC doors",
+
+        "excavating",
+        "excavation advice",
+        "septic system",
+        "Pool Service",
+
+        "química del agua",
+        "cloro",
+        "sistemas de sal",
+        "filtración",
+        "equipos",
+
+        "Kozijnen",
+        "extreme wealth",
+        "billionaire mindset",
+        "dental professionals",
+        "dental operation",
+        "digital staffing",
+        "dental office",
+        "dental entrepreneurs",
+        "kitchen renovation",
+        "kitchen cabinets",
+        "cabinet brands",
+        "3D kitchen",
+        "kitchen design",
+        "card games",
+        "riding accessories",
+        "academic content development",
+        "business consultancy",
+        "dakdekkersdiensten",
+        "dakreparaties",
+        "dakonderhoud",
+        "dakinstallaties",
+        "dakbehoeften",
+        "Dakdekker",
+        "purchasing knives",
+        "knife specifications",
+        "crafted with the help of AI",
+        "Peptide",
+        "AI presenter",
+        "licensed provider",
+        "dakkapellen",
+        "Answer Engine Optimization",
+        "Weekly SEO",
+        "SEO to AI",
+        "ChatGPT",
+        "Perplexity",
+        "Claude",
+        "Gemini",
+        "financial decisions",
+        "home-buying",
+        "down payment",
+        "mortgage options",
+        "closing costs",
+        "confident homeowner",
+        "first-time buyers",
+        "dream home",
+        "venture capital",
+        "capital allocation",
+        "financial strategy",
+        "growth acceleration",
+        "residential moving services",
+        "residential moving",
+        "moving services",
+        "Private Wealth",
+        "social media marketing",
 
         "decentralized education",
         "free-ranged kids",
@@ -139,6 +589,122 @@
         "freedom-based learning",
         "freeschooling",
 
+        "garden clean-up",
+        "garden clean-up services",
+        "trusted provider",
+        "premium blinds",
+        "pharmacy offering",
+        "certified manufacturers",
+        "offering treatments",
+        "Social Media Optimization",
+        "optimized social profiles",
+        "audience interaction",
+        "veterinary care",
+        "immediate medical attention",
+        "entrepreneurial journey",
+        "compounded medications",
+        "custom prescriptions",
+        "hormone therapy",
+        "pain management",
+        "dermatology",
+        "paediatric care",
+        "rental company",
+        "home cleanout",
+        "glazing industry",
+        "folding glass",
+        "window solution",
+        "translation agency",
+        "dementia",
+        "memory care",
+        "assisted living",
+        "caregiving",
+
+        "hydrolyzed collagen",
+        "L-Glutathione",
+        "Vitamin C",
+        "Milk Thistle Extract",
+        "material quantities",
+        "wood construction",
+        "improve bidding",
+
+        "commercial construction",
+        "industrial construction",
+        "agricultural construction",
+        "recreational construction",
+        "premium quality",
+        "versatile style",
+        "modern fashion",
+
+        "window furnishing",
+        "roller blinds",
+        "cash card",
+        "dental products",
+        "dental tools",
+        "dental care",
+        "hidden money",
+        "business models",
+        "financial secrets",
+        "consumer psychology",
+        "clever marketing tricks",
+        "corporate strategies",
+        "scams",
+        "hidden economics",
+        "dakkapellen",
+        "commercial trucks",
+        "towing equipment",
+        "fleet services",
+        "truck operators",
+        "logistics professionals",
+        "transportation businesses",
+        "maintenance strategies",
+        "informed purchasing decisions",
+        "private chef",
+        "catering firm",
+        "coaching program",
+        "rental properties",
+        "professional cleaning services",
+        "professional cleaning",
+        "cleaning services",
+        "rental manager",
+        "property investor",
+        "practical social media strategies",
+        "content creation tips",
+        "branding techniques",
+        "trustworthy brand identities",
+
+        "vaping products",
+        "electronique cigarette",
+        "beginner vapers",
+        "experienced vapers",
+
+        "refrigerators",
+        "air conditioners",
+        "washing machines",
+        "kitchen appliances",
+        "printers",
+        "grooming products",
+        "designer boutique",
+        "designer clothing",
+        "formal dresses",
+        "casual outfits",
+        "sherwanis",
+        "kurtas",
+        "khussas",
+        "inventors",
+        "marketers",
+        "lenders",
+        "Ponzi scheme",
+        "accounting fraud",
+        "crypto collapse",
+        "Audemars Piguet",
+        "haute horology",
+        "luxury watch",
+        "expert SEO Consultancy Services",
+        "SEO Consultancy Services",
+        "expert SEO",
+        "Freelance SEO",
+        "Ecommerce SEO",
+        "B2B SEO",
 
         "Party Store",
         "colorful balloons",
@@ -237,6 +803,8 @@
         "salvage car",
         "marketing system",
         "Code promo",
+        "referral id",
+        "invitation code",
         "kortingscode",
         "store promotions",
         "seasonal sales",
@@ -286,6 +854,7 @@
         "luxury market",
         "market signal",
         "partner code",
+        "Rewards Code",
         "Rekommendationskod",
         "Gutscheine",
         "Rabattcode",
@@ -377,6 +946,14 @@
         "Paylentra",
         "mobile games",
         "sports betting",
+        "code de parrainage",
+        "Código de Indicação",
+        "Código de Referido",
+        "IPTV paketleri",
+        "Промокод",
+        "Реферальный код",
+        "Registration Code",
+        "Empfehlungscode",
 
         "Guinness",
         "Dolce & Gabbana",
@@ -422,7 +999,7 @@
         "Zegna",
 
 
-
+        "Invite Code",
         "100save",
         "accident lawyer",
         "ad network",
@@ -824,6 +1401,9 @@
         "沙巴体育",
         "沙巴體育",
 
+        "libranovo.com",
+        "audiobookzap.com",
+        "litupbook.com",
 
 
         "Your Podcast Name"
@@ -850,6 +1430,7 @@
         "RSU Radio Sorbonne Université",
         "Catalunya Ràdio",
         "Townsquare Media, Inc.",
+        "WSIU Public Radio",
 
         "Colorado Public Radio",
         "St. Louis Public Radio",
@@ -877,6 +1458,11 @@
         "Kofifi FM 97.2",
         "Southend City Radio",
         "Maxiradio 103.3 FM",
+        "KRCB News Team",
+        "WBCL Radio Network",
+        "New Books Network",
+        "YO1 Radio",
+        "ABC Australia",
 
         "BBC World Service",
         "BBC Gahuza Radio",
@@ -961,6 +1547,7 @@
         "short stories genre",
         "short works genre",
         "travel genre",
+        "Multi Poetry Genre",
 
         "early modern",
         "single author genre",
@@ -996,6 +1583,10 @@
         "dinlex.org",
         "3Peaks",
         "Referans Kodu",
+        "partner code",
+        "Rewards Code",
+        "Rekommendationskod",
+        "Rabattcode",
 
         "TheSoul Publishing",
 
@@ -1080,8 +1671,8 @@
 
     const feedURLprefixes = [
         /* The usual suspects ... */
+        "https://feeds.megaphone.fm/LPS", /* Launchpod Studio */
         "https://podcast.gsmc.cloud/feed/", /* GSMC Cloud */
-        "https://www.spreaker.com/show/", /* Spreaker */
         "https://([a-z0-9]{1,}).supabase.co/", /* Supabase.co */
         "https://feeds.fastcast.ai/", /* AI newsfeeds */
         "https://booksreader.space/", /* Booksreader - Audible */
@@ -1111,6 +1702,7 @@
         "https://www.wvxu.org/podcast/",
         "https://www.tpr.org/podcast/",
         "https://feeds.wgbh.org/",
+        "https://www.wbal.com/podcast/",
         "https://www.mtpr.org/podcast/",
         "https://www.wdiy.org/podcast/",
         "https://thepublicsradio.org/",
@@ -1123,6 +1715,10 @@
         "https://www.hpr2.org/podcasts/",
         "https://rss.amperwave.net/v2/feed/",
         "https://www.radiomaria.be/feed/podcast/",
+        "https://www.nativeamericacalling.com/",
+        "https://yvr876.com/feed/podcast/",
+        "https://feeds.sbs.com.au/",
+        "https://www.abc.net.au/feeds/",
 
         "https://podcasts.cityradioplayer.uk/",
         "https://www.southeastradio.ie/podcasts/",
@@ -1138,7 +1734,9 @@
         "https://podcasts.files.bbci.co.uk/",
         "https://www.twr.org.uk/podcast_feed/",
         "https://tiftonmediaworks.com/shows/",
-
+        "https://www.yo1radio.co.uk/podcasts1/",
+        "https://www.yo1radio.co.uk/podcasts2/",
+        "https://www.wsiu.org/podcast/",
         "https://wlrh.org/podcast-feed/",
         "https://podcast.uniroma3.it/podcast/",
         "https://nextnation.mx/feed/podcast/",
@@ -1148,7 +1746,6 @@
         "https://radiofrance-podcast.net/",
         "https://podcast.college-de-france.fr/",
         "http://mauvaisgenre.org/",
-        "https://app.kajabi.com/podcasts/",
 
         "https://www.voanews.com/podcast/",
         "https://www.voaindonesia.com/podcast/",
@@ -1169,6 +1766,7 @@
         "https://podcast.cism893.ca/radioshows/",
         "https://promodj.com/",
 
+        "https://www.polskieradio.pl/rss/",
         "https://www.rte.ie/radio1/podcast/",
         "https://realsmartmedia.ie/podcasts/",
         "https://www.abartaheritage.ie/feed/",
@@ -1188,6 +1786,7 @@
         "https://info.ensemblefr.com/category/",
         "http://www.radioomega.fr/site/specific/rssEmission",
         "https://feeds.360.audion.fm/",
+        "https://www.retetoscanaclassica.it/feed/podcast/",
 
         "https://feed.symbol.fm/",
         "https://feeds.yle.fi/areena/v1/series/",
@@ -1213,6 +1812,9 @@
         "https://feeds.megaphone.fm/ACECREATORSPTYLTD",
         "https://feeds.megaphone.fm/YOSHIMOTOKOGYOCOLTD",
         "https://feeds.megaphone.fm/MP9",
+        "https://feeds.megaphone.fm/NBN",
+        "https://feeds.megaphone.fm/CTT",
+        "https://feeds.megaphone.fm/NNN",
         "https://rss.podplaystudio.com/",
         "https://podcast.stream.schibsted.media/",
         "https://feed.pod.space/",
@@ -1229,27 +1831,13 @@
         "https://duelinggenre.com/category/podcasts/",
         "https://indiesats.com/api/feed",
 
-        "https://feeds.soundcloud.com/users/soundcloud:users:",
-        "https://feeds.libsyn.com/",
-        "https://rss.libsyn.com/shows/",
-        "https://rss.art19.com/",
-        "https://media.rss.com/",
-        "https://feeds.soundon.fm/podcasts/",
-        "https://rss.alivepodcastnetwork.com/",
-        "https://api.substack.com/feed/podcast/",
-        "https://feeds.fountain.fm/",
         "https://feeds.godcaster.fm/",
         "https://feeds.audiomeans.fr/feed/",
         "https://latvijasradio.lsm.lv/",
         "https://www.vodio.fr/",
         "https://feed.pod.co/",
-        "https://cdn.stationista.com/feeds/",
         "https://feeds.ktoo.org/",
         "https://musicsideproject.com/api/hosted/",
-        "https://feed.justcast.com/shows/",
-        "https://feeds.transistor.fm/",
-        "https://feeds.captivate.fm/",
-        "https://rss.com/podcasts/",
         "https://www.omnycontent.com/d/playlist/",
         "https://omnycontent.com/d/playlist/",
         "https://www.loyalbooks.com/book/",
@@ -1263,6 +1851,8 @@
     ];
 
     const descriptionPhonenumbers = [
+
+        { text: "UK", regex: new RegExp("\\x2b44(\\x2d)?([\\d\\x2d\\s]{8,10})", "gi")},
         { text: "USA/Canada", regex: new RegExp("\\x2b1(\\x2d)?([\\d\\x2d\\s]{8,10})", "gi")},
 
         { text: "Spain", regex: new RegExp("\\x2b34(\\x2d)?([\\d\\x2d\\s]{8,12})", "gi")},
@@ -1294,6 +1884,9 @@
 
     const extraGenerators = [
 
+        { text: "WordPress", regex: new RegExp("^https\\x3a\\x2f\\x2fwordpress\\x2eorg\\x2f\\x3fv\\x3d(\\d{1,})\\x2e(\\d{1,})", "gi")},
+        { text: "Podeo", regex: new RegExp("^https\\x3a\\x2f\\x2fpodeo\\x2eco", "gi")},
+        { text: "AudioBoom", regex: new RegExp("^audioboom\\x2ecom", "gi")},
         { text: "Southend City Radio", regex: new RegExp("^Southend\\sCity\\sRadio\\scatalogue", "gi")},
         { text: "Alitu", regex: new RegExp("^Alitu", "gi")},
         { text: "Music Side Project", regex: new RegExp("^Music\\sSide\\sProject\\sStudio", "gi")},
@@ -1364,6 +1957,17 @@
 
     const extraLanguages = [
 
+        { text: "Ewe", regex: new RegExp("^ee((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Manx", regex: new RegExp("^gv((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "South Ndebele", regex: new RegExp("^nr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Dzongkha", regex: new RegExp("^dz((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Mongolian", regex: new RegExp("^mn((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Esperanto", regex: new RegExp("^eo((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Nepali", regex: new RegExp("^ne((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Malayalam", regex: new RegExp("^ml((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Kazakh", regex: new RegExp("^kk((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Uzbek", regex: new RegExp("^uz((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Somali", regex: new RegExp("^so((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Panjabi", regex: new RegExp("^pa((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Afrikaans", regex: new RegExp("^af((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Albanian", regex: new RegExp("^sq((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
@@ -1458,76 +2062,47 @@
 
         { text: "UTM chatgpt", regex: new RegExp("\\x3futm\\x5fsource\\x3dchatgpt\\x2ecom", "gi")},
 
+        { text: "Free Redeem", regex: new RegExp("free\\sredeem", "gi")},
+        { text: "Google Play", regex: new RegExp("Google\\sPlay", "gi")},
+
+        { text: "Google Play Gift Card", regex: new RegExp("Google\\sPlay\\Gift\\sCard", "gi")},
 
         { text: "@usaChang", regex: new RegExp("\\x40usachang", "gi")},
-        { text: "mifenXXXXXXXX@gmail.com", regex: new RegExp("mifen\\d{4,8}\\x40gmail\\x2ecom", "gi")},
+        { text: "mifen{number}@gmail.com", regex: new RegExp("mifen\\d{4,8}\\x40gmail\\x2ecom", "gi")},
 
-        { text: "@giugnoXXXX", regex: new RegExp("\\x40giugno\\d{1,5}", "gi")},
+        { text: "09384726{number}", regex: new RegExp("09384726(\\d{2})", "gi")},
+        { text: "tip-club.app@gmail.com", regex: new RegExp("tip\\x2dclub\\x2eapp\\x40gmail\\x2ecom", "gi")},
+
+        { text: "@giugno{number}", regex: new RegExp("\\x40giugno\\d{1,5}", "gi")},
         { text: "kolkocXXX@gmail.com", regex: new RegExp("kolkoc\\d{1,5}\\x40gmail\\x2ecom", "gi")},
 
-        { text: "@twlXXXtech", regex: new RegExp("\\x40twl\\d{1,5}tech", "gi")},
+        { text: "@twl{number}tech", regex: new RegExp("\\x40twl\\d{1,5}tech", "gi")},
         { text: "aotelaisichn@gmail.com", regex: new RegExp("aotelaisichn\\x40gmail\\x2ecom", "gi")},
 
-        { text: "OFFTAKExxx", regex: new RegExp("offtake\\d{1,5}", "gi")},
+        { text: "OFFTAKE{number}", regex: new RegExp("offtake\\d{1,5}", "gi")},
+        { text: "PLAYHARD{number}", regex: new RegExp("playhard\\d{1,5}", "gi")},
 
-        { text: "GETXXX", regex: new RegExp("\\bget\\d{1,5}\\b", "gi")},
-        // { text: "GETXXX", regex: new RegExp("\\bget([a-z\\x2d]{1,3})\\b", "gi")},
+        { text: "GET{number}", regex: new RegExp("\\bget\\d{1,5}\\b", "gi")},
         { text: "JEAM", regex: new RegExp("\\bjeam\\b", "gi")},
         { text: "JENY", regex: new RegExp("\\bjeny\\b", "gi")},
+        { text: "kickback{number}", regex: new RegExp("kickback(\\d{2})", "gi")},
 
         { text: "Course Code", regex: new RegExp("GA\\d{1}\\x2d(\\d{9})\\x2d([a-z]{2})\\d{1}\\x2d([a-z]{2})(\\d{2})", "gi")},
+
+
+        { text: "Referral Code", regex: new RegExp("\\xab(.+?)\\xbb", "gi")},
+        { text: "Referral Code", regex: new RegExp("\\u201c(.+?)\\u201d", "gi")},
+        { text: "Referral Code", regex: new RegExp("\\u201e(.+?)\\u201c", "gi")},
 
 
         { text: "Get xx%", regex: new RegExp("Get\s(\\d{1,2})\x25", "gi")},
         { text: "Up to xx%", regex: new RegExp("Up\\sto\\s(\\d{1,2})\\x25", "gi")},
         { text: "fino al xx%", regex: new RegExp("fino\\sal\\s(\\d{1,2})\\x25", "gi")},
 
-        { text: "123XXX", regex: new RegExp("\\b123([a-z\\x2d]{1,})\\b", "gi")},
+        { text: "123{number}", regex: new RegExp("\\b123([a-z\\x2d]{1,})\\b", "gi")},
 
-        // { text: "BETxxx", regex: new RegExp("\\bbet([a-z\\x2d]{1,2})\\b", "gi")},
-        { text: "BETxxx", regex: new RegExp("\\bbet(\\d{1,5})\\b", "gi")},
-        { text: "BJxxx", regex: new RegExp("\\bbj\\d{1,}\\b", "gi")},
-        { text: "DHAXXX", regex: new RegExp("\\bdha\\d{1,5}\\b", "gi")},
-        { text: "DHXXX", regex: new RegExp("\\bdh\\d{1,5}\\b", "gi")},
-        { text: "DKxxx", regex: new RegExp("\\bdk\\d{1,}\\b", "gi")},
-        { text: "FENSIXXX", regex: new RegExp("\\bfensi\\d{1,3}\\b", "gi")},
-        { text: "HELLOxxx", regex: new RegExp("\\bhello\\d{1,5}\\b", "gi")},
-        { text: "JJxxx", regex: new RegExp("\\bjj\\d{1,}", "gi")},
-        { text: "Jxxx", regex: new RegExp("\\bj\\d{1,}", "gi")},
-        //{ text: "KINGxxx", regex: new RegExp("\\bking([a-z\\x2d]{1,2})\\b", "gi")},
-        { text: "KINGxxx", regex: new RegExp("\\bking(\\d{1,5})\\b", "gi")},
-        { text: "KPxxx", regex: new RegExp("\\bkp\\d{1,}", "gi")},
-        { text: "LUCKxxx", regex: new RegExp("\\bluck\\d{1,5}", "gi")},
-        { text: "Mxxx", regex: new RegExp("\\bm\\d{1,5}\\b", "gi")},
-        { text: "PKxxx", regex: new RegExp("\\bpk\\d{1,}\\b", "gi")},
-        //{ text: "TOPxxx", regex: new RegExp("\\btop([a-z\\x2d]{1,2})\\b", "gi")},
-        { text: "TOPxxx", regex: new RegExp("\\btop(\\d{1,5})\\b", "gi")},
-        { text: "VAxxx", regex: new RegExp("\\bva\\d{1,}\\b", "gi")},
-        { text: "WINxxx", regex: new RegExp("\\bwin\\d{1,}\\b", "gi")},
-        { text: "XHSxxx", regex: new RegExp("\\bxhs\\d{1,}\\b", "gi")},
-        { text: "XOXXX", regex: new RegExp("\\bxo([a-z\\x2d]{1,})\\b", "gi")},
-        { text: "XOXXX", regex: new RegExp("\\bxo\\d{1,5}\\b", "gi")},
-        { text: "xxxBET", regex: new RegExp("\\b([a-z\\x2d]{1,5})bet\\b", "gi")},
-        { text: "xxxBET", regex: new RegExp("\\b\\d{1,5}bet\\b", "gi")},
-        { text: "XXXDY", regex: new RegExp("\\b\\d{1,5}dy\\b", "gi")},
-        { text: "xxxDY", regex: new RegExp("\\b\\d{1,}dy\\b", "gi")},
-        { text: "XXXFEN", regex: new RegExp("\\b[a-z]{1,3}fen\\b", "gi")},
-        { text: "XXXFEN", regex: new RegExp("\\b\\d{1,3}fen\\b", "gi")},
-        { text: "XXXFENSI", regex: new RegExp("\\b[a-z]{1,3}fensi\\b", "gi")},
-        //{ text: "xxxKING", regex: new RegExp("\\b([a-z\\x2d]{1,2})king\\b", "gi")},
-        { text: "xxxKING", regex: new RegExp("\\b\\d{1,4}king\\b", "gi")},
-        { text: "xxxKOL", regex: new RegExp("\\b\\d{1,}kol\\b", "gi")},
-        { text: "xxxSAVE", regex: new RegExp("\\b\\d{1,5}save\\b", "gi")},
-        // { text: "xxxTOP", regex: new RegExp("\\b([a-z\\x2d]{1,3})top\\b", "gi")},
-        { text: "xxxTOP", regex: new RegExp("\\b\\d{1,3}top\\b", "gi")},
-        { text: "xxxWIN", regex: new RegExp("\\b\\d{1,}win\\b", "gi")},
-        { text: "xxxZAN", regex: new RegExp("\\b\\d{1,}zan\\b", "gi")},
-        { text: "ZANSU", regex: new RegExp("\\bzansu\\b", "gi")},
-        { text: "ZANUP", regex: new RegExp("\\bzanup\\b", "gi")},
-        { text: "ZANxxx", regex: new RegExp("\\bzan\\d{1,}\\b", "gi")},
-
-        { text: "xxxJILI", regex: new RegExp("\\b\\d{1,}jili\\b", "gi")},
-        { text: "JILIxxx", regex: new RegExp("\\bjili\\d{2,}\\b", "gi")},
+        { text: "{number}JILI", regex: new RegExp("\\b\\d{1,}jili\\b", "gi")},
+        { text: "JILI{number}", regex: new RegExp("\\bjili\\d{2,}\\b", "gi")},
 
 
         { text: "currency symbol $ (Dollar)", regex: new RegExp("\\x24", "gi")},
@@ -1537,6 +2112,84 @@
         { text: "currency symbol € (Euro)", regex: new RegExp("\\u20ac", "gi")},
 
         { text: "currency symbol ₹ (Rupiee)", regex: new RegExp("\\u20b9", "gi")}
+    ];
+
+    const casinoFrags = [
+        { text: "hb{number}s{number}.com", regex: new RegExp("hb(\\d{2,5})s(\\d{1,})\x2ecom", "gi")},
+        { text: "{number}clbrank.com", regex: new RegExp("(\\d{1,})clbrank\\x2ecom", "gi")},
+        { text: "{number}betv{number}.com", regex: new RegExp("(\\d{1,})betv(\\d{1,})\\x2ecom", "gi")},
+        { text: "sc{number}seo{number}.com", regex: new RegExp("sc(\\d{1,})seo(\\d{1,})\\x2ecom", "gi")},
+        { text: "tg{number}one.com", regex: new RegExp("tg(\\d{1,})one\\x2ecom", "gi")},
+        { text: "alo{number}so{number}.com", regex: new RegExp("alo(\\d{1,})so(\\d{1,})\\x2ecom", "gi")},
+        { text: "hello{number}a{number}.com", regex: new RegExp("hello(\\d{1,})a(\\d{1,})\\x2ecom", "gi")},
+
+        { text: "{number}clbplus.co", regex: new RegExp("(\\d{1,})clbplus\\x2eco", "gi")},
+        { text: "sc{number}rank.com", regex: new RegExp("sc(\\d{1,})rank\\x2ecom", "gi")},
+        { text: "f{number}betss.com", regex: new RegExp("f(\\d{1,})betss\\x2ecom", "gi")},
+        { text: "cm{number}ss.com", regex: new RegExp("cm(\\d{1,})ss\\x2ecom", "gi")},
+        { text: "cm{number}top{number}.com", regex: new RegExp("cm(\\d{1,})top(\\d{1,})\\x2ecom", "gi")},
+        { text: "tg{number}top{number}.com", regex: new RegExp("tg(\\d{1,})top(\\d{1,})\\x2ecom", "gi")},
+        { text: "bj{number}v{number}.com", regex: new RegExp("bj(\\d{1,})v(\\d{1,})\\x2ecom", "gi")},
+        { text: "shbet{number}.com", regex: new RegExp("shbet(\\d{1,})\\x2ecom", "gi")},
+        { text: "{number}win{number}.com", regex: new RegExp("(\\d{1,})win(\\d{1,})\\x2ecom", "gi")},
+        { text: "alo{number}one.com", regex: new RegExp("alo(\\d{1,})one\\x2ecom", "gi")},
+        { text: "alo{number}rank.com", regex: new RegExp("alo(\\d{1,})rank\\x2ecom", "gi")},
+        { text: "alo{number}top{number}.com", regex: new RegExp("alo(\\d{1,})top(\\d{1,})\\x2ecom", "gi")},
+
+
+        { text: "{alphanumeric}.llc", regex: new RegExp("([a-z0-9]{4})\\x2ellc", "gi")},
+
+        { text: "XIN{number}.express", regex: new RegExp("xin(\\d{1,})\\x2eexpress", "gi")},
+        { text: "DN{number}TIPS.com", regex: new RegExp("dn(\\d{1,})tips\\x2ecom", "gi")},
+        { text: "{alphanumeric}BETA{number}.ink", regex: new RegExp("([a-z0-9]{1,})beta(\\d{1,})\\x2eink", "gi")},
+
+        { text: "{number}WIN{number}.com", regex: new RegExp("(\\d{2})win(\\d{3})\\x2ecom", "gi")},
+
+        { text: "{alpha}ZAN.cc", regex: new RegExp("([a-z]{2,5})zan\\x2ecc", "gi")},
+        { text: "{number}ZAN.cc", regex: new RegExp("(\\d{1,})zan\\x2ecc", "gi")},
+
+        { text: "{number}FEN.cc", regex: new RegExp("(\\d{1,})fen\\x2ecc", "gi")},
+        { text: "ZAN{number}.cc", regex: new RegExp("zan(\\d{1,})\\x2ecc", "gi")},
+
+
+        { text: "fenba.top", regex: new RegExp("fenba\\x2etop", "gi")},
+        { text: "zanup.top", regex: new RegExp("zanup\\x2etop", "gi")},
+        { text: "zansu.top", regex: new RegExp("zansu\\x2etop", "gi")},
+        { text: "upzan.top", regex: new RegExp("upzan\\x2etop", "gi")},
+
+        { text: "FENSI{number}", regex: new RegExp("fensi(\\d{1,})\\x2etop", "gi")},
+        { text: "GA{number}.top", regex: new RegExp("ga(\\d{1,})\\x2etop", "gi")},
+
+        { text: "{alpha}FEN.top", regex: new RegExp("([a-z]{2,5})fen\\x2etop", "gi")},
+        { text: "{alpha}UP.top", regex: new RegExp("([a-z]{2,})up\\x2etop", "gi")},
+
+
+        { text: "{number}UP.top", regex: new RegExp("(\\d{1,})up\\x2etop", "gi")},
+        { text: "{number}DY.top", regex: new RegExp("(\\d{1,})dy\\x2etop", "gi")},
+
+        { text: "{number}FEN{number}.top", regex: new RegExp("(\\d{1,})fen(\\d{1,})\\x2etop", "gi")},
+        { text: "{number}KOL.top", regex: new RegExp("(\\d{1,})kol\\x2etop", "gi")},
+        { text: "{number}XHS.top", regex: new RegExp("(\\d{1,})xhs\\x2etop", "gi")},
+        { text: "{number}ZAN.top", regex: new RegExp("(\\d{1,})zan\\x2etop", "gi")},
+        { text: "{number}FEN.top", regex: new RegExp("(\\d{1,})fen\\x2etop", "gi")},
+
+        { text: "MK{number}.top", regex: new RegExp("mk(\\d{1,})\\x2etop", "gi")},
+        { text: "PK{number}.top", regex: new RegExp("pk(\\d{1,})\\x2etop", "gi")},
+        { text: "SKP{number}.top", regex: new RegExp("skp(\\d{1,})\\x2etop", "gi")},
+        { text: "SPH{number}.top", regex: new RegExp("sph(\\d{1,})\\x2etop", "gi")},
+        { text: "VA{number}.top", regex: new RegExp("va(\\d{1,})\\x2etop", "gi")},
+        { text: "XHS{number}.top", regex: new RegExp("xhs(\\d{1,})\\x2etop", "gi")},
+        { text: "ZAN{number}.top", regex: new RegExp("zan(\\d{1,})\\x2etop", "gi")},
+        { text: "MM{number}.top", regex: new RegExp("mm(\\d{1,})\\x2etop", "gi")},
+
+        { text: "KY{number}.xyz", regex: new RegExp("ky(\\d{1,})\\x2exyz", "gi")},
+
+        { text: "#tipclub", regex: new RegExp("\\x23tipclub", "gi")},
+        { text: "#tipclub_bet", regex: new RegExp("\\x23tipclub\\x5fbet", "gi")},
+        { text: "#tipclub_casino", regex: new RegExp("\\x23tipclub\\x5fcasino", "gi")},
+
+        { text: "tipclub{number}.org", regex: new RegExp("tipclub(\\d{1,3})\\x2eorg", "gi")}
+
     ];
 
     const owners = [
@@ -1560,6 +2213,7 @@
         "elite personas llc",
         "escorts service",
 
+        "SLEEPY HISTORY",
         "Bouncing Stories",
         "Worlds Before Us",
         "fexingo",
@@ -1892,10 +2546,126 @@
         "travel genre",
         "war and military genre",
         "westerns genre",
+        "Multi Poetry Genre",
 
 
 
         "easy listening"
+    ];
+
+    const titles = [
+
+        { text: "Aankoopmakelaar", regex: new RegExp("Aankoopmakelaar", "gi")},
+        { text: "Advocaat Familierecht", regex: new RegExp("Advocaat\\sFamilierecht", "gi")},
+        { text: "Airco", regex: new RegExp("Airco", "gi")},
+        { text: "Arbeidsrecht Advocaat", regex: new RegExp("Arbeidsrecht\\sAdvocaat", "gi")},
+        { text: "Architect", regex: new RegExp("Architect", "gi")},
+        { text: "Asbest Verwijderen", regex: new RegExp("Asbest\\sVerwijderen", "gi")},
+        { text: "Auto Verkopen", regex: new RegExp("Auto\\sVerkopen", "gi")},
+        { text: "Badkamer Renovatie", regex: new RegExp("Badkamer Renovatie", "gi")},
+        { text: "Boomverzorging", regex: new RegExp("Boomverzorging", "gi")},
+        { text: "Dakdekker", regex: new RegExp("Dakdekker", "gi")},
+        { text: "Dakkapel", regex: new RegExp("Dakkapel", "gi")},
+        { text: "Elektricien", regex: new RegExp("Elektricien", "gi")},
+        { text: "Familierecht Advocaat", regex: new RegExp("Familierecht\ssAdvocaat", "gi")},
+        { text: "Gemeente", regex: new RegExp("Gemeente", "gi")},
+        { text: "Gevelreiniging", regex: new RegExp("Gevelreiniging", "gi")},
+        { text: "Gietvloer", regex: new RegExp("Gietvloer", "gi")},
+        { text: "Glaszetter", regex: new RegExp("Glaszetter", "gi")},
+        { text: "Hekwerk", regex: new RegExp("Hekwerk", "gi")},
+        { text: "Hovenier", regex: new RegExp("Hovenier", "gi")},
+        { text: "Huurrecht Advocaat", regex: new RegExp("Huurrecht\\sAdvocaat", "gi")},
+        { text: "Inbraakbeveiliging", regex: new RegExp("Inbraakbeveiliging", "gi")},
+        { text: "Isolatiebedrijf", regex: new RegExp("Isolatiebedrijf", "gi")},
+        { text: "Letselschade Advocaat", regex: new RegExp("Letselschade\\sAdvocaat", "gi")},
+        { text: "Ontstoppingsbedrijf", regex: new RegExp("Ontstoppingsbedrijf", "gi")},
+        { text: "Operatie Klimaa", regex: new RegExp("Operatie\\sKlimaa", "gi")},
+        { text: "Operatie Klimaat", regex: new RegExp("Operatie\\sKlimaat", "gi")},
+        { text: "Pro Deo Advocaat", regex: new RegExp("Pro\\sDeo\\sAdvocaat", "gi")},
+        { text: "Rolluiken", regex: new RegExp("Rolluiken", "gi")},
+        { text: "Schilder", regex: new RegExp("Schilder", "gi")},
+        { text: "Schoonmaakbedrijf", regex: new RegExp("Schoonmaakbedrijf", "gi")},
+        { text: "Slotenmaker", regex: new RegExp("Slotenmaker", "gi")},
+        { text: "Strafrecht Advocaat", regex: new RegExp("Strafrecht\\sAdvocaat", "gi")},
+        { text: "Stukadoor", regex: new RegExp("Stukadoor", "gi")},
+        { text: "Traplift", regex: new RegExp("Traplift", "gi")},
+        { text: "Traprenovatie", regex: new RegExp("Traprenovatie", "gi")},
+        { text: "Verhuisbedrijf", regex: new RegExp("Verhuisbedrijf", "gi")},
+        { text: "Vloerisolatie", regex: new RegExp("Vloerisolatie", "gi")},
+        { text: "Vochtbestrijding", regex: new RegExp("Vochtbestrijding", "gi")},
+        { text: "Warmtepomp", regex: new RegExp("Warmtepomp", "gi")},
+        { text: "Waterontharder", regex: new RegExp("Waterontharder", "gi")},
+        { text: "Webdesign", regex: new RegExp("Webdesign", "gi")},
+        { text: "Zonnepanelen", regex: new RegExp("Zonnepanelen", "gi")}
+    ];
+
+    const nlCities = [
+        'Soest',
+        'Alkmaar',
+        'Almelo',
+        'Almere',
+        'Amersfoort',
+        'Amstelveen',
+        'Amsterdam',
+        'Apeldoorn',
+        'Arnhem',
+        'Assen',
+        'Barendrecht',
+        'Breda',
+        'Delft',
+        'Den Bosch',
+        'Den Haag',
+        'Den Helder',
+        'Deventer',
+        'Doetinchem',
+        'Dordrecht',
+        'Eindhoven',
+        'Emmen',
+        'Enschede',
+        'Geleen',
+        'Gouda',
+        'Groningen',
+        'Haarlem',
+        'Hardenberg',
+        'Heerhugowaard',
+        'Heemstede',
+        'Heerlen',
+        'Helmond',
+        'Hengelo',
+        'Hilversum',
+        'Hoofddorp',
+        'Hoorn',
+        'IJmuiden',
+        'Kerkrade',
+        'Krimpen aan den IJssel',
+        'Leeuwarden',
+        'Leiden',
+        'Lelystad',
+        'Maastricht',
+        'Nieuwegein',
+        'Nijmegen',
+        'Nieuw-Vennep',
+        'Nootdorp',
+        'Oosterhout',
+        'Oss',
+        'Purmerend',
+        'Ridderkerk',
+        'Roosendaal',
+        'Rotterdam',
+        'Schiedam',
+        'Sittard',
+        'Sneek',
+        'Spijkenisse',
+        'Tilburg',
+        'Uden',
+        'Utrecht',
+        'Veenendaal',
+        'Venlo',
+        'Vlaardingen',
+        'Wijchen',
+        'Zaandam',
+        'Zoetermeer',
+        'Zwolle'
     ];
 
     const deepLinks = [
@@ -1940,6 +2710,9 @@
     ];
 
     const whackyPhoneNumbers = [
+
+        { text: "TR", regex: new RegExp("0532\\s(\\d{3})\\s(\\d{2})\\s(\\d{2})", "gi")},
+
 
         { text: "AU", regex: new RegExp("\\x2b61(\\x2d|\\x3a|\\x28)([0-9O]{3})(\\x2d|\\x3a|\\x29)([0-9O]{3})(\\x2d|\\x3a)([0-9O]{3})", "gi")},
 
@@ -2111,6 +2884,19 @@
                     }
                 });
 
+                titles.forEach(item => {
+                    if (title.match(item.regex)) {
+                        flagElement(titleEl, 'TitleFrags ' + item.text);
+                        podcast_desc = true;
+                    }
+                });
+
+                casinoFrags.forEach(item => {
+                    if (title.match(item.regex)) {
+                        flagElement(titleEl, 'CasinoFrags ' + item.text);
+                        podcast_desc = true;
+                    }
+                });
 
                 inlineFragments.forEach(item => {
                     if (title.match(item.regex)) {
@@ -2146,6 +2932,7 @@
                         podcast_url = true;
                     }
                 });
+
 
                 /* Compare to known prefixes */
                 feedPrefixPatterns.forEach(item => {
@@ -2250,6 +3037,12 @@
                     }
                 });
 
+                casinoFrags.forEach(item => {
+                    if (descText.match(item.regex)) {
+                        flagElement(descEl, 'CasinoFrags ' + item.text);
+                        podcast_desc = true;
+                    }
+                });
 
                 inlineFragments.forEach(item => {
                     if (descText.match(item.regex)) {
@@ -2283,6 +3076,13 @@
                     if (bylineText.match(item.regex)) {
                         flagElement(bylineEl, item.text);
                         podcast_byline = true;
+                    }
+                });
+
+                casinoFrags.forEach(item => {
+                    if (bylineText.match(item.regex)) {
+                        flagElement(bylineEl, 'CasinoFrags ' + item.text);
+                        podcast_desc = true;
                     }
                 });
 
@@ -2577,7 +3377,27 @@
             }
 
 
-            if (url.match(/https\x3a\x2f\x2fpodcast\x2egsmc\x2ecloud\x2ffeed\x2f\d{1,}\x2frss/gi)) {
+            if(
+                bylineText.match(/GSMC\sSports\sNetwork/gi)
+                ||
+                bylineText.match(/GSMC\sSports\sPodcasts/gi)
+                ||
+                bylineText.match(/GSMC\sComedy\s\x26\sFamily\sNetwork/gi)
+                ||
+                bylineText.match(/GSMC\sMusic\s\x26\sTheater\sNetwork/gi)
+                ||
+                bylineText.match(/GSMC\sDrama\sNetwork/gi)
+                ||
+                bylineText.match(/GSMC\sReligion\sNetwork/gi)
+                ||
+                bylineText.match(/GSMC\sAudiobooks\sNetwork/gi)
+                ||
+                bylineText.match(/GSMC\sEntertainment\sNetwork/gi)
+                ||
+                bylineText.match(/GSMC\sNews\sPodcasts/gi)
+                ||
+                bylineText.match(/GSMC\sAction\sPodcasts/gi)
+            ) {
                 const spamButton = podcast.querySelector('div.spam-dropdown a.feedSpamMenu');
                 spamButton.click();
                 const spamMenu = podcast.querySelector('div.spam-menu a[data-reason="6"]');
@@ -2587,6 +3407,44 @@
                     }
                 }, 250);
 
+            }
+
+            if (url.match(/https\x3a\x2f\x2ffeeds\x2emegaphone\x2efm\x2fUPIAO/gi)) {
+                const spamButton = podcast.querySelector('div.spam-dropdown a.feedSpamMenu');
+                spamButton.click();
+                const spamMenu = podcast.querySelector('div.spam-menu a[data-reason="2"]');
+                setTimeout(() => {
+                    if (spamMenu) {
+                        spamMenu.click();
+                    }
+                }, 250);
+            }
+
+
+            if (
+                title.match(/2\sMinutes\swith\sJoey\s\x2d\s/gi)
+                ||
+                bylineText.match(/2\sMinutes\swith\sJoey/gi)
+            ) {
+                const spamButton = podcast.querySelector('div.spam-dropdown a.feedSpamMenu');
+                spamButton.click();
+                const spamMenu = podcast.querySelector('div.spam-menu a[data-reason="2"]');
+                setTimeout(() => {
+                    if (spamMenu) {
+                        spamMenu.click();
+                    }
+                }, 250);
+            }
+
+            if (bylineText.match(/Launchpod\sStudio(s)?/gi)) {
+                const spamButton = podcast.querySelector('div.spam-dropdown a.feedSpamMenu');
+                spamButton.click();
+                const spamMenu = podcast.querySelector('div.spam-menu a[data-reason="2"]');
+                setTimeout(() => {
+                    if (spamMenu) {
+                        spamMenu.click();
+                    }
+                }, 250);
             }
 
 
@@ -2599,22 +3457,29 @@
         const targetNav = document.querySelectorAll('form.form-inline')[0]; /* form.form-inline */
 
         /* Create button and set up */
-        const randomBtn = document.createElement('button');
-        randomBtn.id = "randomAuthor";
-        randomBtn.classList.add("btn", "btn-outline-success", "my-2", "my-sm-0");
-        randomBtn.innerText = 'Random Author';
+        const authorBtn = document.createElement('button');
+        authorBtn.id = "randomAuthor";
+        authorBtn.classList.add("btn", "btn-outline-success", "my-2", "my-sm-0");
+        authorBtn.innerText = 'Author';
 
         /* Create button and set up */
         const genreBtn = document.createElement('button');
         genreBtn.id = "randomGenre";
         genreBtn.classList.add("btn", "btn-outline-success", "my-2", "my-sm-0");
-        genreBtn.innerText = 'Random Genre';
+        genreBtn.innerText = 'Genre';
 
         /* Create button and set up */
         const ownerBtn = document.createElement('button');
         ownerBtn.id = "randomOwner";
         ownerBtn.classList.add("btn", "btn-outline-success", "my-2", "my-sm-0");
-        ownerBtn.innerText = 'Random Owner';
+        ownerBtn.innerText = 'Owner';
+
+        /* Create button and set up */
+        const titleBtn = document.createElement('button');
+        titleBtn.id = "randomOwner";
+        titleBtn.classList.add("btn", "btn-outline-success", "my-2", "my-sm-0");
+        titleBtn.innerText = 'Title';
+
 
         if (!targetNav) {
             console.warn("Element with id 'navbarSupportedContent' not found.");
@@ -2622,7 +3487,7 @@
 
 
         // 3. Add the click event listener functionality
-        randomBtn.addEventListener('click', () => {
+        authorBtn.addEventListener('click', () => {
             // Pick a random author
             const randomAuthor = authors[Math.floor(Math.random() * authors.length)];
 
@@ -2685,10 +3550,32 @@
             }
         });
 
+        titleBtn.addEventListener('click', () => {
+            // Pick a random author
+            const randomTitle = titles[Math.floor(Math.random() * titles.length)];
 
-        targetNav.appendChild(randomBtn);
+            // Find the input element and populate it
+            const searchInput = document.getElementById('searchText');
+            if (searchInput) {
+                searchInput.value = randomTitle;
+                searchInput.name = "q";
+            }
+
+            // Find the trigger button and click it
+            const searchTrigger = document.getElementById('searchTrigger');
+            if (searchTrigger) {
+                if(searchInput.value.length > 0) {
+                    searchInput.dispatchEvent(new KeyboardEvent('keyup', { bubbles: true }));
+                    searchTrigger.click();
+                }
+            }
+        });
+
+
+        targetNav.appendChild(authorBtn);
         targetNav.appendChild(genreBtn);
         targetNav.appendChild(ownerBtn);
+        targetNav.appendChild(titleBtn);
     }
 
 
@@ -2723,7 +3610,7 @@
                     "Connection": "keep-alive",
                     "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
                 },
-        });
+            });
 
         const response = fetch(request);
         console.log(response);
@@ -2746,7 +3633,7 @@
                     "Connection": "keep-alive",
                     "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
                 },
-        });
+            });
 
         const response = fetch(request);
         console.log(response);
