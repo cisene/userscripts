@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         OPML-helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-08-30
+// @version      2026-08-31
 // @description  Automated polling & auto-clipboard YAML generator for Podcast Index
 // @author       Christopher Isene
 // @match        https://podcastindex.org/podcast/*
@@ -22,7 +22,7 @@
 
         const container = document.createElement("div");
         container.id = 'opml-helper-container';
-        container.style.cssText = 'width: 100%; padding: 10px; background: #f8f9fa; border-bottom: 2px solid #007bff; box-sizing: border-box; font-family: sans-serif;';
+        container.style.cssText = 'width: 100%; padding: 10px; background: #f8f9fa; border-bottom: 2px solid #007bff; box-sizing: border-box; font-family: sans-serif; position: relative; z-index: 99999;';
 
         const textBox = document.createElement("textarea");
         textBox.id = 'opmltext';
@@ -81,36 +81,31 @@
     }
 
     function extractData() {
-        // 1. Title (Required)
-        const titleEl = document.querySelector('h1') ||
-                        document.querySelector('.podcast-header-title') ||
-                        document.querySelector('[title]');
-        let podcast_title = titleEl ? titleEl.innerText.trim() : '';
+        // 1. Title (Target specific Podcast Index headers, exclude generic [title] attribute query)
+        let podcast_title = '';
+        const titleEl = document.querySelector('h1.podcast-title') ||
+                        document.querySelector('h1') ||
+                        document.querySelector('.podcast-header-title');
+
+        if (titleEl) {
+            podcast_title = titleEl.innerText.trim();
+        }
 
         // 2. Feed URL (xmlUrl) - Required
         let podcast_xmlUrl = '';
-        const allLinks = Array.from(document.querySelectorAll('a[href]'));
-
-        const rssLink = allLinks.find(a =>
-            a.href.includes('/feed/') ||
-            a.href.includes('rss') ||
-            a.href.includes('.xml') ||
-            a.getAttribute('aria-label')?.toLowerCase().includes('feed') ||
-            a.innerText.toLowerCase().includes('feed') ||
-            a.innerText.toLowerCase().includes('rss')
-        );
-        if (rssLink) podcast_xmlUrl = rssLink.href;
+        const rssfeedEl = document.querySelector('div.podcast-header-external-links a[title="RSS Feed"]');
+        if (rssfeedEl) {
+            podcast_xmlUrl = rssfeedEl.href;
+            podcast_xmlUrl = stripWeirdness(podcast_xmlUrl);
+        }
 
         // 3. Homepage (htmlUrl) - Optional
         let podcast_htmlUrl = '';
-        const webLink = allLinks.find(a =>
-            a.target === '_blank' &&
-            !a.href.includes('podcastindex.org') &&
-            !a.href.includes('/feed/') &&
-            !a.href.includes('twitter.com') &&
-            !a.href.includes('x.com')
-        );
-        if (webLink) podcast_htmlUrl = webLink.href;
+        const webpageEl = document.querySelector('div.podcast-header-external-links a[title="Podcast Website"]');
+        if (webpageEl) {
+            podcast_htmlUrl = webpageEl.href;
+            podcast_htmlUrl = stripWeirdness(podcast_htmlUrl);
+        }
 
         // Clean & Normalize URLs
         podcast_htmlUrl = podcast_htmlUrl.replace(/^http:\/\//i, "https://");
@@ -129,6 +124,10 @@
         };
     }
 
+    function stripWeirdness(data) {
+        return data ? data.trim() : '';
+    }
+
     function extractAndCopy(isManual = false) {
         const data = extractData();
 
@@ -143,10 +142,12 @@
         const payload = `  - title: ${podcast_title}\n    htmlUrl: ${data.htmlUrl}\n    xmlUrl: ${data.xmlUrl}\n`;
 
         const textBox = document.getElementById('opmltext');
-        if (textBox) {
+        if (textBox && textBox.value !== payload) {
             textBox.value = payload;
-            textBox.focus();
-            textBox.select();
+            if (isManual) {
+                textBox.focus();
+                textBox.select();
+            }
         }
 
         copyToClipboard(payload, isManual);
@@ -156,7 +157,7 @@
         if (pollInterval) clearInterval(pollInterval);
 
         let attempts = 0;
-        const maxAttempts = 40; // 40 attempts * 250ms = 10 seconds timeout
+        const maxAttempts = 20;
 
         setStatus('Polling page for data...', '#e67e22');
 
@@ -164,7 +165,6 @@
             attempts++;
             const data = extractData();
 
-            // Condition: Require Title AND Feed URL (Homepage is optional)
             const hasRequiredData = data.title.length > 0 && data.xmlUrl.length > 0;
 
             if (hasRequiredData) {
@@ -172,29 +172,28 @@
                 pollInterval = null;
                 extractAndCopy(false);
             } else if (attempts >= maxAttempts) {
-                // Timeout fallback: extract whatever is available anyway
                 clearInterval(pollInterval);
                 pollInterval = null;
                 extractAndCopy(false);
                 setStatus('Extraction complete (some fields missing)', '#d9534f');
             }
-        }, 250); // Check every 250 milliseconds
+        }, 300);
     }
 
-    // Monitor SPA navigation
+    // Monitor SPA navigation reliably
     const observer = new MutationObserver(() => {
         const currentUrl = window.location.href;
 
         setupUI();
 
-        if (/https:\/\/podcastindex\.org\/podcast\/\d+/i.test(currentUrl)) {
-            if (currentUrl !== lastProcessedUrl) {
-                lastProcessedUrl = currentUrl;
+        if (currentUrl !== lastProcessedUrl) {
+            lastProcessedUrl = currentUrl;
+            if (/https:\/\/podcastindex\.org\/podcast\//i.test(currentUrl)) {
                 startPollingForData();
+            } else {
+                if (pollInterval) clearInterval(pollInterval);
+                setStatus('Navigate to a podcast page to auto-extract', '#777');
             }
-        } else {
-            if (pollInterval) clearInterval(pollInterval);
-            setStatus('Navigate to a podcast page to auto-extract', '#777');
         }
     });
 
