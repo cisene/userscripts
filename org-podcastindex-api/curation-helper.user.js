@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-08-25-0015
+// @version      2026-09-15-1816
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard*
@@ -92,12 +92,33 @@
         "El show de",
         "Prueba",
         "Tripplo",
+        "Fomo App",
+
+        "𝐅𝗂lmyz𝗂𝐥l𝐚!",
+        "𝐅𝚞l𝚕 𝐌𝐨𝐯𝐢𝐞",
+        "𝐇𝐃 𝐇IN𝐃I 𝐃𝚞𝚋",
+        "𝖥𝗂m𝗅y𝟦w𝖺p",
+        "Hindi Dubbed",
+        "𝐅𝚞𝐥𝐥.𝙼𝒐𝒗𝒊𝒆",
+        "𝐅𝗂lmyz𝗂𝐥l𝐚",
+        "ᴍᴘ𝟺ᴍᴏᴠɪᴇᴢ",
+        "Ambien",
+        "Opana",
+        "cash-on-delivery",
+        "Zolpidem",
+        "Charger Installation",
+        "Recurring Payments",
+        "steady cash flow",
+        "sports updates",
+        "Bathroom Renovations",
 
 
+        "código de indicação",
+        "Token Nedir",
         "Código",
         "Casino",
         "Betting",
-        "AI ",
+        // "AI ",
         "LLM",
         "Reddit",
         "Giveaway",
@@ -139,8 +160,418 @@
     const descriptionTexts = [
         "lorem ipsum dolor sit amet",
 
+        "30-day free trial",
+
+        "Revenue Cycle Management",
+        "Electronic Medical Records",
+        "medical transcripts",
+        "clinical paperwork",
+        "rigorous assessment",
+        "based solely on advertisements",
+        "attorney",
+        "defense strategies",
+        "license consequences",
+        "constitutional rights",
+        "billing purposes",
+        "home organization",
+        "natural dialogue",
+        "everyday conversations",
+        "useful expressions",
+
+        "KI-generierte Stimmen",
+        "KI-generierte Inhalte",
+        "AI-generated synthetic voice",
+
+        "betting in ethiopia",
+        "telebirr betting",
+        "ethiopia betting",
+        "ELS ban",
+        "CBE Birr",
+        "M-Pesa",
+        "birrcheck",
+        "Coupon",
+        "trustworthy guidance",
+        "Online Dating",
+        "Tinder",
+        "Grindr",
+
+        "Google Ads",
+        "Meta Ads",
+        "connect businesses",
+        "targeting capabilities",
+        "search-driven advertising",
+        "social media audiences",
+        "advertising strategy",
+        "marketing executive",
+        "injury attorneys",
+        "assessing your claim",
+        "legal complexities",
+        "free consultation",
+        "tax disputes",
+        "tax compliance",
+
+        "dental billing",
+        "dental claim",
+
+        "Inteligencia Artificial",
+
+        "commercial landscaping",
+        "residential landscaping",
+        "lawn care",
+        "grounds maintenance",
+
+        "instructional design",
+        "educational technology",
+        "responsible AI",
+
         "Trimix",
         "GO88",
+        "HVAC professionals",
+        "litigation law firm",
+        "senior associates",
+        "providing litigation",
+        "technical litigation",
+        "commercial junk removal",
+        "junk removal",
+        "dumpster rental",
+        "structural steel",
+        "storage to rent",
+        "industrial clusters",
+        "Licensed Clinical Mental Health Therapist",
+        "Licensed Therapist",
+        "Clinical Mental Health Therapist",
+        "Licensed Mental Health Therapist",
+        "psychologist",
+
+        "Värvnings-id",
+        "Registreringsbonus",
+        "Kod polecający",
+        "odporúčacie ID",
+        "kodu polecającego",
+
+        "Stukadoor",
+        "stukadoorswerk",
+        "Elektricien",
+        "elektrische installaties",
+        "Schoonmaakbedrijf",
+        "Warmtepomp",
+        "Vloerisolatie",
+        "Auto Inkoop",
+        "Referral Discount",
+        "Fomo App",
+
+        "singles looking for friendship",
+        "giftcode",
+        "asphalt shingle",
+        "rubber membrane",
+        "flat roof systems",
+        "roofing industry",
+        "hail damage",
+        "commercial roofing",
+        "Adwords",
+        "content marketing",
+        "Facebook Ads",
+        "social media marketing",
+        "inbound marketing",
+        "growth hacking",
+        "AI optimization",
+        "AI SEO",
+        "seeking higher visibility",
+        "real visibility",
+        "biggest opportunities",
+        "rank higher",
+        "Higher Rankings",
+        "keyword stuffing",
+        "spammy backlinks",
+        "Lottery Service",
+        "washing machine",
+        "villa relocation",
+        "organizing belongings",
+        "handling large furniture",
+        "protecting fragile items",
+        "preparing access areas",
+        "packing preparation",
+        "furniture handling",
+        "protecting household belongings",
+        "access planning",
+
+        "KI-generiert",
+        "Apple Developer Acccount",
+        "wealth management",
+        "financial advisors",
+        "home buyer loans",
+        "loan consultants",
+        "financial confidence",
+        "custom printed paper",
+        "tray liners",
+        "food wrapping paper",
+        "broken lock",
+        "locksmith situation",
+        "car lockout",
+        "rekeying",
+        "lock replacement",
+        "commercial security needs",
+        "financial advisor",
+        "premier choice",
+        "financial guidance",
+        "printed paper placemats",
+        "automotive locksmith",
+        "car key cutting",
+        "car key programming",
+        "replacement keys",
+        "car spare keys",
+        "remote keys",
+        "lock repairs",
+        "re-keying",
+        "vehicle lockout assistance",
+        "LED lights",
+        "personalized lighting solutions",
+        "Empfehlungscode",
+        "healthy lawn",
+        "Lawn Solutions",
+        "automotive retail",
+        "dealer marketing",
+        "estate sale",
+        "workforce development",
+        "workforce shortages",
+        "job creation",
+        "economic transformation",
+        "unwanted items",
+        "estate cleanouts",
+        "garage clutter",
+        "storm debris",
+        "renovation waste",
+        "attorneys",
+        "technologists",
+        "digital evidence",
+        "underage betting",
+        "tenancy administration",
+        "Plastic Surgery",
+        "Plastic Surgeons",
+        "Board-Certified",
+        "therapist",
+        "franchise organizations",
+        "business leaders",
+        "global companies",
+        "professional athletes",
+        "retirement",
+        "wealth planning",
+        "financial concepts",
+        "granny flat",
+        "practice questions",
+        "certification exams",
+        "exam blueprint",
+        "domain weightings",
+        "practice sets",
+        "climate-controlled storage",
+        "drive-up storage",
+        "business storage",
+        "vehicle storage",
+        "entrepreneurship",
+        "personal development",
+        "seasoned entrepreneur",
+        "paid search",
+        "generative engine optimization",
+        "building access",
+        "furniture protection",
+        "moving podcasts",
+        "loading zones",
+        "parking restrictions",
+        "long-distance relocations",
+        "unwanted vehicles",
+        "car recycling",
+        "vehicle recycling",
+        "unwanted vehicle",
+        "property management",
+        "Teeth Whitening",
+
+        "eCash",
+        "self-custody",
+        "cryptocurrency wallets",
+        "Bitcoin forks",
+        "Smart televisions",
+        "preinstalled apps",
+        "career disruption",
+        "child welfare",
+        "financial advice",
+        "Worth Advisors",
+
+        "retirement",
+        "career changes",
+        "divorce",
+        "inheritance",
+        "aging parents",
+        "estate planning",
+        "investment firm",
+        "deck company",
+        "deck building",
+        "deck installation",
+        "deck replacement",
+        "wood decks",
+        "composite decks",
+        "patios",
+        "porches",
+        "railings",
+        "floating decks",
+        "pool decks",
+        "backyard decks",
+        "complete outdoor living spaces",
+        "home inspections",
+        "pre-purchase evaluations",
+        "structural assessments",
+        "moisture damage",
+        "foundation shifts",
+        "roofing conditions",
+        "property due diligence",
+        "Co-signing",
+        "co-signer",
+
+        "car accidents",
+        "truck accidents",
+        "motorcycle crashes",
+        "workplace injuries",
+        "slip accidents",
+        "fall accidents",
+        "incidents",
+        "negligence",
+        "cricket",
+        "football",
+        "tennis",
+        "live sports updates",
+        "interactive games",
+        "midwives",
+        "doulas",
+
+        "𝐅𝗂lmyz𝗂𝐥l𝐚!",
+        "𝐅𝚞l𝚕 𝐌𝐨𝐯𝐢𝐞",
+        "𝐇𝐃 𝐇IN𝐃I 𝐃𝚞𝚋",
+        "𝖥𝗂m𝗅y𝟦w𝖺p",
+        "Hindi Dubbed",
+        "𝐅𝚞𝐥𝐥.𝙼𝒐𝒗𝒊𝒆",
+        "𝐅𝗂lmyz𝗂𝐥l𝐚",
+        "ᴍᴘ𝟺ᴍᴏᴠɪᴇᴢ",
+        "Ambien ",
+        "cash-on-delivery",
+        "Zolpidem",
+        "Charger Installation",
+        "Recurring Payments",
+        "steady cash flow",
+        "sports updates",
+        "garage door",
+        "repair advice",
+        "Funeral Home",
+        "Nursing home",
+        "premium access",
+        "ad-free",
+        "royalty payments",
+        "cabinet installation",
+        "kitchen remodeling",
+        "storage solution",
+        "kitchen layout",
+        "cabinet material",
+        "kitchen remodel",
+        "marketing agency",
+        "qualified customers",
+        "gold market",
+        "live pricing information",
+        "gold price",
+        "premium properties",
+        "exclusive homes",
+        "seamless bookings",
+        "vacation rental",
+        "exclusive villas",
+        "unparalleled luxury",
+        "premium amenities",
+        "unparalleled privacy",
+        "island destination",
+        "premium nail services",
+        "premium skin services",
+        "premium nail services",
+        "nail services",
+        "skin services",
+        "nail services",
+        "printed stickers",
+        "audiobook free",
+        "download your audiobooks",
+        "application preparation",
+        "incorporation formalities",
+        "FDA-Approved",
+        "Xanax",
+        "medicine company",
+        "internationally trained dentist",
+        "dental professional",
+        "trained dentist",
+        "dental hygiene",
+        "commercial storage unit",
+        "storage unit",
+        "free trial",
+        "unabridged audiobooks",
+        "audiobook service",
+        "access global cinema",
+        "Hydrocodone",
+        "delivered safely",
+        "delivered discreetly",
+        "prescription pills",
+        "acetaminophen",
+        "ibuprofen",
+        "fulfillment services",
+        "transforming fulfillment",
+        "affiliate marketing",
+        "gold buyer",
+        "gold jewelry",
+        "gold coins",
+        "gold bullion",
+        "future of healthcare",
+        "financial market",
+        "Stock Exchange",
+        "movie streaming",
+        "viewing experiences",
+        "cancer diagnosis",
+        "treatment options",
+        "doctor-patient communication",
+        "pain management",
+        "Jackpot",
+        "777",
+        "popular games",
+        "slot games",
+        "live casino",
+        "fish shooting games",
+        "poker",
+        "sports betting",
+        "perimenopause",
+        "fashion statement",
+        "stocks",
+        "global markets",
+        "economic trends",
+        "personal investing",
+        "wealth-building opportunities",
+        "affordable medication",
+        "lowest price",
+        "Tramadol",
+        "valid prescription",
+        "online pharmacy",
+        "health risks",
+        "audiobook",
+        "expressive narration",
+        "DreamAudiobooks",
+        "Senior Movers",
+        "Senior Relocation",
+        "careful packing",
+        "organized transportation",
+        "respectful handling",
+        "Car Cleaning",
+        "steam cleaning",
+        "eco-friendly method",
+        "sanitizes surfaces",
+        "cleanliness",
+        "management software",
+        "patient management",
+        "healthcare operations",
+        "healthcare providers",
+
+
+
+
 
         "font-claude-response-body",
 
@@ -282,7 +713,6 @@
         "call girl",
         "call girls",
         "call us today",
-        "campaign",
         "capital allocation",
         "capital management",
         "car accidents",
@@ -337,7 +767,6 @@
         "code de parrainage",
         "code promo",
         "codice sconto",
-        "collab",
         "collaboration",
         "collateral",
         "colorful balloons",
@@ -367,11 +796,9 @@
         "consumer psychology",
         "contemporary flair",
         "content creation tips",
-        "contracts",
         "conventional parenting",
         "conversion rate",
         "coordinating building access",
-        "copilot",
         "copper recycling",
         "corporate executive",
         "corporate ladder",
@@ -381,7 +808,6 @@
         "cosmetic dentistry",
         "coupon code",
         "coupon de réduction",
-        "cpm",
         "crafted with the help of ai",
         "craftsmanship",
         "creatine",
@@ -611,6 +1037,7 @@
         "glazing company",
         "glazing industry",
         "glp-1",
+        "Tirzepatide",
         "goyard",
         "grooming products",
         "gross salary",
@@ -958,7 +1385,7 @@
         "rabattcode",
         "rajaslot",
         "ralph lauren purple label",
-        "reach out",
+        // "reach out",
         "real estate financing",
         "real estate investing",
         "real estate investor",
@@ -1228,7 +1655,206 @@
         "rebrand.ly",
         "ow.ly",
 
+        /* Italian betting and gambling */
+        // Key Gambling Terms & Games
+        "Gioco d'azzardo", /* Gambling / Games of chance */
+        "Scommesse online", /* Online betting */
+        "Scommesse sportive", /* Sports betting */
+        "Casinò online", /* Online casino */
+        "Casino online", /* Online casino (without accent) */
+        "Casinò live", /* Live casino */
+        "Sito di scommesse", /* Betting site */
+        "Slot machine", /* Slot machine */
+        "Slot online", /* Online slots */
+        "Roulette", /* Roulette */
+        "Poker online", /* Online poker */
+        "Blackjack", /* Blackjack */
+        "Baccarat", /* Baccarat */
+        "Schedina", /* Betting slip / Accumulator */
+        "Lotto", /* Lottery */
+        "SuperEnalotto", /* Major Italian national lottery */
+        "Gratta e vinci", /* Scratch card */
+
+        // Betting & Promotional Terminology
+        "Quote", /* Odds */
+        "Quota", /* Odd / Price */
+        "Pronostici", /* Predictions / Betting tips */
+        "Pronostico", /* Prediction / Tip */
+        "Bonus di benvenuto", /* Welcome bonus */
+        "Bonus senza deposito", /* No-deposit bonus */
+        "Scommessa gratuita", /* Free bet */
+        "Freebet", /* Free bet */
+        "Giri gratis", /* Free spins */
+        "Giri gratuiti", /* Free spins */
+        "Rimborso", /* Cashback / Refund */
+        "Deposito e prelievo", /* Deposit and withdrawal */
+        "Prelievo veloce", /* Fast withdrawal */
+        "Sito AADM", /* Customary license mention (formerly AAMS, now ADM) */
+        "Sito ADM", /* Licensed/Regulated Italian betting site */
+        "Casinò non AAMS", /* Non-regulated/Offshore casino targeting Italians */
+
+        // Common Call-to-Action (CTA) Phrases & Slang
+        "Registrati ora", /* Register now */
+        "Iscriviti subito", /* Sign up now */
+        "Link in descrizione", /* Link in description */
+        "Link in bio", /* Link in bio */
+        "Link nei commenti", /* Link in the comments */
+        "Canale Telegram", /* Telegram channel */
+        "Gruppo VIP", /* VIP Group (often for betting tips/signals) */
+        "Codice promozionale", /* Promotional code */
+        "Codice bonus", /* Bonus code */
+        "Guadagnare online", /* Earn money online */
+        "Soldi facili", /* Easy money */
+        "Vincita sicura", /* Sure win / Safe bet */
+        "Cassa", /* Cash / Winning (e.g. "Fare cassa" - to win big) */
+        "Sbancare", /* Hit the jackpot / Break the bank */
+
+        // Popular Platform & Brand Keywords
+        "Bet365", /* Gambling platform brand */
+        "Snai", /* Major Italian gambling brand */
+        "Eurobet", /* Major Italian gambling brand */
+        "SISAL", /* Major Italian gambling brand */
+        "Lottomatica", /* Major Italian gambling brand */
+        "Planetwin365", /* Popular Italian gambling brand */
+        "Goldbet", /* Popular Italian gambling brand */
+        "888sport", /* Gambling platform brand */
+        "888casino", /* Gambling platform brand */
+        "Betfair", /* Gambling platform brand */
+        "William Hill", /* Gambling platform brand */
+
+
+        /* Portugese betting and gambling */
+        // Key Gambling Terms & Games
+        "Jogo de azar", /* Gambling / Game of chance */
+        "Jogos de azar", /* Gambling / Games of chance */
+        "Apostas online", /* Online betting */
+        "Casa de apostas", /* Bookmaker / Betting site */
+        "Casas de apostas", /* Bookmakers / Betting sites */
+        "Casino online", /* Online casino */
+        "Cassino online", /* Online casino (Brazilian Portuguese spelling) */
+        "Apostas esportivas", /* Sports betting (Brazil) */
+        "Apostas desportivas", /* Sports betting (Portugal) */
+        "Caça-níqueis", /* Slot machines (Brazil) */
+        "Caça-niqueis", /* Slot machines (without accent) */
+        "Slot", /* Slot machine */
+        "Roleta", /* Roulette */
+        "Poker online", /* Online poker */
+        "Blackjack", /* Blackjack */
+        "Bacará", /* Baccarat */
+        "Jogo do bicho", /* Traditional animal lottery game (Brazil) */
+        "Jogo do tigrinho", /* Fortune Tiger slot game (extremely viral in Brazil) */
+
+        // Betting & Promotional Terminology
+        "Odds", /* Betting odds */
+        "Cotações", /* Odds / Quotations */
+        "Palpites", /* Betting tips / Guesses */
+        "Bônus de boas-vindas", /* Welcome bonus */
+        "Bônus sem depósito", /* No-deposit bonus */
+        "Aposta grátis", /* Free bet */
+        "Freebet", /* Free bet */
+        "Rodadas grátis", /* Free spins */
+        "Giros grátis", /* Free spins */
+        "Giro grátis", /* Free spin */
+        "Reembolso", /* Cashback */
+        "Saque rápido", /* Fast withdrawal */
+        "Depósito e saque", /* Deposit and withdrawal */
+        "Plataforma pagando", /* Platform paying out (common viral promo phrase in Brazil) */
+        "Site confiável", /* Trusted / Reliable site */
+
+        // Common Call-to-Action (CTA) Phrases & Slang
+        "Cadastre-se agora", /* Register now */
+        "Registre-se já", /* Register now */
+        "Link na descrição", /* Link in description */
+        "Link na bio", /* Link in bio */
+        "Link no primeiro comentário", /* Link in first comment */
+        "Grupo do Telegram", /* Telegram group */
+        "Grupo VIP", /* VIP group (used for betting signals/tips) */
+        "Código promocional", /* Promotional code */
+        "Cupom de bônus", /* Bonus coupon */
+        "Ganhar dinheiro online", /* Earn money online */
+        "Dinheiro fácil", /* Easy money */
+        "Bater a meta", /* Hitting the target / Winning (slang) */
+        "Forra", /* Big profit / Winning big (Brazilian gambling slang, e.g. "forrar") */
+        "Forrar", /* Make big money / Profit (slang) */
+        // "Green", /* Winning bet slang (vs. "Red" for a lost bet) */
+        "Alavancagem de banca", /* Bankroll scaling / Account boosting */
+
+        // Popular Platform, Game & Brand Keywords
+        "Fortune Tiger", /* Extremely popular slot game in Brazil */
+        "Fortune Ox", /* Popular PG Soft slot game */
+        "Fortune Rabbit", /* Popular PG Soft slot game */
+        "Aviator", /* Aviator crash game */
+        "Jogo do aviãozinho", /* Slang for Aviator crash game */
+        "Bet365", /* Gambling platform brand */
+        "Betano", /* Gambling platform brand */
+        "Blaze", /* Popular gambling platform in Brazil */
+        // "Stake", /* Gambling platform brand */
+        "KTO", /* Gambling platform brand */
+        "Esportes da Sorte", /* Major Brazilian betting platform */
+        "VaideBet", /* Major Brazilian betting platform */
+        "Pixbet", /* Major Brazilian betting platform */
+        "Superbet", /* Gambling platform brand */
+        "EstrelaBet", /* Major Brazilian betting platform */
+
+        /* Spanish betting and gambling */
+        "Juegos de azar", /* Gambling / Games of chance */
+        "Apuestas en línea", /* Online betting */
+        "Apuestas online", /* Online betting */
+        "Casa de apuestas", /* Bookmaker / Betting site */
+        "Casino en vivo", /* Live casino */
+        "Tragamonedas", /* Slot machines */
+        "Tragaperras", /* Slot machines (Spain) */
+        "Ruleta", /* Roulette */
+        "Póker", /* Poker */
+        "Macho", /* Blackjack / Card games */
+        "Apuestas deportivas", /* Sports betting */
+        "Lotería", /* Lottery */
+        "Quiniela", /* Football/Soccer pools */
+        "Juegos de casino", /* Casino games */
+
+        // Betting & Promotional Terminology
+        "Cuotas", /* Odds */
+        "Momios", /* Odds (Mexico/Latin America) */
+        "Pronósticos", /* Betting predictions / Forecasts */
+        "Bono de bienvenida", /* Welcome bonus */
+        "Bono sin depósito", /* No-deposit bonus */
+        "Apuesta gratis", /* Free bet */
+        "Freebet", /* Free bet */
+        "Depósito y retiro", /* Deposit and withdrawal */
+        "Retiro rápido", /* Fast withdrawal */
+        "Tiradas gratis", /* Free spins (Spain) */
+        "Giros gratis", /* Free spins (Latin America) */
+        "Casas recomendadas", /* Recommended betting sites */
+        "Sitio confiable", /* Reliable/Trusted site */
+
+        // Common Call-to-Action (CTA) Phrases & Slang
+        "Regístrate ahora", /* Register now */
+        "Abre tu cuenta", /* Open your account */
+        "Link en la descripción", /* Link in description */
+        "Enlace en la descripción", /* Link in description */
+        "Únete al grupo de Telegram", /* Join Telegram group */
+        "Grupo VIP", /* VIP Group (often used for betting tips) */
+        "Código de promoción", /* Promo code */
+        "Código promocional", /* Promotional code */
+        "Haz tu primer depósito", /* Make your first deposit */
+        "Gana dinero fácil", /* Win easy money */
+        "Recupera tus pérdidas", /* Recover your losses */
+        "Pronóstico seguro", /* Sure bet / Safe prediction */
+        "Apuesta ganadora", /* Winning bet */
+
+        // Popular Platform & Brand Keywords
+        "Bet365", /* Gambling platform brand */
+        "1xBet", /* Gambling platform brand */
+        "Codere", /* Gambling platform brand */
+        "Betsson", /* Gambling platform brand */
+        "Caliente", /* Gambling platform brand (Mexico) */
+        "Bwin", /* Gambling platform brand */
+        "Betway", /* Gambling platform brand */
+        "Rojabet", /* Gambling platform brand (Latin America) */
+        "Wplay", /* Gambling platform brand (Colombia) */
+
         /* Vietnamese betting and gambling */
+        "bóng đá",
         "bài bạc",
         "bắn cá",
         "cá cược",
@@ -1280,6 +1906,76 @@
         "vào tiền",
         "vip code",
         "win100",
+        "Kèo Bóng Đá", /* football */
+        "Tài Xỉu", /* Dice game */
+        "Nổ Hũ",
+        "Nhà Cái Uy Tín",
+
+        // Key Gambling Terms & Games
+        "Cờ bạc trực tuyến", /* Online gambling */
+        "Cờ bạc online", /* Online gambling */
+        "Nhà cái", /* Bookmaker / Betting site */
+        "Sòng bài", /* Casino */
+        "Sòng bạc", /* Casino */
+        "Cá cược", /* Betting / Wagering */
+        "Cá độ", /* Betting / Wagering */
+        "Cá độ bóng đá", /* Football/Soccer betting */
+        "Tài xỉu", /* Sic Bo / Over-Under */
+        "Xóc đĩa", /* Coin toss gambling game */
+        "Bắn cá", /* Fish shooting game */
+        "Nổ hũ", /* Slot machine / Jackpot */
+        "Quay hũ", /* Slot machine / Jackpot */
+        "Lô đề", /* Lottery / Number betting */
+        "Xổ số", /* Lottery */
+        "Game bài đổi thưởng", /* Card games with real-money rewards */
+
+        // Betting & Promotional Terminology
+        "Kèo", /* Bet / Odds */
+        "Kèo nhà cái", /* Bookmaker odds */
+        "Soi kèo", /* Odds analysis / Betting prediction */
+        "Tỷ lệ cược", /* Betting odds */
+        "Hoàn trả", /* Cashback / Rebate */
+        "Khuyến mãi", /* Promotion / Offer */
+        "Ưu đãi", /* Special offer / Incentive */
+        "Tặng code", /* Free promo code / Voucher */
+        "Nhận code", /* Claim promo code */
+        "Nạp rút", /* Deposit and withdrawal */
+        "Nạp rút 1:1", /* 1:1 deposit-withdrawal ratio */
+        "Uy tín", /* Reputable / Trusted (promotional claim) */
+
+        // Common Call-to-Action (CTA) Phrases & Slang
+        "Đăng ký ngay", /* Register now */
+        "Link ở phần mô tả", /* Link in description */
+        "Link dưới phần mô tả", /* Link below in description */
+        "Tham gia nhóm Telegram", /* Join Telegram group */
+        "Tham gia nhóm Zalo", /* Join Zalo group */
+        "Nhập mã giới thiệu",// Enter referral code
+        "Nhận trải nghiệm miễn phí", /* Get free trial/bonus */
+        "Kéo bờ", /* Recover lost gambling money ("bring back to shore") */
+        "Vào bờ", /* Recover lost money / reach safety ("reach shore") */
+        "Chơi là thắng", /* Play to win */
+
+        "nhà cái uy tín",
+
+        // Popular hashtags
+        "#thanauuytin#topnhacaiytin",
+        "#topnhacaiuytin",
+        "#twebnhacaiuytin",
+        "#webnhaaui",
+
+
+
+        // Popular Platform & Brand Keywords
+        "Kubet", /* Gambling platform brand */
+        "Thabet", /* Gambling platform brand */
+        "Sunwin", /* Gambling platform brand */
+        "Go88", /* Gambling platform brand */
+        "B52", /* Gambling platform brand */
+        "W88", /* Gambling platform brand */
+        "Fun88", /* Gambling platform brand */
+        "FB88", /* Gambling platform brand */
+        "188Bet", /* Gambling platform brand */
+        "iWin",
 
         "8kbet",
         "789bet",
@@ -1294,6 +1990,68 @@
         "m88",
         "shbet",
         "w88",
+
+        /* Japanese */
+        '招待コード',
+        // Key Gambling Terms & Games
+        "オンラインカジノ", /* Online casino */
+        "オンカジ", /* Online casino (common abbreviation) */
+        "ネットカジノ", /* Net casino */
+        "ブックメーカー", /* Bookmaker / Sportsbook */
+        "スポーツベット", /* Sports betting */
+        "カジノゲーム", /* Casino games */
+        "スロット", /* Slots */
+        "バカラ", /* Baccarat */
+        "ブラックジャック", /* Blackjack */
+        "ルーレット", /* Roulette */
+        "ライブカジノ", /* Live casino */
+        "競艇", /* Boat racing (gambling) */
+        "競馬", /* Horse racing (gambling) */
+        "パチンコ", /* Pachinko */
+        "パチスロ", /* Pachislot */
+        "闇カジノ", /* Illegal/Underground casino */
+
+        // Betting & Promotional Terminology
+        "オッズ", /* Odds */
+        "入出金", /* Deposit and withdrawal */
+        "即時出金", /* Instant withdrawal */
+        "入金不要ボーナス", /* No-deposit bonus */
+        "初回入金ボーナス", /* First deposit bonus */
+        "ウェルカムボーナス", /* Welcome bonus */
+        "フリースピン", /* Free spins */
+        "キャッシュバック", /* Cashback */
+        "賭け条件", /* Wagering requirements */
+        "出金条件", /* Withdrawal conditions */
+        "還元率", /* Return to Player (RTP) */
+        "勝率", /* Win rate */
+        "おすすめカジノ", /* Recommended casino */
+        "優良サイト", /* Reputable/Trusted site */
+
+        // Common Call-to-Action (CTA) Phrases & Slang
+        "今すぐ登録", /* Register now */
+        "概要欄のリンク", /* Link in the description */
+        "概要欄をチェック", /* Check the description */
+        "リンクはプロフから", /* Link in profile */
+        "公式LINEはこちら", /* Official LINE account here (common promo channel) */
+        "Telegramグループ", /* Telegram group */
+        "プロモコード", /* Promo code */
+        "ボーナスコード", /* Bonus code */
+        "無料でプレイ", /* Play for free */
+        "一攫千金", /* Getting rich quick / Instant fortune */
+        "絶対勝てる", /* Guaranteed win (common scam phrase) */
+        "必勝法", /* Surefire winning strategy */
+        "脳汁", /* Dopamine rush / "Brain juice" (gambling high slang) */
+
+        // Popular Platform & Brand Keywords
+        "ベラジョン", /* Vera&John (extremely popular in Japan) */
+        "遊雅堂", /* Yuugado */
+        "カジノシークレット", /* Casino Secret */
+        "エルドア", /* Eldoah Casino */
+        "ステークカジノ", /* Stake Casino */
+        "コニベット", /* Konibet */
+        "ワンダーカジノ", /* Wonder Casino */
+        "ミスティーノ", /* Mystino */
+        "ミスティーノカジノ", /* Mystino Casino */
 
         /* Chinese languages betting and gambling */
         "博彩",
@@ -1369,7 +2127,300 @@
         "w88",
         "沙巴体育",
         "沙巴體育",
+        "备用网址", /* Standby website */
 
+        /* Russian betting and gambling */
+        // Key Gambling Terms & Games
+        "Азартные игры онлайн", /* Online gambling */
+        "Ставки на спорт", /* Sports betting */
+        "Онлайн казино", /* Online casino */
+        "Казино онлайн", /* Casino online */
+        "Букмекерская контора", /* Bookmaker / Betting shop */
+        "БК", /* Bookmaker abbreviation */
+        "Игровые автоматы", /* Slot machines */
+        "Слоты", /* Slots */
+        "Рулетка", /* Roulette */
+        "Покер", /* Poker */
+        "Блекджек", /* Blackjack */
+        "Баккара", /* Baccarat */
+        "Лайв казино", /* Live casino */
+        "Ставки на футбол", /* Football/Soccer betting */
+        "Быстрые игры", /* Fast/Crash games */
+
+        // Betting & Promotional Terminology
+        "Коэффициенты", /* Odds */
+        "Кэфы", /* Odds (slang abbreviation) */
+        "Прогнозы на спорт", /* Sports predictions / Tips */
+        "Проходная ставка", /* Winning/Safe bet */
+        "Приветственный бонус", /* Welcome bonus */
+        "Бездепозитный бонус", /* No-deposit bonus */
+        "Фриспины", /* Free spins */
+        "Фрибет", /* Free bet */
+        "Кэшбэк", /* Cashback */
+        "Пополнение и вывод", /* Deposit and withdrawal */
+        "Быстрый вывод", /* Fast withdrawal */
+        "Вейджер", /* Wagering requirement */
+        "Рабочее зеркало", /* Working mirror link (used to bypass state blocking) */
+        "Зеркало казино", /* Casino mirror link */
+        "Проверено", /* Verified / Trusted site */
+
+        // Common Call-to-Action (CTA) Phrases & Slang
+        "Зарегистрироваться", /* Register */
+        "Ссылка в описании", /* Link in description */
+        "Ссылка в шапке профиля", /* Link in profile header / bio */
+        "Жми на ссылку", /* Click the link */
+        "Забери бонус", /* Claim bonus */
+        "Переходи по ссылке", /* Follow the link */
+        "Telegram канал", /* Telegram channel */
+        "VIP чат", /* VIP chat (often for betting predictions) */
+        "Промокод", /* Promo code */
+        "Поднять бабла", /* Make quick cash / "Lift money" (gambling slang) */
+        "Легкие деньги", /* Easy money */
+        "Занос", /* Huge win / Hit the jackpot (gambling slang) */
+        "Занести денег", /* Win big (slang) */
+        "Слив депозита", /* Losing deposit / Bankrupt (slang) */
+        "100% проход", /* 100% win guarantee (common scam phrase) */
+
+        // Popular Platform, Game & Brand Keywords
+        "1xBet", /* Gambling platform brand */
+        "1хБет", /* 1xBet (Cyrillic) */
+        "1Win", /* Gambling platform brand */
+        "1Вин", /* 1Win (Cyrillic) */
+        "Melbet", /* Gambling platform brand */
+        "Мелбет", /* Melbet (Cyrillic) */
+        "Pin-Up", /* Gambling platform brand */
+        "Пин Ап", /* Pin-Up (Cyrillic) */
+        "Vavada", /* Vavada Casino */
+        "Вавада", /* Vavada (Cyrillic) */
+        "Joycasino", /* Famous regional brand ("проблемы с доступом к Джойказино") */
+        "Джойказино", /* Joycasino (Cyrillic) */
+        "Casino X", /* Casino X brand */
+        "Авиатор", /* Aviator (popular crash betting game) */
+        "Aviator", /* Aviator game */
+
+        /* Hebrew betting and gambling */
+        // Key Gambling Terms & Games
+        "הימורים ברשת", /* Online gambling */
+        "הימורים אונליין", /* Online gambling */
+        "הימורים באינטרנט", /* Internet gambling */
+        "קזינו אונליין", /* Online casino */
+        "הימורי ספורט", /* Sports betting */
+        "מכונות מזל", /* Slot machines */
+        "סלוטים", /* Slots */
+        "רולטה", /* Roulette */
+        "פוקר אונליין", /* Online poker */
+        "בלאק ג'ק", /* Blackjack */
+        "בלאקג'ק", /* Blackjack */
+        "בקרה", /* Baccarat */
+        "הגרלות", /* Lotteries / Draws */
+        "לוטו", /* Lotto */
+        "טוטו", /* Toto (sports betting) */
+        "משחקי קזינו", /* Casino games */
+
+        // Betting & Promotional Terminology
+        "יחסי זכייה", /* Odds / Winning ratios */
+        "יחס הימור", /* Betting odds */
+        "הימור בטוח", /* Safe bet / Sure bet */
+        "בונוס הצטרפות", /* Sign-up bonus */
+        "בונוס ברוכים הבאים", /* Welcome bonus */
+        "בונוס ללא הפקדה", /* No-deposit bonus */
+        "הפקדה ומשיכה", /* Deposit and withdrawal */
+        "משיכה מהירה", /* Fast withdrawal */
+        "ספינים חינם", /* Free spins */
+        "סיבובים חינם", /* Free spins */
+        "החזר כספי", /* Cashback */
+        "אתר מומלץ", /* Recommended site */
+        "אתר אמין", /* Trusted / Reliable site */
+
+        // Common Call-to-Action (CTA) Phrases & Slang
+        "הרשם עכשיו", /* Register now */
+        "להרשמה לחץ כאן", /* Click here to register */
+        "הקישור בתיאור", /* Link in description */
+        "לינק בתיאור", /* Link in description */
+        "הלינק בביו", /* Link in bio */
+        "הצטרפו לקבוצת הטלגרם", /* Join Telegram group */
+        "קבוצת טלגרם VIP", /* VIP Telegram group */
+        "קוד פרומו", /* Promo code */
+        "קוד קופון", /* Coupon code */
+        "כסף קל", /* Easy money */
+        "להרוויח כסף מהבית", /* Earn money from home */
+        "שיטה בטוחה לרווח", /* Guaranteed method for profit */
+        "רווח מהיר", /* Fast profit */
+
+        // Popular Platform, Agent & Brand Keywords
+        "777", /* Common gambling brand/site motif in Israel */
+        "Bet365", /* Gambling platform brand */
+        "1xBet", /* Gambling platform brand */
+        "Victor Chandler", /* VC Bet brand */
+        "7XL", /* Extremely popular online poker platform in Israel */
+        "ויקטור צ'נדלר", /* Victor Chandler (Hebrew spelling) */
+        "סוכנים הימורים", /* Betting agents (frequently used for unregulated networks) */
+        "סוכן בטאון", /* Bet agent */
+        "סוכן 7XL", /* 7XL agent */
+
+        /* Indonesian betting and gambling */
+        // Key Gambling Terms & Games
+        "Judi online", /* Online gambling (often abbreviated as "Judol") */
+        "Judol", /* Online gambling (extremely common slang portmanteau) */
+        "Slot online", /* Online slot machines */
+        "Judi bola", /* Sports/Soccer betting */
+        "Bandar judi", /* Bookmaker / Gambling operator */
+        "Kasino online", /* Online casino */
+        "Togel", /* Lottery / Number prediction gambling (Toto Gelap) */
+        "Togel online", /* Online lottery */
+        "Togel SGP", /* Singapore lottery */
+        "Togel HK", /* Hong Kong lottery */
+        "Slot gacor", /* "Gacor" slot machine (high payout / easy win) */
+        "Tai sai", /* Sic Bo / Over-Under */
+        "Sabung ayam", /* Cockfighting (popular online betting stream) */
+        "Baccarat online", /* Online baccarat */
+        "DominoQQ", /* Domino card gambling game */
+        "BandarQ", /* Popular traditional card gambling game */
+        "Capsa susun", /* Traditional poker/card game */
+
+        // Betting & Promotional Terminology
+        "Gacor", /* High-payout / Easy win slang (originally from bird-singing) */
+        "Maxwin", /* Maximum win / Jackpot */
+        "Rungkad", /* Lost all money / Gone bankrupt (extremely popular gambling slang) */
+        "Rungkat", /* Alternative spelling of Rungkad */
+        "JP", /* Jackpot abbreviation */
+        "Depo", /* Deposit */
+        "WD", /* Withdrawal (Withdraw) */
+        "Pola slot", /* Slot betting pattern / Winning routine */
+        "RTP slot", /* Return to Player percentage */
+        "RTP live", /* Live Return to Player site/chart */
+        "Bocoran slot", /* Slot tips / Leaked winning patterns */
+        "Depo pulsa", /* Phone credit deposit option */
+        "Situs terpercaya", /* Trusted site */
+        "Agen resmi", /* Official agent / Reputable site */
+
+        // Common Call-to-Action (CTA) Phrases & Slang
+        "Daftar sekarang", /* Register now */
+        "Link gacor", /* High-payout link / Registration link */
+        "Link alternatif", /* Alternative backup link (used to bypass government blocks) */
+        "Link di bio", /* Link in bio */
+        "Link di deskripsi", /* Link in description */
+        "Gabung grup Telegram", /* Join Telegram group */
+        "Gabung grup WhatsApp", /* Join WhatsApp group */
+        "Modal kecil", /* Small capital / Low deposit required */
+        "Pasti WD", /* Guaranteed withdrawal */
+        "Anti rungkad", /* Anti-loss / Guaranteed winning strategy */
+        "Dijamin JP", /* Guaranteed jackpot */
+        "Info gacor hari ini", /* Today's high-payout information */
+        "Jemput maxwin", /* Grab/Claim maximum win */
+
+        // Popular Platform, Game & Brand Keywords
+        "Pragmatic Play", /* Extremely popular slot provider in Indonesia */
+        "Gates of Olympus", /* Popular slot game ("Kakek Zeus") */
+        "Kakek Zeus", /* Slang for Zeus slot game (Pragmatic Play) */
+        "Slot Olympus", /* Olympus slot game */
+        "Mahjong Ways", /* Popular slot game by PG Soft */
+        "PG Soft", /* Popular casino slot developer */
+        "Habanero", /* Popular casino slot provider */
+        "Spadegaming", /* Popular slot developer */
+        "Slot88", /* Major gambling platform/brand network */
+        "SBOBET", /* Major sports betting platform */
+
+        /* Arabic betting and gambling */
+        // Key Gambling Terms & Games
+        "القمار الإلكتروني", /* Online gambling */
+        "المراهنات الرياضية", /* Sports betting */
+        "كازينو اون لاين", /* Online casino */
+        "كازينو مباشر", /* Live casino */
+        "موقع مراهنات", /* Betting site */
+        "مراهنات كرة القدم", /* Football/soccer betting */
+        "ألعاب الكازينو", /* Casino games */
+        "سلوتس", /* Slots */
+        "ماكينات القمار", /* Slot machines */
+        "العاب القمار", /* Gambling games */
+        "الروليت", /* Roulette */
+        "البلاك جاك", /* Blackjack */
+        "البوكر", /* Poker */
+        "الباكارات", /* Baccarat */
+        "يانصيب", /* Lottery */
+
+        // Betting & Promotional Terminology
+        "احتمالات الرهان", /* Betting odds */
+        "نسبة الربح", /* Profit percentage / Odds ratio */
+        "توقعات المباريات", /* Match predictions */
+        "تحليل المباريات", /* Match analysis / Odds analysis */
+        "مكافأة الترحيب", /* Welcome bonus */
+        "مكافأة بدون إيداع", /* No-deposit bonus */
+        "رهان مجاني", /* Free bet */
+        "دورات مجانية", /* Free spins */
+        "لفة مجانية", /* Free spin */
+        "استرداد النقود", /* Cashback */
+        "الإيداع والسحب", /* Deposit and withdrawal */
+        "سحب سريع", /* Fast withdrawal */
+        "رمز ترويجي", /* Promo code */
+        "كود الخصم", /* Discount/Promo code */
+        "موقع موثوق", /* Reliable/Trusted site */
+
+        // Common Call-to-Action (CTA) Phrases & Slang
+        "سجل الآن", /* Register now */
+        "انضم الآن", /* Join now */
+        "الرابط في الوصف", /* Link in description */
+        "الرابط أسفل الفيديو", /* Link below the video */
+        "الرابط في البيو", /* Link in bio */
+        "قناة التليجرام", /* Telegram channel */
+        "مجموعة التليجرام", /* Telegram group */
+        "مجموعة VIP", /* VIP group (used for betting tips) */
+        "احصل على البونص", /* Get the bonus */
+        "ربح المال من الإنترنت", /* Earn money online (common bait phrase) */
+        "ربح سريع", /* Fast profit / Easy money */
+        "ضمان الفوز", /* Guaranteed win */
+        "استرجاع الخسائر", /* Recover losses */
+
+        // Popular Platform & Brand Keywords
+        "1xBet", /* Gambling platform brand */
+        "Betway", /* Gambling platform brand */
+        "888sport", /* Gambling platform brand */
+        "Betfinal", /* Gambling platform brand */
+        "Melbet", /* Gambling platform brand */
+        "Bet365", /* Gambling platform brand */
+        "Mostbet", /* Gambling platform brand */
+        "1win", /* Gambling platform brand */
+        "YYY Casino", /* Popular Middle East gambling brand */
+        "Haz Casino", /* Popular regional gambling brand */
+
+        /* Polish */
+        "Zakłady",
+        "Kasyno",
+        "Hazard",
+        // "Gra",
+        "Kupon",
+        "Wygrana",
+        "Przegrana",
+        "Stawka",
+        "Kurs",
+        // "Pula",
+        "Loteria",
+        "Zdrapka",
+        "Bukmacher",
+        "Żeton",
+        "Automat",
+        "Spiny",
+        "Obstawianie",
+        "Losowanie",
+        "Bonus",
+        "Promocja",
+        "Runda",
+        "Tabela",
+        "Saldo",
+        "Depozyt",
+        "Wypłata",
+        "Bęben",
+        "Jackpot",
+        "Ryzyko",
+        "Trafienie",
+
+
+        "arnoldanabolics.com",
+        "suno.com",
+
+        "thebookvoice.com",
+        "libranovo.com",
+        "booksreader.space",
         "libranovo.com",
         "audiobookzap.com",
         "litupbook.com",
@@ -1444,6 +2495,7 @@
         "JewishPodcasts.fm",
         "Radio Taiwan International",
         "Deutsches Städte-Network",
+        "Radio Bremen",
 
         "Rebel Without a Clue Media",
         "Condé Nast",
@@ -1466,6 +2518,11 @@
         "Deutsche Welle",
         "Schweizer Radio und Fernsehen",
         "Radio Prague International",
+        "MONEY FM 89.3",
+        "Mitteldeutscher Rundfunk",
+        "Radio Dreyeckland",
+        "Radio Bremen",
+        "Radio Larzac",
 
         "BBC World Service",
         "BBC Gahuza Radio",
@@ -1647,7 +2704,7 @@
         "ISMG Content Intelligence & AI Innovation",
         "The Oldies Radio",
         "Free Audiobook Library",
-
+        "The 420 PACE Project",
 
         "AudioVerse Archives",
         "Rabbit Hole Brief",
@@ -1674,11 +2731,23 @@
 
     const feedURLprefixes = [
         /* The usual suspects ... */
+
+        "https://feeds.megaphone.fm/TAL", /* Trinity Studios */
+        "https://feeds.megaphone.fm/IMP",
+
+        "https://feeds.fexingo.com/", /* Fexingo */
+
+        "https://cdn.humanitymedia.org/feeds/", /* Humanity Media */
+        "http://www.gigadial.net/public/station/", /* GigaDial is dead */
+
+
+        "https://cdn.beatlinesports.com/feeds/", /* Beatline Sports */
         "https://feeds.megaphone.fm/LPS", /* Launchpod Studio */
         "https://podcast.gsmc.cloud/feed/", /* GSMC Cloud */
         "https://([a-z0-9]{1,}).supabase.co/", /* Supabase.co */
         "https://feeds.fastcast.ai/", /* AI newsfeeds */
         "https://booksreader.space/", /* Booksreader - Audible */
+        "https://mediabooks.space/", /* Mediabooks */
         "https://s3.amazonaws.com/aplt1rss/", /* Appletfab LLC */
         "https://feeds.megaphone.fm/NPTNI" /* Inception Point AI */
     ];
@@ -1718,6 +2787,7 @@
         "https://www.hpr2.org/podcasts/",
         "https://rss.amperwave.net/v2/feed/",
         "https://www.radiomaria.be/feed/podcast/",
+        "https://radiomaria.es/feed/podcast/",
         "https://www.nativeamericacalling.com/",
         "https://yvr876.com/feed/podcast/",
         "https://feeds.sbs.com.au/",
@@ -1736,7 +2806,12 @@
         "https://www.knau.org/podcast/",
         "https://www.kuaf.com/podcast/",
         "https://norcalpublicmedia.org/",
-
+        "https://kansaspublicradio.org/podcast/",
+        "https://www.radiocontes.cat/feed/podcast/",
+        "https://api.dr.dk/podcasts/v1/feeds/",
+        "https://feeds.twit.tv/",
+        "https://valley1049.org/feed/podcast/",
+        "https://www.radiolarzac.org/feed/podcast/",
         "https://podcasts.cityradioplayer.uk/",
         "https://www.southeastradio.ie/podcasts/",
         "http://www.rtve.es/api/programas/",
@@ -1744,7 +2819,15 @@
         "https://www.sudradio.fr/programme/",
         "https://radiotuungane.info/feed/podcast/",
         "https://www.radioara.org/feed/podcast/",
+        "https://podcast.orf.at/podcast/",
+        "https://listen.theqonline.net/public/1/podcast/",
 
+        "https://feed.sermonaudio.com/",
+        "https://podcast.npo.nl/feed/",
+        "https://www.fred.fm/category/",
+        "https://podcast.cibl1015.com/radioshows/",
+        "https://cause-commune.fm/feed/podcast/",
+        "https://www.rcf.fr/feed/show/",
         "https://radiodynamo.org/feed/podcast/",
         "https://shows.radioplus.co.il/feed/podcast/",
         "https://www.rtp.pt/play/itunes/",
@@ -1760,11 +2843,32 @@
 
         "http://www.radio.rai.it/rss/podcast/",
         "http://www.radio.rai.it/wr6/podcast/",
+        "https://raadioprt.com/",
+        "https://www.rc.fr/feed/podcast/",
+        "http://rss.dw.com/",
+        "https://rss.dw.com/",
+        "https://www.srf.ch/",
+        "http://www.srf.ch/",
+        "https://www.mdr.de/",
+        "https://www.swr.de/",
+        "https://www1.wdr.de/",
+        "https://feeds.br.de/",
+        "https://feeds.ard.de/",
+        "http://web.ard.de/",
+        "https://www.bremeneins.de/",
+        "https://www.bremenzwei.de/",
+        "https://www.bremenvier.de/",
+        "https://www.bremennext.de/",
+        "https://www.radiobremen.de/",
+        "https://www.ndr.de/",
+        "https://podcast.hr.de/",
+        "https://www.radioeins.de/",
+        "https://rdl.de/",
 
-        "https://rss.dw.com/xml/",
-        "https://rss.dw.com/xmlhd/",
-        "https://www.srf.ch/feed/podcast/",
-        "http://www.srf.ch/feed/podcast/",
+        "https://www.radiolaser.fr/",
+        "https://www.unicaradio.it/feed/podcast/",
+        "https://www.schlagerradio.de/",
+        "http://podcasts.euronewsradio.com/podcast/",
 
         "https://deutsch.radio.cz/rcz-rss/",
 
@@ -1807,6 +2911,8 @@
         "https://id.rti.org.tw/",
         "https://fr.rti.org.tw/",
 
+        "https://www.radiola.media/feed/podcast/",
+        "https://www.horizonradio.com/podcasts/",
         "https://www.polskieradio.pl/rss/",
         "https://www.rte.ie/radio1/podcast/",
         "https://realsmartmedia.ie/podcasts/",
@@ -1829,8 +2935,13 @@
         "https://feeds.360.audion.fm/",
         "https://www.retetoscanaclassica.it/feed/podcast/",
 
+        "https://100komma7.lu/show/",
         "https://feed.symbol.fm/",
         "https://feeds.yle.fi/areena/v1/series/",
+        "https://podcast.cfrc.ca/feed/podcast/",
+
+        "https://www.interlochenpublicradio.org/podcast/",
+        "https://www.fedeviva.it/feed/podcast/",
 
         "https://www.cbc.ca/podcasting/",
         "http://collectionscanada.gc.ca/obj/",
@@ -1840,6 +2951,14 @@
         "https://radiomaria.ca/",
         "https://ohdieux.ligature.ca/rss",
         "https://radiorfa.com/feed/podcast/",
+        "http://www.zdf.de/rss/podcast/audio/",
+        "http://www.zdf.de/rss/podcast/video/",
+        "https://www.zdf.de/rss/podcast/video/",
+        "https://www.zdf.de/rss/podcast/audio/",
+        "http://content.zdf.de/podcast/",
+        "https://content.zdf.de/podcast/",
+        "https://www.3sat.de/rss/podcast/video/zdf/",
+        "https://radio7.cz/podcast.php",
 
         "https://feeds.megaphone.fm/NSR",
         "https://feeds.megaphone.fm/NBN",
@@ -1852,11 +2971,26 @@
         "https://feeds.megaphone.fm/FOX",
         "https://feeds.megaphone.fm/ACECREATORSPTYLTD",
         "https://feeds.megaphone.fm/YOSHIMOTOKOGYOCOLTD",
+        "https://feeds.megaphone.fm/NIPPONTELEVISIONNETWORKCORPORATION",
         "https://feeds.megaphone.fm/MP9",
         "https://feeds.megaphone.fm/NBN",
         "https://feeds.megaphone.fm/CTT",
         "https://feeds.megaphone.fm/NNN",
         "https://feeds.megaphone.fm/VMP",
+        "https://feeds.megaphone.fm/PPY",
+        "https://feeds.megaphone.fm/SSM",
+        "https://feeds.megaphone.fm/CTH",
+        "https://feeds.megaphone.fm/BEING",
+        "https://feeds.megaphone.fm/TNM",
+        "https://feeds.megaphone.fm/RRE",
+        "https://feeds.megaphone.fm/GLS",
+        "https://feeds.megaphone.fm/OUA",
+        "https://feeds.megaphone.fm/USV",
+        "https://feeds.megaphone.fm/ROB",
+        "https://feeds.megaphone.fm/BCS",
+        "https://feeds.megaphone.fm/SIC",
+        "https://feeds.megaphone.fm/FLS",
+        "https://feeds.megaphone.fm/VKR",
         "https://rss.podplaystudio.com/",
         "https://podcast.stream.schibsted.media/",
         "https://feed.pod.space/",
@@ -1892,10 +3026,29 @@
         "https://wavlake.com/feed/music/"
     ];
 
+    const descriptionTells = [
+        { text: "AI Tell", regex: new RegExp("markdown\\sprose", "gi")},
+        { text: "AI Tell", regex: new RegExp("([a-z0-9\\x2d\\x5f]{1,})\\x5fconvSearchResultHighlightRoot", "gi")},
+        { text: "AI Tell", regex: new RegExp("([a-z0-9\\x2d\\x5f]{1,})\\x5fselectionAnchorContainer", "gi")},
+        { text: "AI Tell", regex: new RegExp("([a-z0-9\\x2d\\x5f]{1,})\\x5fselectionAnchor", "gi")}
+    ];
+
+
+    const descriptionHashtags = [
+        { text: "#artificialintelligence", regex: new RegExp("\\x23artificialintelligence", "gi")},
+        { text: "#Ultamize", regex: new RegExp("\\x23ultamize", "gi")}
+
+    ];
+
     const descriptionPhonenumbers = [
+
+        { text: "Australia", regex: new RegExp("\\x2b61\\s(\\d{3})\\x2d(\\d{3})\\x2d(\\d{3})", "gi")},
 
         { text: "UK", regex: new RegExp("\\x2b44(\\x2d)?([\\d\\x2d\\s]{8,10})", "gi")},
         { text: "USA/Canada", regex: new RegExp("\\x2b1(\\x2d)?([\\d\\x2d\\s]{8,10})", "gi")},
+        { text: "USA", regex: new RegExp("(\\d{3})\\x2d(\\d{3})\\x2d(\\d{4})", "gi")},
+
+        { text: "USA", regex: new RegExp("\\x28(\\d{3})\\x29\\s(\\d{3})\\x2d(\\d{4})", "gi")},
 
         { text: "Spain", regex: new RegExp("\\x2b34(\\x2d)?([\\d\\x2d\\s]{8,12})", "gi")},
 
@@ -1926,6 +3079,7 @@
 
     const extraGenerators = [
 
+        { text: "mave podcasts", regex: new RegExp("^mave\\spodcasts", "gi")},
         { text: "SiteServer", regex: new RegExp("^Site\\x2dServer\\sv\\x40build\\x2eversion\\x40", "gi")},
         { text: "WordPress", regex: new RegExp("^https\\x3a\\x2f\\x2fwordpress\\x2eorg\\x2f\\x3fv\\x3d(\\d{1,})\\x2e(\\d{1,})", "gi")},
         { text: "Podeo", regex: new RegExp("^https\\x3a\\x2f\\x2fpodeo\\x2eco", "gi")},
@@ -2000,6 +3154,9 @@
 
     const extraLanguages = [
 
+        { text: "Ganda", regex: new RegExp("^lug$", "gi")},
+        { text: "Sardinian", regex: new RegExp("^sc((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Turkmen", regex: new RegExp("^tk((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Ewe", regex: new RegExp("^ee((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Manx", regex: new RegExp("^gv((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "South Ndebele", regex: new RegExp("^nr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
@@ -2026,6 +3183,7 @@
         { text: "Burmese", regex: new RegExp("^my((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Catalan", regex: new RegExp("^ca((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Chichewa", regex: new RegExp("^ny((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Chichewa", regex: new RegExp("^nya$", "gi")},
         { text: "Chinese", regex: new RegExp("^zh((\\x2d|\\x5f)([a-z]{2,4}))?$", "gi")},
         { text: "Cornish", regex: new RegExp("^kw((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Croatian", regex: new RegExp("^hr((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
@@ -2110,36 +3268,40 @@
 
         { text: "Google Play Gift Card", regex: new RegExp("Google\\sPlay\\Gift\\sCard", "gi")},
 
-        { text: "@usaChang", regex: new RegExp("\\x40usachang", "gi")},
-        { text: "mifen{number}@gmail.com", regex: new RegExp("mifen\\d{4,8}\\x40gmail\\x2ecom", "gi")},
-
-        { text: "09384726{number}", regex: new RegExp("09384726(\\d{2})", "gi")},
-        { text: "tip-club.app@gmail.com", regex: new RegExp("tip\\x2dclub\\x2eapp\\x40gmail\\x2ecom", "gi")},
-
-        { text: "@giugno{number}", regex: new RegExp("\\x40giugno\\d{1,5}", "gi")},
-        { text: "kolkocXXX@gmail.com", regex: new RegExp("kolkoc\\d{1,5}\\x40gmail\\x2ecom", "gi")},
-
-        { text: "@twl{number}tech", regex: new RegExp("\\x40twl\\d{1,5}tech", "gi")},
-        { text: "aotelaisichn@gmail.com", regex: new RegExp("aotelaisichn\\x40gmail\\x2ecom", "gi")},
-
         { text: "OFFTAKE{number}", regex: new RegExp("offtake\\d{1,5}", "gi")},
         { text: "PLAYHARD{number}", regex: new RegExp("playhard\\d{1,5}", "gi")},
         { text: "BONUS{number}", regex: new RegExp("\\bbonus\\d{1,5}\\b", "gi")},
+        { text: "SAVE{number}", regex: new RegExp("\\bsave\\d{1,5}\\b", "gi")},
+        { text: "MICHAEL{number}", regex: new RegExp("\\bmichael\\d{1,5}\\b", "gi")},
+        { text: "FILAMENT{number}", regex: new RegExp("\\bfilament\\d{1,5}\\b", "gi")},
+        { text: "SILVER{number}", regex: new RegExp("\\bsilver\\d{1,5}\\b", "gi")},
+        { text: "SLEEP{number}", regex: new RegExp("sleep\\d{1,5}\\b", "gi")},
+        { text: "CASHBACK{number}", regex: new RegExp("cashback\\d{1,5}\\b", "gi")},
+        { text: "FLAT{number}", regex: new RegExp("flat\\d{1,5}", "gi")},
 
         { text: "GET{number}", regex: new RegExp("\\bget\\d{1,5}\\b", "gi")},
         { text: "VIP{number}", regex: new RegExp("\\bVIP\d{1,5}\\b", "gi")},
+        { text: "VIP{number}", regex: new RegExp("VIP\d{1,5}", "gi")},
+
         { text: "USA{number}", regex: new RegExp("\\bUSA\d{1,5}\\b", "gi")},
+
+        { text: "BTCC{alpanumeric}", regex: new RegExp("\\bBTCC([A-Z0-9]{1,})\\b", "g")},
+        { text: "JAZ{alphanumeric}", regex: new RegExp("\\bJAZ([A-Z0-9]{1,})\\b", "g")},
 
         { text: "JEAM", regex: new RegExp("\\bjeam\\b", "gi")},
         { text: "JENY", regex: new RegExp("\\bjeny\\b", "gi")},
-        { text: "kickback{number}", regex: new RegExp("kickback(\\d{2})", "gi")},
+        { text: "KICKBACK{number}", regex: new RegExp("kickback(\\d{2})", "gi")},
+        { text: "KICKBACK", regex: new RegExp("\\bkickback\\b", "gi")},
 
         { text: "Course Code", regex: new RegExp("GA\\d{1}\\x2d(\\d{9})\\x2d([a-z]{2})\\d{1}\\x2d([a-z]{2})(\\d{2})", "gi")},
+
+        { text: "U{number}", regex: new RegExp("\\bu(\d{2,9})\\b", "gi")},
 
 
         { text: "Get xx%", regex: new RegExp("Get\s(\\d{1,2})\x25", "gi")},
         { text: "Up to xx%", regex: new RegExp("Up\\sto\\s(\\d{1,2})\\x25", "gi")},
         { text: "fino al xx%", regex: new RegExp("fino\\sal\\s(\\d{1,2})\\x25", "gi")},
+        { text: "Exclusive {number}% discount", regex: new RegExp("exclusive\\s(\\d{1,2})\\x25\sdiscount", "gi")},
 
         { text: "123{number}", regex: new RegExp("\\b123([a-z\\x2d]{1,})\\b", "gi")},
 
@@ -2155,6 +3317,8 @@
 
         { text: "currency symbol ₹ (Rupiee)", regex: new RegExp("\\u20b9", "gi")},
 
+        { text: "Referral Code", regex: new RegExp("\\u300cJAZ([A-Z0-9]{1,})\\u300d", "gi")},
+
         { text: "Referral Code", regex: new RegExp("\\xab([A-Z0-9]{2,})\\xbb", "g")},
         { text: "Referral Code", regex: new RegExp("\\u201c([A-Z0-9]{2,})\\u201d", "g")},
         { text: "Referral Code", regex: new RegExp("\\u201e([A-Z0-9]{2,})\\u201c", "g")}
@@ -2162,6 +3326,26 @@
     ];
 
     const casinoFrags = [
+
+        { text: "@tw{number}tech", regex: new RegExp("\\x40tw(\\d{1,})tech", "gi")},
+        { text: "@twl{number}tech", regex: new RegExp("\\x40twl\\d{1,5}tech", "gi")},
+
+        { text: "@giugno{number}", regex: new RegExp("\\x40giugno(\\d{4})", "gi")},
+        { text: "@shanmu{number}", regex: new RegExp("\\x40shanmu(\\d{1,})", "gi")},
+
+
+        { text: "@usaChang", regex: new RegExp("\\x40usachang", "gi")},
+        { text: "mifen{number}@gmail.com", regex: new RegExp("mifen\\d{4,8}\\x40gmail\\x2ecom", "gi")},
+
+        { text: "09384726{number}", regex: new RegExp("09384726(\\d{2})", "gi")},
+        { text: "tip-club.app@gmail.com", regex: new RegExp("tip\\x2dclub\\x2eapp\\x40gmail\\x2ecom", "gi")},
+
+        { text: "@giugno{number}", regex: new RegExp("\\x40giugno\\d{1,5}", "gi")},
+        { text: "kolkocXXX@gmail.com", regex: new RegExp("kolkoc\\d{1,5}\\x40gmail\\x2ecom", "gi")},
+
+        { text: "aotelaisichn@gmail.com", regex: new RegExp("aotelaisichn\\x40gmail\\x2ecom", "gi")},
+
+
         { text: "hb{number}s{number}.com", regex: new RegExp("hb(\\d{2,5})s(\\d{1,})\x2ecom", "gi")},
         { text: "{number}clbrank.com", regex: new RegExp("(\\d{1,})clbrank\\x2ecom", "gi")},
         { text: "{number}betv{number}.com", regex: new RegExp("(\\d{1,})betv(\\d{1,})\\x2ecom", "gi")},
@@ -2189,6 +3373,7 @@
         { text: "XIN{number}.express", regex: new RegExp("xin(\\d{1,})\\x2eexpress", "gi")},
         { text: "DN{number}TIPS.com", regex: new RegExp("dn(\\d{1,})tips\\x2ecom", "gi")},
         { text: "{alphanumeric}BETA{number}.ink", regex: new RegExp("([a-z0-9]{1,})beta(\\d{1,})\\x2eink", "gi")},
+        { text: "JUN{number}.black", regex: new RegExp("jun(\\d{1,})\\x2eblack", "gi")},
 
         { text: "{number}WIN{number}.com", regex: new RegExp("(\\d{2})win(\\d{3})\\x2ecom", "gi")},
 
@@ -2201,19 +3386,25 @@
 
         { text: "TAYA{number}bet.net", regex: new RegExp("taya(\\d{1,})bet\\x2enet", "gi")},
 
-
+        { text: "dyfensi.top", regex: new RegExp("dyfensi\\x2etop", "gi")},
         { text: "fenba.top", regex: new RegExp("fenba\\x2etop", "gi")},
         { text: "zanup.top", regex: new RegExp("zanup\\x2etop", "gi")},
         { text: "zanup.cc", regex: new RegExp("zanup\\x2ecc", "gi")},
         { text: "zansu.top", regex: new RegExp("zansu\\x2etop", "gi")},
+        { text: "zansu.cc", regex: new RegExp("zansu\\x2ecc", "gi")},
         { text: "upzan.top", regex: new RegExp("upzan\\x2etop", "gi")},
 
         { text: "FENSI{number}", regex: new RegExp("fensi(\\d{1,})\\x2etop", "gi")},
         { text: "GA{number}.top", regex: new RegExp("ga(\\d{1,})\\x2etop", "gi")},
 
-        { text: "{alpha}FEN.top", regex: new RegExp("([a-z]{2,5})fen\\x2etop", "gi")},
-        { text: "{alpha}UP.top", regex: new RegExp("([a-z]{2,})up\\x2etop", "gi")},
 
+        { text: "{alpha}FEN.top", regex: new RegExp("([a-z]{2,5})fen\\x2etop", "gi")},
+        { text: "{alpha}FEN.cc", regex: new RegExp("([a-z]{2,5})fen\\x2ecc", "gi")},
+
+        { text: "{alpha}UP.top", regex: new RegExp("([a-z]{2,})up\\x2etop", "gi")},
+        { text: "{alpha}SUP.top", regex: new RegExp("([a-z]{2,})sup\\x2etop", "gi")},
+
+        { text: "{alpha}FANS.top", regex: new RegExp("([a-z]{2,})fans\\x2etop", "gi")},
 
         { text: "{number}UP.top", regex: new RegExp("(\\d{1,})up\\x2etop", "gi")},
         { text: "{number}DY.top", regex: new RegExp("(\\d{1,})dy\\x2etop", "gi")},
@@ -2221,13 +3412,17 @@
         { text: "{number}KS.top", regex: new RegExp("(\\d{1,})ks\\x2etop", "gi")},
         { text: "{number}SP.top", regex: new RegExp("(\\d{1,})sp\\x2etop", "gi")},
 
-
+        { text: "XHS{alpha}.top", regex: new RegExp("xhs(a-z{2,5})\\x2etop", "gi")},
 
         { text: "{number}FEN{number}.top", regex: new RegExp("(\\d{1,})fen(\\d{1,})\\x2etop", "gi")},
         { text: "{number}KOL.top", regex: new RegExp("(\\d{1,})kol\\x2etop", "gi")},
         { text: "{number}XHS.top", regex: new RegExp("(\\d{1,})xhs\\x2etop", "gi")},
         { text: "{number}ZAN.top", regex: new RegExp("(\\d{1,})zan\\x2etop", "gi")},
         { text: "{number}FEN.top", regex: new RegExp("(\\d{1,})fen\\x2etop", "gi")},
+
+        { text: "{number}WINN.vip", regex: new RegExp("(\\d{1,})winn\\x2evip", "gi")},
+
+        { text: "{number}FANS.top", regex: new RegExp("(\\d{1,})fans\\x2etop", "gi")},
 
         { text: "DK{number}.top", regex: new RegExp("dk(\\d{1,})\\x2etop", "gi")},
         { text: "MK{number}.top", regex: new RegExp("mk(\\d{1,})\\x2etop", "gi")},
@@ -2240,6 +3435,61 @@
         { text: "MM{number}.top", regex: new RegExp("mm(\\d{1,})\\x2etop", "gi")},
 
         { text: "KY{number}.xyz", regex: new RegExp("ky(\\d{1,})\\x2exyz", "gi")},
+        { text: "KOL{number}.com", regex: new RegExp("kol(\\d{1,})\\x2ecom", "gi")},
+
+        { text: "HITCLUB{number}.cz", regex: new RegExp("hitclub(\\d{1,}).cz", "gi")},
+
+
+        { text: "OKVIP", regex: new RegExp("ok(\\x2d)?vip", "gi")},
+        { text: "IWIN", regex: new RegExp("iwin", "gi")},
+
+        { text: "LUCKY{number}", regex: new RegExp("lucky(\\d{1,})", "gi")},
+        { text: "KING{number}", regex: new RegExp("king(\\d{1,})", "gi")},
+
+        { text: "ABC{number}", regex: new RegExp("abc(\\d{1,})", "gi")},
+        { text: "JUN{number}", regex: new RegExp("jun(\\d{1,})", "gi")},
+
+        { text: "NET{number}", regex: new RegExp("net(\\d{1,})", "gi")},
+        { text: "NEW{number}", regex: new RegExp("new(\\d{1,})", "gi")},
+        { text: "BJ{number}", regex: new RegExp("bj(\\d{1,})", "gi")},
+        { text: "BET{number}", regex: new RegExp("bet(\\d{1,})", "gi")},
+        { text: "SO{number}", regex: new RegExp("so(\\d{1,})", "gi")},
+        { text: "FB{number}", regex: new RegExp("fb(\\d{1,})", "gi")},
+        { text: "FC{number}", regex: new RegExp("fc(\\d{1,})", "gi")},
+        { text: "EE{number}", regex: new RegExp("ee(\\d{1,})", "gi")},
+        { text: "GK{number}", regex: new RegExp("gk(\\d{1,})", "gi")},
+        { text: "TG{number}", regex: new RegExp("tg(\\d{1,})", "gi")},
+        { text: "LV{number}", regex: new RegExp("lv(\\d{1,})", "gi")},
+        { text: "VN{number}", regex: new RegExp("vn(\\d{1,})", "gi")},
+        { text: "GO{number}", regex: new RegExp("go(\\d{1,})", "gi")},
+        { text: "KP{number}", regex: new RegExp("kp(\\d{1,})", "gi")},
+        { text: "TR{number}", regex: new RegExp("tr(\\d{1,})", "gi")},
+        { text: "BD{number}", regex: new RegExp("bd(\\d{1,})", "gi")},
+        { text: "KO{number}", regex: new RegExp("ko(\\d{1,})", "gi")},
+        { text: "SV{number}", regex: new RegExp("sv(\\d{1,})", "gi")},
+
+
+        { text: "VIN{number}", regex: new RegExp("vin(\\d{1,})", "gi")},
+        { text: "WIN{number}", regex: new RegExp("win(\\d{1,})", "gi")},
+        { text: "TOP{number}", regex: new RegExp("top(\\d{1,})", "gi")},
+        { text: "LEO{number}", regex: new RegExp("leo(\\d{1,})", "gi")},
+
+
+        { text: "{number}CL", regex: new RegExp("(\\d{1,})cl", "gi")},
+
+        { text: "{number}WIN", regex: new RegExp("(\\d{1,})win", "gi")},
+        { text: "{number}WIZ", regex: new RegExp("(\\d{1,})wiz", "gi")},
+        { text: "{number}BET", regex: new RegExp("(\\d{1,})bet", "gi")},
+
+        { text: "{alpha}BET", regex: new RegExp("([a-z]{1,4})bet", "gi")},
+
+
+
+        { text: "#fairplay", regex: new RegExp("\\x23fairplay\\b", "gi")},
+        { text: "#fairplaycasino", regex: new RegExp("\\x23fairplaycasino\\b", "gi")},
+        { text: "#fairplayph", regex: new RegExp("\\x23fairplayph\\b", "gi")},
+        { text: "#fairplaycomph", regex: new RegExp("\\x23fairplaycomph\\b", "gi")},
+
 
         { text: "#taya{number}", regex: new RegExp("\\x23taya(\\d{2,})\\b", "gi")},
         { text: "#taya{number}ph", regex: new RegExp("\\x23taya(\\d{2,})ph\\b", "gi")},
@@ -2252,8 +3502,6 @@
         { text: "#tipclub", regex: new RegExp("\\x23tipclub", "gi")},
         { text: "#tipclub_bet", regex: new RegExp("\\x23tipclub\\x5fbet", "gi")},
         { text: "#tipclub_casino", regex: new RegExp("\\x23tipclub\\x5fcasino", "gi")},
-
-
 
         { text: "tipclub{number}.org", regex: new RegExp("tipclub(\\d{1,3})\\x2eorg", "gi")}
 
@@ -2737,16 +3985,56 @@
 
     const deepLinks = [
 
-        { text: "Google Drive Link", regex: new RegExp("https\\x3a\\x2f\\x2fdrive\\x2egoogle\\x2ecom\\x2fdrive\\x2ffolders\\x2f([a-z0-9\\x2\\x5f])", "gi")},
+        { text: "Google Drive Link", regex: new RegExp("https\\x3a\\x2f\\x2fdrive\\x2egoogle\\x2ecom\\x2fdrive\\x2ffolders\\x2f([a-z0-9\\x2d\\x5f]{10,})", "gi")},
+        { text: "Google Drive Link", regex: new RegExp("https\\x3a\\x2f\\x2fdrive\\x2egoogle\\x2ecom\\x2ffile\\x2fd\\x2f([a-z0-9\\x2d\\x5f]{10,})\\x2fview", "gi")},
+
         { text: "Google Share Link", regex: new RegExp("https\\x3a\\x2f\\x2fshare\\x2egoogle\\x2f([a-z0-9]{1,})", "gi")},
+
+        { text: "Google Maps Link", regex: new RegExp("https\\x3a\\x2f\\x2fmaps\\x2eapp\\x2egoo\\x2egl\\x2f([a-z0-9\\x2d\\x5f]{1,})", "gi")},
+
 
         /* Social Media */
         { text: "Instagram.com Username", regex: new RegExp("https\\x3a\\x2f\\x2finstagram\\x2ecom\\x2f([a-z0-9\\x2d\\x5f]{1,})", "gi")},
+        { text: "Instagram.com Username", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2einstagram\\x2ecom\\x2f([a-z0-9\\x2d\\x5f]{1,})", "gi")},
+        { text: "Instagram.com Username", regex: new RegExp("Instagram\\x3a\\s\\x40([a-z0-9\\x2d\\x5f]{1,})", "gi")},
+
+
         { text: "LinkedIn Username", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2elinkedin\\x2ecom\\x2fin\\x2f([a-z0-9\\x2d\\x5f]{1,})\\x2f", "gi")},
+        { text: "LinkedIn Companyname", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2elinkedin\\x2ecom\\x2fcompany\\x2f([a-z0-9\\x2d\\x5f]{1,})\\x2f", "gi")},
+        { text: "LinkedIn ShortLink", regex: new RegExp("https\\x3a\\x2f\\x2flnkd\\x2ein\\x2f([a-z0-9\\x2d\\x5f]{1,})", "gi")},
+
+
         { text: "Youtube Username", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2eyoutube\\x2ecom\\x2f\\x40([a-z0-9\\x2d\\x5f]{1,})(\\x2f)?", "gi")},
+        { text: "Youtube Username", regex: new RegExp("http(s)?\\x3a\\x2f\\x2fyoutube\\x2ecom\\x2f\\x40([a-z0-9\\x2d\\x5f]{1,})\\x2fpodcasts", "gi")},
+        { text: "Youtube Username", regex: new RegExp("channel\\x3a\\s\\x40([a-z0-9\\x2d\\x5f]{1,})", "gi")},
+        { text: "Youtube Playlist", regex: new RegExp("http(s)?\\x3a\\x2f\\x2fwww\\x2eyoutube\\x2ecom\\x2fplaylist\\x3flist\\x3d([a-z0-9\\x2d\\x5f]{1,})", "gi")},
+
         { text: "BlueSky Username", regex: new RegExp("https\\x3a\\x2f\\x2fbsky\\x2eapp\\x2fprofile\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})", "gi")},
 
 
+        { text: "TikTok Username", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2etiktok\\x2ecom\\x2f\\40([a-z0-9\\x2d\\x2e\\x5f]{1,})", "gi")},
+
+        { text: "Gravatar Username", regex: new RegExp("http(s)?\\x3a\\x2f\\x2f([a-z]{2})\\x2egravatar\\x2ecom\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})", "gi")},
+
+        { text: "Alternion Username", regex: new RegExp("http(s)?\\x3a\\x2f\\x2fwww\\x2ealternion\\x2ecom\\x2fusers\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})\\x2f", "gi")},
+        { text: "Pinterest Username", regex: new RegExp("http(s)?\\x3a\\x2f\\x2fwww\\x2epinterest\\x2ecom\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})\\x2f", "gi")},
+        { text: "Kinja Username", regex: new RegExp("http(s)?\\x3a\\x2f\\x2fkinja\\x2ecom\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})", "gi")},
+        { text: "Reddit Username", regex: new RegExp("http(s)?\\x3a\\x2f\\x2fwww\\x2ereddit\\x2ecom\\x2fuser\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})", "gi")},
+
+
+        { text: "Spotify DeepLink", regex: new RegExp("http(s)?\\x3a\\x2f\\x2fopen\\x2espotify\\x2ecom\\x2fshow\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})", "gi")},
+
+
+        { text: "Beehiiv Newsletter", regex: new RegExp("http(s)?\\x3a\\x2f\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})\\x2ebeehiiv\\x2ecom\\x2f", "gi")},
+
+        { text: "Facebook Username", regex: new RegExp("http(s)?\\x3a\\x2f\\x2f(www\\x2e)?facebook\\x2ecom\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})(\\x2f)?", "gi")},
+
+        { text: "Patreon Username", regex: new RegExp("http(s)?\\x3a\\x2f\\x2fwww\\x2epatreon\\x2ecom\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})", "gi")},
+
+
+        { text: "BuzzSprout Podcast", regex: new RegExp("http(s)?\\x3a\\x2f\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})\\x2ebuzzsprout\\x2ecom\\x2f", "gi")},
+
+        { text: "Spreaker Podcast", regex: new RegExp("http(s)?\\x3a\\x2f\\x2f(www\\x2e)?spreaker\\x2ecom\\x2fpodcast\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})", "gi")},
 
         /* Telegram */
         { text: "Telegram Phonenumber", regex: new RegExp("https\\x3a\\x2f\\x2ft\\x2eme\\x2f\\x2b(\\d{1,})", "gi")},
@@ -2764,6 +4052,7 @@
 
         /* Twitter */
         { text: "Twitter Username", regex: new RegExp("https\\x3a\\x2f\\x2ftwitter\\x2ecom\\x2f([a-z0-9\\x2d\\x5f]{1,})", "gi")},
+        { text: "Twitter Username", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2etwitter\\x2ecom\\x2f([a-z0-9\\x2d\\x5f]{1,})", "gi")},
 
         /* Payments */
         { text: "CashApp", regex: new RegExp("https\\x3a\\x2f\\x2fcash\\x2eapp\\x2f\\x24([a-z0-9\\x2d]{1,})", "gi")},
@@ -2772,13 +4061,21 @@
 
 
         /* Shopping */
+
+        /* Audible */
         { text: "Audible", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2eaudible\\x2ecom\\x2fpd\\x2f([a-z0-9\\x2d]{1,})\\x2f([a-z0-9\\x2d]{1,})", "gi")},
-        { text: "Amazon", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2eamazon\\x2ecom\\x2f([a-z0-9\\x2d]{1,})\\x2fdp\\x2f(\\d{1,})\\x2f", "gi")}
+
+        /* Amazon */
+        { text: "Amazon Author", regex: new RegExp("http(s)?\\x3a\\x2f\\x2f(www\\x2e)?amazon\\x2ecom\\x2f\\x7e\\x2fe\\x2f([a-z0-9\\x2d\\x5f]{1,})", "gi")},
+        { text: "Amazon", regex: new RegExp("https\\x3a\\x2f\\x2fwww\\x2eamazon\\x2ecom\\x2f([a-z0-9\\x2d]{1,})\\x2fdp\\x2f(\\d{1,})\\x2f", "gi")},
+        { text: "Amazon Shortlink", regex: new RegExp("http(s)?\\x3a\\x2f\\x2famzn\\x2eto\\x2f([a-z0-9\\x2d\\x5f]{1,})", "gi")}
     ];
 
     const whackyPhoneNumbers = [
 
         { text: "TR", regex: new RegExp("0532\\s(\\d{3})\\s(\\d{2})\\s(\\d{2})", "gi")},
+
+        { text: "VN", regex: new RegExp("(\\d{3})\\x2e(\\d{2})\\x2e(\\d{2})\\x2e(\\d{3})", "gi")},
 
 
         { text: "AU", regex: new RegExp("\\x2b61(\\x2d|\\x3a|\\x28)([0-9O]{3})(\\x2d|\\x3a|\\x29)([0-9O]{3})(\\x2d|\\x3a)([0-9O]{3})", "gi")},
@@ -2918,6 +4215,8 @@
         var podcast_language = false;
         var podcast_generator = false;
 
+        var bylineText = '';
+
         cards.forEach((podcast) => {
 
             podcast_id = null;
@@ -2979,6 +4278,13 @@
                     }
                 });
 
+                descriptionTells.forEach(item => {
+                    if (title.match(item.regex)) {
+                        flagElement(titleEl, 'Tells ' + item.text);
+                        podcast_desc = true;
+                    }
+                });
+
                 whackyPhoneNumbers.forEach(item => {
                     if (title.match(item.regex)) {
                         flagElement(titleEl, 'WhackyPhoneNumber ' + item.text);
@@ -3036,37 +4342,6 @@
                     descEl.style = "-webkit-line-clamp: none;";
                 });
 
-                // Highlight naked link formats
-                /*
-                nakedLinkPatterns.forEach(item => {
-                    if (descText.match(item.regex)) {
-                        flagElement(descEl, 'NakedLinkPatterns ' + item.tld);
-                        podcast_desc = true;
-                    }
-                });
-                */
-
-                // Highlight naked domains (Runs correctly now if a domain hit occurred)
-                /*
-                nakedDomainPatterns.forEach(item => {
-                    if (descText.match(item.regex)) {
-                        flagElement(descEl, 'NakedDomainPatterns ' + item.tld);
-                        podcast_desc = true;
-                    }
-                });
-                */
-
-
-                /* Different domain struct */
-                /*
-                nakedLinkDomainPatterns.forEach(item => {
-                    if (descText.match(item.regex)) {
-                        flagElement(descEl, 'NakedLinkDomainPatterns ' + item.tld);
-                        podcast_desc = true;
-                    }
-                });
-                */
-
                 /* Look for feedPrefixes */
                 feedPrefixPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
@@ -3097,6 +4372,13 @@
                     }
                 });
 
+                descriptionHashtags.forEach(item => {
+                    if (descText.match(item.regex)) {
+                        flagElement(descEl, 'Hashtags ' + item.text);
+                    }
+                });
+
+
                 whackyPhoneNumbers.forEach(item => {
                     if (descText.match(item.regex)) {
                         flagElement(descEl, 'WhackyPhoneNumber ' + item.text);
@@ -3107,6 +4389,13 @@
                 casinoFrags.forEach(item => {
                     if (descText.match(item.regex)) {
                         flagElement(descEl, 'CasinoFrags ' + item.text);
+                        podcast_desc = true;
+                    }
+                });
+
+                descriptionTells.forEach(item => {
+                    if (descText.match(item.regex)) {
+                        flagElement(descEl, 'Tells ' + item.text);
                         podcast_desc = true;
                     }
                 });
@@ -3123,7 +4412,7 @@
             /* 4. Extract & Test Owner / Byline */
             const bylineEl = podcast.querySelector('div.by-line');
             if (bylineEl && bylineEl.innerText.trim().length > 0) {
-                const bylineText = bylineEl.innerText;
+                bylineText = bylineEl.innerText;
                 ownerPatterns.forEach(item => {
                     if (bylineText.match(item.regex)) {
                         flagElement(bylineEl, item.text);
@@ -3207,64 +4496,43 @@
 
             });
 
-            /*
-            if (podcast_url == true && podcast_byline == true && markNumber > 0) {
-                const podcastCheckbox = podcast.querySelector('div.col-image input.checkbox-overlay');
-                podcastCheckbox.checked = true;
-                markNumber -= 1;
-            }
-            */
 
-            const episodebox = podcast.querySelector('div.episode-block div.episode-empty');
-            if (episodebox) {
-                var episodebox_p = episodebox.parentElement;
-                if (episodebox.innerText.match(/no\sepisodes\syet/gi)) {
+            /* Auto-kill for certain types of tagged podcasts */
+            if (feedUrlEl.href.match(/feed\x2efirstory\x2eme/gi)) {
+                if (descEl.title.length > 0) {
+                    if (descEl.title.match(/CasinoFrags/gi)) {
+                        /* CasioFrags - typically chinese CasinoFrags matched - kill it */
+                        const spamButton = podcast.querySelector('div.spam-dropdown button.btn-spam');
+                        if(spamButton) {
+                            // console.log('found spamButton for ', feedUrlEl.href);
+                            spamButton.click();
 
-                    /* <a class="btn btn-success feedScan" title="Scanning a feed just fetches the latest RSS content.">Scan</a> */
-                    const scanBtn = document.createElement('a');
-                    scanBtn.classList.add("btn", "btn-success", "feedScan");
-                    scanBtn.innerText = 'Scan';
-
-                    scanBtn.addEventListener('click', () => {
-                        // var podcastId = podcast.querySelector('span.pcid').innerText;
-                        // podcastId = podcastId.replace(/^id\s/gi, '');
-                        // podcastId = parseInt(podcastId, 10);
-                        console.log(podcast_id);
-
-                        // var podcastTitle = podcast.parentElement.parentElement.find('.result-title a').text();
-
-                        if (parseInt(podcast_id, 10) > 0) {
-                            requestFeedScan(parseInt(podcast_id, 10));
+                            const spamMenu = podcast.querySelector('div.spam-menu a[data-reason="1"]');
+                            setTimeout(() => {
+                                if (spamMenu) {
+                                    spamMenu.click();
+                                }
+                            }, 250);
                         }
-                        return false;
-
-                    });
-
-                    episodebox_p.replaceChild(scanBtn, episodebox);
-
-
-                    /* <a class="btn btn-danger feedDelete" title="Deleting a feed marks it as dead in the database">Delete</a> */
-                    const deleteBtn = document.createElement('a');
-                    deleteBtn.classList.add("btn", "btn-danger", "feedDelete");
-                    deleteBtn.innerText = 'Delete';
-
-                    deleteBtn.addEventListener('click', () => {
-                        // var podcastId = podcast.querySelector('span.pcid').innerText;
-                        // podcastId = podcastId.replace(/^id\s/gi, '');
-                        // podcastId = parseInt(podcastId, 10);
-                        console.log(podcast_id);
-
-                        // var podcastTitle = podcast.parentElement.parentElement.find('.result-title a').text();
-
-                        if (parseInt(podcast_id, 10) > 0) {
-                            requestFeedDelete(parseInt(podcast_id, 10));
-                        }
-                        return false;
-
-                    });
-
-                    episodebox_p.appendChild(deleteBtn);
+                    }
                 }
+            }
+
+            if (bylineText.match(/Sol\sGood\sMedia/gi)) {
+                // console.log(bylineText);
+                const spamButton = podcast.querySelector('div.spam-dropdown button.btn-spam');
+                if(spamButton) {
+                    // console.log('found spamButton for ', feedUrlEl.href);
+                    spamButton.click();
+
+                    const spamMenu = podcast.querySelector('div.spam-menu a[data-reason="2"]');
+                    setTimeout(() => {
+                        if (spamMenu) {
+                            spamMenu.click();
+                        }
+                    }, 250);
+                }
+
             }
 
 
@@ -3295,6 +4563,12 @@
                 titlePatterns.forEach(item => {
                     if (title.match(item.regex)) {
                         flagElement(titleEl, item.text);
+                    }
+                });
+
+                descriptionHashtags.forEach(item => {
+                    if (title.match(item.regex)) {
+                        flagElement(descEl, 'Hashtags ' + item.text);
                     }
                 });
 
@@ -3362,6 +4636,13 @@
                         flagElement(descEl, item.text);
                     }
                 });
+
+                descriptionHashtags.forEach(item => {
+                    if (descText.match(item.regex)) {
+                        flagElement(descEl, 'Hashtags ' + item.text);
+                    }
+                });
+
                 whackyPhoneNumbers.forEach(item => {
                     if (descText.match(item.regex)) {
                         flagElement(descEl, 'WhackyPhoneNumber ' + item.text);
@@ -3441,6 +4722,41 @@
                         }
                     }, 250);
                 }
+            }
+
+            /* https://feeds.fexingo.com/history/the-conquistadors.xml */
+            if (url.match(/feeds\x2efexingo\x2ecom/gi)) {
+                const spamButton = podcast.querySelector('div.spam-dropdown a.feedSpamMenu');
+                spamButton.click();
+                const spamMenu = podcast.querySelector('div.spam-menu a[data-reason="2"]');
+                setTimeout(() => {
+                    if (spamMenu) {
+                        spamMenu.click();
+                    }
+                }, 250);
+            }
+
+
+            /* https://booksreader.space/bk/4691/index.xml */
+            if (
+                url.match(/booksreader\x2espace/gi)
+                ||
+                url.match(/s3\x2ethebookvoice\x2ecom/gi)
+                ||
+                url.match(/mediabooks\x2espace/gi)
+                ||
+                url.match(/thebookvoice\x2ecom/gi)
+                ||
+                url.match(/backblazeb2\x2ecom/gi)
+            ) {
+                const spamButton = podcast.querySelector('div.spam-dropdown a.feedSpamMenu');
+                spamButton.click();
+                const spamMenu = podcast.querySelector('div.spam-menu a[data-reason="2"]');
+                setTimeout(() => {
+                    if (spamMenu) {
+                        spamMenu.click();
+                    }
+                }, 250);
             }
 
 
@@ -3547,6 +4863,11 @@
         titleBtn.classList.add("btn", "btn-outline-success", "my-2", "my-sm-0");
         titleBtn.innerText = 'Title';
 
+        /* Create button and set up */
+        const textBtn = document.createElement('button');
+        textBtn.id = "randomText";
+        textBtn.classList.add("btn", "btn-outline-success", "my-2", "my-sm-0");
+        textBtn.innerText = 'Text';
 
         if (!targetNav) {
             console.warn("Element with id 'navbarSupportedContent' not found.");
@@ -3619,7 +4940,7 @@
 
         titleBtn.addEventListener('click', () => {
             // Pick a random author
-            const randomTitle = titles[Math.floor(Math.random() * titles.length)];
+            const randomTitle = titleTexts[Math.floor(Math.random() * titleTexts.length)];
 
             // Find the input element and populate it
             const searchInput = document.getElementById('searchText');
@@ -3638,11 +4959,33 @@
             }
         });
 
+        textBtn.addEventListener('click', () => {
+            // Pick a random author
+            const randomText = descriptionTexts[Math.floor(Math.random() * descriptionTexts.length)];
+
+            // Find the input element and populate it
+            const searchInput = document.getElementById('searchText');
+            if (searchInput) {
+                searchInput.value = randomText;
+                searchInput.name = "q";
+            }
+
+            // Find the trigger button and click it
+            const searchTrigger = document.getElementById('searchTrigger');
+            if (searchTrigger) {
+                if(searchInput.value.length > 0) {
+                    searchInput.dispatchEvent(new KeyboardEvent('keyup', { bubbles: true }));
+                    searchTrigger.click();
+                }
+            }
+        });
+
 
         targetNav.appendChild(authorBtn);
         targetNav.appendChild(genreBtn);
         targetNav.appendChild(ownerBtn);
         targetNav.appendChild(titleBtn);
+        targetNav.appendChild(textBtn);
     }
 
 
