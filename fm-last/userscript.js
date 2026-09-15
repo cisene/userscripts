@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Last.fm Now Playing Extractor (Light Box Contrast + Hashtags)
+// @name         Last.fm Now Playing Extractor (Editable Textarea)
 // @namespace    http://tampermonkey.net/
-// @version      2026-09-14-1352
-// @description  Full-width top banner with high-contrast light textbox for Mastodon formatting including #nowplaying and #lastfm.
+// @version      2026-09-15-1043
+// @description  Full-width top banner with high-contrast editable lightbox for Mastodon formatting including #nowplaying and #lastfm.
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://www.last.fm/user/kakbit*
 // @grant        none
@@ -10,6 +10,8 @@
 
 (function () {
     'use strict';
+
+    let isUserEditing = false; // State flag to prevent background overwrite during edits
 
     // 1. Create Non-Blocking Full-Width Modal
     const modal = document.createElement('div');
@@ -53,7 +55,7 @@
                 cursor: pointer;
             ">_ Minimise</button>
 
-            <!-- INVERTED COLOR TEXTBOX: Black text on light-grey background -->
+            <!-- Editable Textarea -->
             <textarea id="tm-np-text" style="
                 width: 100%;
                 height: 120px;
@@ -68,7 +70,7 @@
                 resize: vertical;
                 box-sizing: border-box;
                 outline: none;
-            " readonly></textarea>
+            "></textarea>
 
             <button id="tm-copy-btn" style="
                 width: 100%;
@@ -112,6 +114,20 @@
     const textarea = document.getElementById('tm-np-text');
     const copyBtn = document.getElementById('tm-copy-btn');
     const toggleBtn = document.getElementById('tm-toggle-btn');
+    const statusIndicator = document.getElementById('tm-status-indicator');
+
+    // Track when user is actively editing
+    textarea.addEventListener('focus', () => {
+        isUserEditing = true;
+        statusIndicator.innerText = 'Sync Paused (Editing)';
+        statusIndicator.style.color = '#e67e22';
+    });
+
+    textarea.addEventListener('blur', () => {
+        isUserEditing = false;
+        statusIndicator.innerText = 'Live Sync Active';
+        statusIndicator.style.color = '#888';
+    });
 
     // 2. Dynamic Page Offset
     function adjustPageOffset() {
@@ -138,6 +154,9 @@
 
     // 4. Track Extraction Logic
     function updateNowPlaying() {
+        // Skip background refresh if user is currently editing the text
+        if (isUserEditing) return;
+
         const row = document.querySelector('.chartlist-row');
         if (!row) return;
 
@@ -148,7 +167,6 @@
             const artist = artistEl.innerText.trim();
             const track = trackEl.innerText.trim();
 
-            // Format output string with dual hashtags
             const formatted = `${artist} - ${track}\n\n#nowplaying #lastfm`;
 
             if (textarea.value !== formatted) {
@@ -164,6 +182,11 @@
             const originalText = copyBtn.innerText;
             copyBtn.innerText = 'Copied to Clipboard!';
             copyBtn.style.background = '#28a745';
+
+            // Reset editing state after copying
+            isUserEditing = false;
+            statusIndicator.innerText = 'Live Sync Active';
+            statusIndicator.style.color = '#888';
 
             setTimeout(() => {
                 copyBtn.innerText = originalText;
