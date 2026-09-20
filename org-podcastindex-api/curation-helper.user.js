@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-09-15-1816
+// @version      2026-09-21-0059
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard*
@@ -16,6 +16,121 @@
     'use strict';
 
     // --- Configurations ---
+    const tagSallad = [
+        '#1111推流特惠',
+        '#Apple产品推荐',
+        '#Apple手机降价',
+        '#AutumnLive',
+        '#BlackFridayDealsOnline',
+        '#BlackFridayPhoneDeals',
+        '#ChristmasDiscount2026',
+        '#ChristmasGiftsIdeas',
+        '#ChristmasShoppingDeals',
+        '#CyberMonday',
+        '#FallLive',
+        '#HalloweenDecor',
+        '#HalloweenFashion',
+        '#HalloweenFestival2026',
+        '#HalloweenVibes',
+        '#iPhone18ProMax',
+        '#iPhone18ProMax外观',
+        '#iPhone18ProMax影像升级',
+        '#iPhone18ProMax评测体验',
+        '#iPhone18ProMax降价幅度',
+        '#iPhone18Pro性能实测',
+        '#iPhone18Pro购买攻略',
+        '#iPhone18设计亮点',
+        '#Mac直播体验',
+        '#OBSStudio技巧',
+        '#Streamlabs教程',
+        '#Thanksgiving2026',
+        '#ThanksgivingDiscounts',
+        '#ThanksgivingLive',
+        '#vMix直播导播',
+        '#万圣节主题派对',
+        '#万圣节妆容教程',
+        '#万圣节直播特效',
+        '#中秋假期直播',
+        '#中秋团圆直播',
+        '#中秋直播连麦',
+        '#元旦出行推荐',
+        '#元旦跨年',
+        '#冬季直播充电',
+        '#双11iPhone优惠券',
+        '#双12手机优惠攻略',
+        '#双12数码好物推荐',
+        '#双12软件返场',
+        '#双十一优惠券',
+        '#双十一全网比价',
+        '#双十一直播大促',
+        '#双十二必买',
+        '#双十二苹果优惠券',
+        '#双旦导播好物',
+        '#国庆出游直播',
+        '#国庆出行攻略',
+        '#国庆热门景点',
+        '#国庆特惠活动',
+        '#国庆自驾游攻略',
+        '#国庆节庆祝',
+        '#国庆购物优惠',
+        '#国庆购物狂欢',
+        '#圣诞活动方案',
+        '#圣诞礼物攻略',
+        '#圣诞节好物推荐',
+        '#圣诞跨年演播室',
+        '#年度直播盘点',
+        '#年货节直播必备',
+        '#感恩节促销活动',
+        '#感恩节直播灵感',
+        '#感恩节礼物推荐',
+        '#感恩节美食攻略',
+        '#感恩节购物节',
+        '#新年直播清单',
+        '#直播工具生态',
+        '#直播软件评测',
+        '#科技好物推荐',
+        '#科技数码生活',
+        '#苹果创意工具',
+        '#苹果新品发布会回放',
+        '#苹果新品好物',
+        '#苹果新机购买攻略',
+        '#苹果新机首发体验',
+        '#苹果直播生态',
+        '#跨年夜活动推荐',
+        '#跨年旅行',
+        '#跨年迎新派对',
+        '#高性价比数码',
+        '#黑五iPhone优惠',
+        '#黑五数码大促2026',
+        '#黑五数码购物',
+        '#黑五海淘清单',
+        '#黑五直播直邮',
+
+    ];
+    const spamDomains = [
+
+        'kol666.com',
+        'fensi3.top',
+        'dyfensi.top',
+        '94KOL.top',
+        '94fen.cc',
+        '94fen.top',
+        '8mcn.cc',
+        '8xhs.cc',
+        '54pm6.cc',
+        '54gpt.cc',
+        '8kuaishou.cc',
+        '7x24h.cc',
+        '4web3.cc',
+        '4remen.cc',
+        '24h1v1.cc',
+        '24hai.cc',
+
+
+        'yo88s.vin',
+        'zowin1.site'
+    ];
+
     const targetTLDs = [
         "ae\\x2eorg",
         "ai",
@@ -111,7 +226,8 @@
         "steady cash flow",
         "sports updates",
         "Bathroom Renovations",
-
+        "Storage Bags",
+        "Ultamize",
 
         "código de indicação",
         "Token Nedir",
@@ -161,6 +277,9 @@
         "lorem ipsum dolor sit amet",
 
         "30-day free trial",
+        "OKX Code",
+        "exclusive villas",
+        "Luxury Villas",
 
         "Revenue Cycle Management",
         "Electronic Medical Records",
@@ -177,6 +296,15 @@
         "natural dialogue",
         "everyday conversations",
         "useful expressions",
+        "Agent-First",
+        "Bridal Styling",
+        "Access Code",
+        "Invite Code",
+        "Eligible users",
+        "welcome campaigns",
+        "promotional rewards",
+        "bridal styling services",
+        "makeup styling",
 
         "KI-generierte Stimmen",
         "KI-generierte Inhalte",
@@ -194,6 +322,10 @@
         "Online Dating",
         "Tinder",
         "Grindr",
+
+        "managed IT services",
+        "comprehensive solutions",
+        "HIPAA-compliant",
 
         "Google Ads",
         "Meta Ads",
@@ -435,12 +567,13 @@
         "incidents",
         "negligence",
         "cricket",
-        "football",
+        // "football",
         "tennis",
         "live sports updates",
         "interactive games",
         "midwives",
         "doulas",
+        "stock market",
 
         "𝐅𝗂lmyz𝗂𝐥l𝐚!",
         "𝐅𝚞l𝚕 𝐌𝐨𝐯𝐢𝐞",
@@ -963,7 +1096,7 @@
         "extreme wealth",
         "facebook accounts",
         "failed investments",
-        "faith-based",
+        // "faith-based",
         "fall accidents",
         "family law",
         "famous startup deals",
@@ -2414,6 +2547,7 @@
         "Ryzyko",
         "Trafienie",
 
+        "McAfee customer service",
 
         "arnoldanabolics.com",
         "suno.com",
@@ -2732,6 +2866,8 @@
     const feedURLprefixes = [
         /* The usual suspects ... */
 
+        "https://rss.pdrl.fm/",
+
         "https://feeds.megaphone.fm/TAL", /* Trinity Studios */
         "https://feeds.megaphone.fm/IMP",
 
@@ -2758,6 +2894,7 @@
     ];
 
     const feedURLlegit = [
+        "https://api.substack.com/feed/podcast/",
         "https://librivox.org/rss/",
         "https://publicfeeds.net/",
         "http://feeds.prx.org/",
@@ -2864,6 +3001,10 @@
         "https://podcast.hr.de/",
         "https://www.radioeins.de/",
         "https://rdl.de/",
+        "https://resource.ffh.de/podcasts/",
+        "http://www.radiocampusamiens.fr/feed/podcast/",
+        "https://www.radiocampusamiens.fr/feed/podcast/",
+        "https://allenporto.com.br/feed/podcast/",
 
         "https://www.radiolaser.fr/",
         "https://www.unicaradio.it/feed/podcast/",
@@ -2960,6 +3101,8 @@
         "https://www.3sat.de/rss/podcast/video/zdf/",
         "https://radio7.cz/podcast.php",
 
+        "https://feeds.soundcloud.com/users/soundcloud:users:",
+
         "https://feeds.megaphone.fm/NSR",
         "https://feeds.megaphone.fm/NBN",
         "https://feeds.megaphone.fm/CNE",
@@ -2972,6 +3115,10 @@
         "https://feeds.megaphone.fm/ACECREATORSPTYLTD",
         "https://feeds.megaphone.fm/YOSHIMOTOKOGYOCOLTD",
         "https://feeds.megaphone.fm/NIPPONTELEVISIONNETWORKCORPORATION",
+        "https://feeds.megaphone.fm/BETFAIR",
+        "https://feeds.megaphone.fm/HAMMR",
+        "https://feeds.megaphone.fm/RERRE",
+        "https://feeds.megaphone.fm/AMPP",
         "https://feeds.megaphone.fm/MP9",
         "https://feeds.megaphone.fm/NBN",
         "https://feeds.megaphone.fm/CTT",
@@ -2991,10 +3138,16 @@
         "https://feeds.megaphone.fm/SIC",
         "https://feeds.megaphone.fm/FLS",
         "https://feeds.megaphone.fm/VKR",
+        "https://feeds.megaphone.fm/BAR",
+        "https://feeds.megaphone.fm/SBP",
+        "https://feeds.megaphone.fm/CLR",
+        "https://feeds.megaphone.fm/DFT",
+        "https://feeds.megaphone.fm/BMD",
         "https://rss.podplaystudio.com/",
         "https://podcast.stream.schibsted.media/",
         "https://feed.pod.space/",
         "https://pod.mittmedia.se/",
+        "https://video-api.wsj.com/podcast/rss/",
 
         "https://podcast.radio.gov.pk/",
         "https://sbs-ondemand.streamguys1.com/",
@@ -3154,6 +3307,18 @@
 
     const extraLanguages = [
 
+        { text: "Fulah", regex: new RegExp("^ff((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Romansh", regex: new RegExp("^rm((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Galician", regex: new RegExp("^gl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Kashmiri", regex: new RegExp("^ks((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Inuktitut", regex: new RegExp("^iu((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Tajik", regex: new RegExp("^tg((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Kalaallisut", regex: new RegExp("^kl((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Shona", regex: new RegExp("^sn((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Hawaiian", regex: new RegExp("^haw$", "gi")},
+        { text: "Hausa", regex: new RegExp("^ha((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Irish", regex: new RegExp("^ga((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
+        { text: "Georgian", regex: new RegExp("^ka((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Ganda", regex: new RegExp("^lug$", "gi")},
         { text: "Sardinian", regex: new RegExp("^sc((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
         { text: "Turkmen", regex: new RegExp("^tk((\\x2d|\\x5f)([a-z]{2,3}))?$", "gi")},
@@ -3278,6 +3443,7 @@
         { text: "SLEEP{number}", regex: new RegExp("sleep\\d{1,5}\\b", "gi")},
         { text: "CASHBACK{number}", regex: new RegExp("cashback\\d{1,5}\\b", "gi")},
         { text: "FLAT{number}", regex: new RegExp("flat\\d{1,5}", "gi")},
+        { text: "BEAUTY{number}", regex: new RegExp("beauty\\d{1,5}", "gi")},
 
         { text: "GET{number}", regex: new RegExp("\\bget\\d{1,5}\\b", "gi")},
         { text: "VIP{number}", regex: new RegExp("\\bVIP\d{1,5}\\b", "gi")},
@@ -3294,6 +3460,7 @@
         { text: "KICKBACK", regex: new RegExp("\\bkickback\\b", "gi")},
 
         { text: "Course Code", regex: new RegExp("GA\\d{1}\\x2d(\\d{9})\\x2d([a-z]{2})\\d{1}\\x2d([a-z]{2})(\\d{2})", "gi")},
+        { text: "Course Code", regex: new RegExp("GA\\d{1}\\x2d\\d{9}\\x2d[a-z]{2}\\d{1}\\x2d[a-z]{2}\\d{1}", "gi")},
 
         { text: "U{number}", regex: new RegExp("\\bu(\d{2,9})\\b", "gi")},
 
@@ -3346,98 +3513,95 @@
         { text: "aotelaisichn@gmail.com", regex: new RegExp("aotelaisichn\\x40gmail\\x2ecom", "gi")},
 
 
-        { text: "hb{number}s{number}.com", regex: new RegExp("hb(\\d{2,5})s(\\d{1,})\x2ecom", "gi")},
-        { text: "{number}clbrank.com", regex: new RegExp("(\\d{1,})clbrank\\x2ecom", "gi")},
-        { text: "{number}betv{number}.com", regex: new RegExp("(\\d{1,})betv(\\d{1,})\\x2ecom", "gi")},
-        { text: "sc{number}seo{number}.com", regex: new RegExp("sc(\\d{1,})seo(\\d{1,})\\x2ecom", "gi")},
-        { text: "tg{number}one.com", regex: new RegExp("tg(\\d{1,})one\\x2ecom", "gi")},
-        { text: "alo{number}so{number}.com", regex: new RegExp("alo(\\d{1,})so(\\d{1,})\\x2ecom", "gi")},
-        { text: "hello{number}a{number}.com", regex: new RegExp("hello(\\d{1,})a(\\d{1,})\\x2ecom", "gi")},
-
-        { text: "{number}clbplus.co", regex: new RegExp("(\\d{1,})clbplus\\x2eco", "gi")},
-        { text: "sc{number}rank.com", regex: new RegExp("sc(\\d{1,})rank\\x2ecom", "gi")},
-        { text: "f{number}betss.com", regex: new RegExp("f(\\d{1,})betss\\x2ecom", "gi")},
-        { text: "cm{number}ss.com", regex: new RegExp("cm(\\d{1,})ss\\x2ecom", "gi")},
-        { text: "cm{number}top{number}.com", regex: new RegExp("cm(\\d{1,})top(\\d{1,})\\x2ecom", "gi")},
-        { text: "tg{number}top{number}.com", regex: new RegExp("tg(\\d{1,})top(\\d{1,})\\x2ecom", "gi")},
-        { text: "bj{number}v{number}.com", regex: new RegExp("bj(\\d{1,})v(\\d{1,})\\x2ecom", "gi")},
-        { text: "shbet{number}.com", regex: new RegExp("shbet(\\d{1,})\\x2ecom", "gi")},
-        { text: "{number}win{number}.com", regex: new RegExp("(\\d{1,})win(\\d{1,})\\x2ecom", "gi")},
-        { text: "alo{number}one.com", regex: new RegExp("alo(\\d{1,})one\\x2ecom", "gi")},
-        { text: "alo{number}rank.com", regex: new RegExp("alo(\\d{1,})rank\\x2ecom", "gi")},
-        { text: "alo{number}top{number}.com", regex: new RegExp("alo(\\d{1,})top(\\d{1,})\\x2ecom", "gi")},
-
-
-        { text: "{alphanumeric}.llc", regex: new RegExp("([a-z0-9]{4})\\x2ellc", "gi")},
-
-        { text: "XIN{number}.express", regex: new RegExp("xin(\\d{1,})\\x2eexpress", "gi")},
-        { text: "DN{number}TIPS.com", regex: new RegExp("dn(\\d{1,})tips\\x2ecom", "gi")},
-        { text: "{alphanumeric}BETA{number}.ink", regex: new RegExp("([a-z0-9]{1,})beta(\\d{1,})\\x2eink", "gi")},
-        { text: "JUN{number}.black", regex: new RegExp("jun(\\d{1,})\\x2eblack", "gi")},
-
-        { text: "{number}WIN{number}.com", regex: new RegExp("(\\d{2})win(\\d{3})\\x2ecom", "gi")},
-
-        { text: "{alpha}ZAN.cc", regex: new RegExp("([a-z]{2,5})zan\\x2ecc", "gi")},
-        { text: "{number}ZAN.cc", regex: new RegExp("(\\d{1,})zan\\x2ecc", "gi")},
-
-        { text: "{number}FEN.cc", regex: new RegExp("(\\d{1,})fen\\x2ecc", "gi")},
-        { text: "ZAN{number}.cc", regex: new RegExp("zan(\\d{1,})\\x2ecc", "gi")},
-
-
-        { text: "TAYA{number}bet.net", regex: new RegExp("taya(\\d{1,})bet\\x2enet", "gi")},
-
         { text: "dyfensi.top", regex: new RegExp("dyfensi\\x2etop", "gi")},
         { text: "fenba.top", regex: new RegExp("fenba\\x2etop", "gi")},
-        { text: "zanup.top", regex: new RegExp("zanup\\x2etop", "gi")},
-        { text: "zanup.cc", regex: new RegExp("zanup\\x2ecc", "gi")},
-        { text: "zansu.top", regex: new RegExp("zansu\\x2etop", "gi")},
-        { text: "zansu.cc", regex: new RegExp("zansu\\x2ecc", "gi")},
         { text: "upzan.top", regex: new RegExp("upzan\\x2etop", "gi")},
+        { text: "zansu.cc", regex: new RegExp("zansu\\x2ecc", "gi")},
+        { text: "zansu.top", regex: new RegExp("zansu\\x2etop", "gi")},
+        { text: "zanup.cc", regex: new RegExp("zanup\\x2ecc", "gi")},
+        { text: "zanup.top", regex: new RegExp("zanup\\x2etop", "gi")},
 
-        { text: "FENSI{number}", regex: new RegExp("fensi(\\d{1,})\\x2etop", "gi")},
-        { text: "GA{number}.top", regex: new RegExp("ga(\\d{1,})\\x2etop", "gi")},
 
-
-        { text: "{alpha}FEN.top", regex: new RegExp("([a-z]{2,5})fen\\x2etop", "gi")},
-        { text: "{alpha}FEN.cc", regex: new RegExp("([a-z]{2,5})fen\\x2ecc", "gi")},
-
-        { text: "{alpha}UP.top", regex: new RegExp("([a-z]{2,})up\\x2etop", "gi")},
-        { text: "{alpha}SUP.top", regex: new RegExp("([a-z]{2,})sup\\x2etop", "gi")},
-
-        { text: "{alpha}FANS.top", regex: new RegExp("([a-z]{2,})fans\\x2etop", "gi")},
-
-        { text: "{number}UP.top", regex: new RegExp("(\\d{1,})up\\x2etop", "gi")},
-        { text: "{number}DY.top", regex: new RegExp("(\\d{1,})dy\\x2etop", "gi")},
-        { text: "{number}KK.top", regex: new RegExp("(\\d{1,})kk\\x2etop", "gi")},
-        { text: "{number}KS.top", regex: new RegExp("(\\d{1,})ks\\x2etop", "gi")},
-        { text: "{number}SP.top", regex: new RegExp("(\\d{1,})sp\\x2etop", "gi")},
-
-        { text: "XHS{alpha}.top", regex: new RegExp("xhs(a-z{2,5})\\x2etop", "gi")},
-
-        { text: "{number}FEN{number}.top", regex: new RegExp("(\\d{1,})fen(\\d{1,})\\x2etop", "gi")},
-        { text: "{number}KOL.top", regex: new RegExp("(\\d{1,})kol\\x2etop", "gi")},
-        { text: "{number}XHS.top", regex: new RegExp("(\\d{1,})xhs\\x2etop", "gi")},
-        { text: "{number}ZAN.top", regex: new RegExp("(\\d{1,})zan\\x2etop", "gi")},
-        { text: "{number}FEN.top", regex: new RegExp("(\\d{1,})fen\\x2etop", "gi")},
-
-        { text: "{number}WINN.vip", regex: new RegExp("(\\d{1,})winn\\x2evip", "gi")},
-
-        { text: "{number}FANS.top", regex: new RegExp("(\\d{1,})fans\\x2etop", "gi")},
-
-        { text: "DK{number}.top", regex: new RegExp("dk(\\d{1,})\\x2etop", "gi")},
-        { text: "MK{number}.top", regex: new RegExp("mk(\\d{1,})\\x2etop", "gi")},
-        { text: "PK{number}.top", regex: new RegExp("pk(\\d{1,})\\x2etop", "gi")},
-        { text: "SKP{number}.top", regex: new RegExp("skp(\\d{1,})\\x2etop", "gi")},
-        { text: "SPH{number}.top", regex: new RegExp("sph(\\d{1,})\\x2etop", "gi")},
-        { text: "VA{number}.top", regex: new RegExp("va(\\d{1,})\\x2etop", "gi")},
-        { text: "XHS{number}.top", regex: new RegExp("xhs(\\d{1,})\\x2etop", "gi")},
-        { text: "ZAN{number}.top", regex: new RegExp("zan(\\d{1,})\\x2etop", "gi")},
-        { text: "MM{number}.top", regex: new RegExp("mm(\\d{1,})\\x2etop", "gi")},
-
+        { text: "ADQ{number}.cc", regex: new RegExp("adq\\d{1,}\\x2ecc", "gi")},
+        { text: "AIGC{number}.cc", regex: new RegExp("aigc\\d{1,}\\x2ecc", "gi")},
+        { text: "AI{number}V{number}.cc", regex: new RegExp("ai\\d{1,}v\\d{1,}\\x2ecc", "gi")},
+        { text: "ALO{number}ONE.com", regex: new RegExp("alo\\d{1,}one\\x2ecom", "gi")},
+        { text: "ALO{number}RANK.com", regex: new RegExp("alo\\d{1,}rank\\x2ecom", "gi")},
+        { text: "ALO{number}SO{number}.com", regex: new RegExp("alo\\d{1,}so\\d{1,}\\x2ecom", "gi")},
+        { text: "ALO{number}TOP{number}.com", regex: new RegExp("alo\\d{1,}top\\d{1,}\\x2ecom", "gi")},
+        { text: "BJ{number}V{number}.com", regex: new RegExp("bj\\d{1,}v\\d{1,}\\x2ecom", "gi")},
+        { text: "CM{number}SS.com", regex: new RegExp("cm\\d{1,}ss\\x2ecom", "gi")},
+        { text: "CM{number}TOP{number}.com", regex: new RegExp("cm\\d{1,}top\\d{1,}\\x2ecom", "gi")},
+        { text: "DK{number}.top", regex: new RegExp("dk\\d{1,}\\x2etop", "gi")},
+        { text: "DN{number}TIPS.com", regex: new RegExp("dn\\d{1,}tips\\x2ecom", "gi")},
+        { text: "FENSI{number}.top", regex: new RegExp("fensi\\d{1,}\\x2etop", "gi")},
+        { text: "F{number}BETSS.com", regex: new RegExp("f\\d{1,}betss\\x2ecom", "gi")},
+        { text: "GA{number}.top", regex: new RegExp("ga\\d{1,}\\x2etop", "gi")},
+        { text: "HB{number}S{number}.com", regex: new RegExp("hb\\d{1,}s\\d{1,}\x2ecom", "gi")},
+        { text: "HELLO{number}A{number}.com", regex: new RegExp("hello\\d{1,}a\\d{1,}\\x2ecom", "gi")},
+        { text: "HITCLUB{number}.cz", regex: new RegExp("hitclub\\d{1,}.cz", "gi")},
+        { text: "JUN{number}.black", regex: new RegExp("jun\\d{1,}\\x2eblack", "gi")},
+        { text: "KOL{number}.com", regex: new RegExp("kol\\d{1,}\\x2ecom", "gi")},
         { text: "KY{number}.xyz", regex: new RegExp("ky(\\d{1,})\\x2exyz", "gi")},
-        { text: "KOL{number}.com", regex: new RegExp("kol(\\d{1,})\\x2ecom", "gi")},
-
-        { text: "HITCLUB{number}.cz", regex: new RegExp("hitclub(\\d{1,}).cz", "gi")},
+        { text: "MK{number}.top", regex: new RegExp("mk\\d{1,}\\x2etop", "gi")},
+        { text: "MM{number}.top", regex: new RegExp("mm\\d{1,}\\x2etop", "gi")},
+        { text: "PK{number}.top", regex: new RegExp("pk\\d{1,}\\x2etop", "gi")},
+        { text: "SC{number}RANK.com", regex: new RegExp("sc\\d{1,}rank\\x2ecom", "gi")},
+        { text: "SC{number}SEO{number}.com", regex: new RegExp("sc\\d{1,}seo\\d{1,}\\x2ecom", "gi")},
+        { text: "SHBET{number}.com", regex: new RegExp("shbet\\d{1,}\\x2ecom", "gi")},
+        { text: "SKP{number}.top", regex: new RegExp("skp\\d{1,}\\x2etop", "gi")},
+        { text: "SPH{number}.top", regex: new RegExp("sph\\d{1,}\\x2etop", "gi")},
+        { text: "TAYA{number}bet.net", regex: new RegExp("taya\\d{1,}bet\\x2enet", "gi")},
+        { text: "TG{number}ONE.com", regex: new RegExp("tg\\d{1,}one\\x2ecom", "gi")},
+        { text: "TG{number}TOP{number}.com", regex: new RegExp("tg\\d{1,}top\\d{1,}\\x2ecom", "gi")},
+        { text: "VA{number}.top", regex: new RegExp("va\\d{1,}\\x2etop", "gi")},
+        { text: "XHS{alpha}.top", regex: new RegExp("xhs([a-z]{1,})\\x2etop", "gi")},
+        { text: "XHS{number}.top", regex: new RegExp("xhs\\d{1,}\\x2etop", "gi")},
+        { text: "XIN{number}.express", regex: new RegExp("xin\\d{1,}\\x2eexpress", "gi")},
+        { text: "ZAN{number}.cc", regex: new RegExp("zan\\d{1,}\\x2ecc", "gi")},
+        { text: "ZAN{number}.top", regex: new RegExp("zan\\d{1,}\\x2etop", "gi")},
+        { text: "{alpha}.llc", regex: new RegExp("([a-z0-9]{4})\\x2ellc", "gi")},
+        { text: "{alpha}BETA{number}.ink", regex: new RegExp("([a-z0-9]{1,})beta\\d{1,}\\x2eink", "gi")},
+        { text: "{alpha}FANS.top", regex: new RegExp("([a-z]{1,})fans\\x2etop", "gi")},
+        { text: "{alpha}FEN.cc", regex: new RegExp("([a-z]{2,5})fen\\x2ecc", "gi")},
+        { text: "{alpha}FEN.top", regex: new RegExp("([a-z]{2,5})fen\\x2etop", "gi")},
+        { text: "{alpha}SUP.top", regex: new RegExp("([a-z]{2,})sup\\x2etop", "gi")},
+        { text: "{alpha}UP.top", regex: new RegExp("([a-z]{2,})up\\x2etop", "gi")},
+        { text: "{alpha}ZAN.cc", regex: new RegExp("([a-z]{2,5})zan\\x2ecc", "gi")},
+        { text: "{number}BETV{number}.com", regex: new RegExp("\\d{1,}betv\\d{1,}\\x2ecom", "gi")},
+        { text: "{number}BILI.cc", regex: new RegExp("\\d{1,}bili\\x2ecc", "gi")},
+        { text: "{number}CLBPLUS.co", regex: new RegExp("(\\d{1,})clbplus\\x2eco", "gi")},
+        { text: "{number}CLBRANK.com", regex: new RegExp("\\d{1,}clbrank\\x2ecom", "gi")},
+        { text: "{number}DY.top", regex: new RegExp("\\d{1,}dy\\x2etop", "gi")},
+        { text: "{number}DY{number}.cc", regex: new RegExp("\\d{1,}dy\\d{1,}\\x2ecc", "gi")},
+        { text: "{number}FANS.top", regex: new RegExp("\\d{1,}fans\\x2etop", "gi")},
+        { text: "{number}FEN.cc", regex: new RegExp("\\d{1,}fen\\x2ecc", "gi")},
+        { text: "{number}FEN.top", regex: new RegExp("\\d{1,}fen\\x2etop", "gi")},
+        { text: "{number}FEN{number}.top", regex: new RegExp("\\d{1,}fen\\d{1,}\\x2etop", "gi")},
+        { text: "{number}FS{number}.cc", regex: new RegExp("\\d{1,}fs\\d{1,}\\x2ecc", "gi")},
+        { text: "{number}GPT.cc", regex: new RegExp("\\d{1,}gpt\\x2ecc", "gi")},
+        { text: "{number}HAI.cc", regex: new RegExp("\\d{1,}hai\\x2ecc", "gi")},
+        { text: "{number}H{number}V{number}.cc", regex: new RegExp("\\d{1,}h\\d{1,}v\\d{1,}\\x2ecc", "gi")},
+        { text: "{number}KK.top", regex: new RegExp("\\d{1,}kk\\x2etop", "gi")},
+        { text: "{number}KOL.top", regex: new RegExp("\\d{1,}kol\\x2etop", "gi")},
+        { text: "{number}KS.top", regex: new RegExp("\\d{1,}ks\\x2etop", "gi")},
+        { text: "{number}KUAISHOU.cc", regex: new RegExp("\\d{1,}kuaishou\\x2ecc", "gi")},
+        { text: "{number}MCN.cc", regex: new RegExp("\\d{1,}mcn\\x2ecc", "gi")},
+        { text: "{number}NPC.cc", regex: new RegExp("\\d{1,}npc\\x2ecc", "gi")},
+        { text: "{number}PM{number}.cc", regex: new RegExp("\\d{1,}pm\\d{1,}\\x2ecc", "gi")},
+        { text: "{number}PM{number}.cm", regex: new RegExp("\\d{1,}pm\\d{1,}\\x2ecm", "gi")},
+        { text: "{number}REMEN.cc", regex: new RegExp("\\d{1,}remen\\x2ecc", "gi")},
+        { text: "{number}SP.top", regex: new RegExp("\\d{1,}sp\\x2etop", "gi")},
+        { text: "{number}UP.top", regex: new RegExp("\\d{1,}up\\x2etop", "gi")},
+        { text: "{number}VLOG.cc", regex: new RegExp("\\d{1,}vlog\\x2ecc", "gi")},
+        { text: "{number}WEB{number}.cc", regex: new RegExp("\\d{1,}web\\d{1,}\\x2ecc", "gi")},
+        { text: "{number}WINN.vip", regex: new RegExp("\\d{1,}winn\\x2evip", "gi")},
+        { text: "{number}WIN{number}.com", regex: new RegExp("\\d{1,}win\\d{1,}\\x2ecom", "gi")},
+        { text: "{number}XHS.cc", regex: new RegExp("\\d{1,}xhs\\x2ecc", "gi")},
+        { text: "{number}XHS.top", regex: new RegExp("\\d{1,}xhs\\x2etop", "gi")},
+        { text: "{number}X{number}H.cc", regex: new RegExp("\\d{1,}x\\d{1,}h\\x2ecc", "gi")},
+        { text: "{number}ZAN.cc", regex: new RegExp("\\d{1,}zan\\x2ecc", "gi")},
+        { text: "{number}ZAN.top", regex: new RegExp("\\d{1,}zan\\x2etop", "gi")},
 
 
         { text: "OKVIP", regex: new RegExp("ok(\\x2d)?vip", "gi")},
@@ -3449,39 +3613,39 @@
         { text: "ABC{number}", regex: new RegExp("abc(\\d{1,})", "gi")},
         { text: "JUN{number}", regex: new RegExp("jun(\\d{1,})", "gi")},
 
-        { text: "NET{number}", regex: new RegExp("net(\\d{1,})", "gi")},
-        { text: "NEW{number}", regex: new RegExp("new(\\d{1,})", "gi")},
-        { text: "BJ{number}", regex: new RegExp("bj(\\d{1,})", "gi")},
-        { text: "BET{number}", regex: new RegExp("bet(\\d{1,})", "gi")},
-        { text: "SO{number}", regex: new RegExp("so(\\d{1,})", "gi")},
-        { text: "FB{number}", regex: new RegExp("fb(\\d{1,})", "gi")},
-        { text: "FC{number}", regex: new RegExp("fc(\\d{1,})", "gi")},
-        { text: "EE{number}", regex: new RegExp("ee(\\d{1,})", "gi")},
-        { text: "GK{number}", regex: new RegExp("gk(\\d{1,})", "gi")},
-        { text: "TG{number}", regex: new RegExp("tg(\\d{1,})", "gi")},
-        { text: "LV{number}", regex: new RegExp("lv(\\d{1,})", "gi")},
-        { text: "VN{number}", regex: new RegExp("vn(\\d{1,})", "gi")},
-        { text: "GO{number}", regex: new RegExp("go(\\d{1,})", "gi")},
-        { text: "KP{number}", regex: new RegExp("kp(\\d{1,})", "gi")},
-        { text: "TR{number}", regex: new RegExp("tr(\\d{1,})", "gi")},
-        { text: "BD{number}", regex: new RegExp("bd(\\d{1,})", "gi")},
-        { text: "KO{number}", regex: new RegExp("ko(\\d{1,})", "gi")},
-        { text: "SV{number}", regex: new RegExp("sv(\\d{1,})", "gi")},
+        { text: "NET{number}", regex: new RegExp("\\bnet\\d{1,}\\b", "gi")},
+        { text: "NEW{number}", regex: new RegExp("\\bnew\\d{1,}\\b", "gi")},
+        { text: "BJ{number}", regex: new RegExp("\\bbj\\d{1,}\\b", "gi")},
+        { text: "BET{number}", regex: new RegExp("\\bbet\\d{1,}\\b", "gi")},
+        { text: "SO{number}", regex: new RegExp("\\bso\\d{1,}\\b", "gi")},
+        { text: "FB{number}", regex: new RegExp("\\bfb\\d{1,}\\b", "gi")},
+        { text: "FC{number}", regex: new RegExp("\\bfc\\d{1,}\\b", "gi")},
+        { text: "EE{number}", regex: new RegExp("\\bee\\d{1,}\\b", "gi")},
+        { text: "GK{number}", regex: new RegExp("\\bgk\\d{1,}\\b", "gi")},
+        { text: "TG{number}", regex: new RegExp("\\btg\\d{1,}\\b", "gi")},
+        { text: "LV{number}", regex: new RegExp("\\blv\\d{1,}\\b", "gi")},
+        { text: "VN{number}", regex: new RegExp("\\bvn\\d{1,}\\b", "gi")},
+        { text: "GO{number}", regex: new RegExp("\\bgo\\d{1,}\\b", "gi")},
+        { text: "KP{number}", regex: new RegExp("\\bkp\\d{1,}\\b", "gi")},
+        { text: "TR{number}", regex: new RegExp("\\btr\\d{1,}\\b", "gi")},
+        { text: "BD{number}", regex: new RegExp("\\bbd\\d{1,}\\b", "gi")},
+        { text: "KO{number}", regex: new RegExp("\\bko\\d{1,}\\b", "gi")},
+        { text: "SV{number}", regex: new RegExp("\\bsv\\d{1,}\\b", "gi")},
 
 
-        { text: "VIN{number}", regex: new RegExp("vin(\\d{1,})", "gi")},
-        { text: "WIN{number}", regex: new RegExp("win(\\d{1,})", "gi")},
-        { text: "TOP{number}", regex: new RegExp("top(\\d{1,})", "gi")},
-        { text: "LEO{number}", regex: new RegExp("leo(\\d{1,})", "gi")},
+        { text: "VIN{number}", regex: new RegExp("\\bvin\\d{1,}\\b", "gi")},
+        { text: "WIN{number}", regex: new RegExp("\\bwin\\d{1,}\\b", "gi")},
+        { text: "TOP{number}", regex: new RegExp("\\btop\\d{1,}\\b", "gi")},
+        { text: "LEO{number}", regex: new RegExp("\\bleo\\d{1,}\\b", "gi")},
 
 
-        { text: "{number}CL", regex: new RegExp("(\\d{1,})cl", "gi")},
+        { text: "{number}CL", regex: new RegExp("\\b\\d{1,}cl\\b", "gi")},
 
-        { text: "{number}WIN", regex: new RegExp("(\\d{1,})win", "gi")},
-        { text: "{number}WIZ", regex: new RegExp("(\\d{1,})wiz", "gi")},
-        { text: "{number}BET", regex: new RegExp("(\\d{1,})bet", "gi")},
+        { text: "{number}WIN", regex: new RegExp("(\\b\\d{1,})win\\b", "gi")},
+        { text: "{number}WIZ", regex: new RegExp("(\\b\\d{1,})wiz\\b", "gi")},
+        { text: "{number}BET", regex: new RegExp("\\b(\\d{1,})bet\\b", "gi")},
 
-        { text: "{alpha}BET", regex: new RegExp("([a-z]{1,4})bet", "gi")},
+        { text: "{alpha}BET", regex: new RegExp("\\b([a-z]{1,4})bet\\b", "gi")},
 
 
 
@@ -3527,6 +3691,8 @@
         "dream audio books",
         "elite personas llc",
         "escorts service",
+
+        "Moad Moad",
 
         "SLEEPY HISTORY",
         "Bouncing Stories",
@@ -3914,73 +4080,148 @@
         { text: "Zonnepanelen", regex: new RegExp("Zonnepanelen", "gi")}
     ];
 
-    const nlCities = [
-        'Soest',
-        'Alkmaar',
-        'Almelo',
-        'Almere',
-        'Amersfoort',
-        'Amstelveen',
-        'Amsterdam',
-        'Apeldoorn',
-        'Arnhem',
-        'Assen',
-        'Barendrecht',
-        'Breda',
-        'Delft',
-        'Den Bosch',
-        'Den Haag',
-        'Den Helder',
-        'Deventer',
-        'Doetinchem',
-        'Dordrecht',
-        'Eindhoven',
-        'Emmen',
-        'Enschede',
-        'Geleen',
-        'Gouda',
-        'Groningen',
-        'Haarlem',
-        'Hardenberg',
-        'Heerhugowaard',
-        'Heemstede',
-        'Heerlen',
-        'Helmond',
-        'Hengelo',
-        'Hilversum',
-        'Hoofddorp',
-        'Hoorn',
-        'IJmuiden',
-        'Kerkrade',
-        'Krimpen aan den IJssel',
-        'Leeuwarden',
-        'Leiden',
-        'Lelystad',
-        'Maastricht',
-        'Nieuwegein',
-        'Nijmegen',
-        'Nieuw-Vennep',
-        'Nootdorp',
-        'Oosterhout',
-        'Oss',
-        'Purmerend',
-        'Ridderkerk',
-        'Roosendaal',
-        'Rotterdam',
-        'Schiedam',
-        'Sittard',
-        'Sneek',
-        'Spijkenisse',
-        'Tilburg',
-        'Uden',
-        'Utrecht',
-        'Veenendaal',
-        'Venlo',
-        'Vlaardingen',
-        'Wijchen',
-        'Zaandam',
-        'Zoetermeer',
-        'Zwolle'
+    const prescriptionDrugsList = [
+        { text: "Abilify", regex: new RegExp("\\bAbilify\\b", "gi")},
+        { text: "Abilify Maintena", regex: new RegExp("\\bAbilify\\sMaintena\\b", "gi")},
+        { text: "Accutane", regex: new RegExp("\\bAccutane\\b", "gi")},
+        { text: "Acomplia", regex: new RegExp("\\bAcomplia\\b", "gi")},
+        { text: "Actos", regex: new RegExp("\\bActos\\b", "gi")},
+        { text: "Adderall", regex: new RegExp("\\bAdderall\\b", "gi")},
+        { text: "Adderall XR", regex: new RegExp("\\bAdderall\\sXR\\b", "gi")},
+        { text: "Adipex-P", regex: new RegExp("\\bAdipex\\x2dP\\b", "gi")},
+        { text: "Advair", regex: new RegExp("\\bAdvair\\b", "gi")},
+        { text: "Advair Diskus", regex: new RegExp("\\bAdvair\\sDiskus\\b", "gi")},
+        { text: "Allegra", regex: new RegExp("\\bAllegra\\b", "gi")},
+        { text: "Allegra-D", regex: new RegExp("\\bAllegra\\x2dD\\b", "gi")},
+        { text: "Alprazolam", regex: new RegExp("\\bAlprazolam\\b", "gi")},
+        { text: "Ambien", regex: new RegExp("\\bAmbien\\b", "gi")},
+        { text: "Ambien CR", regex: new RegExp("\\bAmbien\\sCR\\b", "gi")},
+        { text: "Amoxicillin", regex: new RegExp("\\bAmoxicillin\\b", "gi")},
+        { text: "Amoxil", regex: new RegExp("\\bAmoxil\\b", "gi")},
+        { text: "Aripiprazole", regex: new RegExp("\\bAripiprazole\\b", "gi")},
+        { text: "Ativan", regex: new RegExp("\\bAtivan\\b", "gi")},
+        { text: "Avodart", regex: new RegExp("\\bAvodart\\b", "gi")},
+        { text: "Bextra", regex: new RegExp("\\bBextra\\b", "gi")},
+        { text: "Buprenorphine", regex: new RegExp("\\bBuprenorphine\\b", "gi")},
+        { text: "Bupropion", regex: new RegExp("\\bBupropion\\b", "gi")},
+        { text: "Caduet", regex: new RegExp("\\bCaduet\\b", "gi")},
+        { text: "Carisoprodol", regex: new RegExp("\\bCarisoprodol\\b", "gi")},
+        { text: "Celecoxib", regex: new RegExp("\\bCelecoxib\\b", "gi")},
+        { text: "Celebrex", regex: new RegExp("\\bCelebrex\\b", "gi")},
+        { text: "Celexa", regex: new RegExp("\\bCelexa\\b", "gi")},
+        { text: "Chantix", regex: new RegExp("\\bChantix\\b", "gi")},
+        { text: "Cialis", regex: new RegExp("\\bCialis\\b", "gi")},
+        { text: "Cipro", regex: new RegExp("\\bCipro\\b", "gi")},
+        { text: "Cipro XR", regex: new RegExp("\\bCipro\\sXR\\b", "gi")},
+        { text: "Ciprofloxacin", regex: new RegExp("\\bCiprofloxacin\\b", "gi")},
+        { text: "Claritin", regex: new RegExp("\\bClaritin\\b", "gi")},
+        { text: "Claritin-D", regex: new RegExp("\\bClaritin\\x2dD\\b", "gi")},
+        { text: "Clomiphene", regex: new RegExp("\\bClomiphene\\b", "gi")},
+        { text: "Clomid", regex: new RegExp("\\bClomid\\b", "gi")},
+        { text: "Clonazepam", regex: new RegExp("\\bClonazepam\\b", "gi")},
+        { text: "Clopidogrel", regex: new RegExp("\\bClopidogrel\\b", "gi")},
+        { text: "Codeine", regex: new RegExp("\\bCodeine\\b", "gi")},
+        { text: "Crestor", regex: new RegExp("\\bCrestor\\b", "gi")},
+        { text: "Cymbalta", regex: new RegExp("\\bCymbalta\\b", "gi")},
+        { text: "Dapoxetine", regex: new RegExp("\\bDapoxetine\\b", "gi")},
+        { text: "Darvocet", regex: new RegExp("\\bDarvocet\\b", "gi")},
+        { text: "Darvocet-N", regex: new RegExp("\\bDarvocet\\x2dN\\b", "gi")},
+        { text: "Desvenlafaxine", regex: new RegExp("\\bDesvenlafaxine\\b", "gi")},
+        { text: "Dexamfetamine", regex: new RegExp("\\bDexamfetamine\\b", "gi")},
+        { text: "Diazepam", regex: new RegExp("\\bDiazepam\\b", "gi")},
+        { text: "Diflucan", regex: new RegExp("\\bDiflucan\\b", "gi")},
+        { text: "Duloxetine", regex: new RegExp("\\bDuloxetine\\b", "gi")},
+        { text: "Effexor", regex: new RegExp("\\bEffexor\\b", "gi")},
+        { text: "Effexor XR", regex: new RegExp("\\bEffexor\\sXR\\b", "gi")},
+        { text: "Eliquis", regex: new RegExp("\\bEliquis\\b", "gi")},
+        { text: "Eszopiclone", regex: new RegExp("\\bEszopiclone\\b", "gi")},
+        { text: "Express", regex: new RegExp("\\bExpress\\b", "gi")},
+        { text: "Fioricet", regex: new RegExp("\\bFioricet\\b", "gi")},
+        { text: "Finasteride", regex: new RegExp("\\bFinasteride\\b", "gi")},
+        { text: "Flecainide", regex: new RegExp("\\bFlecainide\\b", "gi")},
+        { text: "Flomax", regex: new RegExp("\\bFlomax\\b", "gi")},
+        { text: "Fluoxetine", regex: new RegExp("\\bFluoxetine\\b", "gi")},
+        { text: "Fluticasone", regex: new RegExp("\\bFluticasone\\b", "gi")},
+        { text: "Gabapentin", regex: new RegExp("\\bGabapentin\\b", "gi")},
+        { text: "Hydrocodone", regex: new RegExp("\\bHydrocodone\\b", "gi")},
+        { text: "Ibuprofen", regex: new RegExp("\\bIbuprofen\\b", "gi")},
+        { text: "Isotretinoin", regex: new RegExp("\\bIsotretinoin\\b", "gi")},
+        { text: "Kamagra", regex: new RegExp("\\bKamagra\\b", "gi")},
+        { text: "Klonopin", regex: new RegExp("\\bKlonopin\\b", "gi")},
+        { text: "Levothyroxine", regex: new RegExp("\\bLevothyroxine\\b", "gi")},
+        { text: "Levitra", regex: new RegExp("\\bLevitra\\b", "gi")},
+        { text: "Lipitor", regex: new RegExp("\\bLipitor\\b", "gi")},
+        { text: "Loratadine", regex: new RegExp("\\bLoratadine\\b", "gi")},
+        { text: "Lorazepam", regex: new RegExp("\\bLorazepam\\b", "gi")},
+        { text: "Lunesta", regex: new RegExp("\\bLunesta\\b", "gi")},
+        { text: "Lyrica", regex: new RegExp("\\bLyrica\\b", "gi")},
+        { text: "Metformin", regex: new RegExp("\\bMetformin\\b", "gi")},
+        { text: "Methadone", regex: new RegExp("\\bMethadone\\b", "gi")},
+        { text: "Methylphenidate", regex: new RegExp("\\bMethylphenidate\\b", "gi")},
+        { text: "Modafinil", regex: new RegExp("\\bModafinil\\b", "gi")},
+        { text: "Mobic", regex: new RegExp("\\bMobic\\b", "gi")},
+        { text: "Meloxicam", regex: new RegExp("\\bMeloxicam\\b", "gi")},
+        { text: "Motrin", regex: new RegExp("\\bMotrin\\b", "gi")},
+        { text: "Naloxone", regex: new RegExp("\\bNaloxone\\b", "gi")},
+        { text: "Nexium", regex: new RegExp("\\bNexium\\b", "gi")},
+        { text: "Nolvadex", regex: new RegExp("\\bNolvadex\\b", "gi")},
+        { text: "Omeprazole", regex: new RegExp("\\bOmeprazole\\b", "gi")},
+        { text: "Opana", regex: new RegExp("\\bOpana\\b", "gi")},
+        { text: "Opana ER", regex: new RegExp("\\bOpana\\sER\\b", "gi")},
+        { text: "Oxycodone", regex: new RegExp("\\bOxycodone\\b", "gi")},
+        { text: "OxyContin", regex: new RegExp("\\bOxyContin\\b", "gi")},
+        { text: "Oxymorphone", regex: new RegExp("\\bOxymorphone\\b", "gi")},
+        { text: "Ozempic", regex: new RegExp("\\bOzempic\\b", "gi")},
+        { text: "Paroxetine", regex: new RegExp("\\bParoxetine\\b", "gi")},
+        { text: "Paxil", regex: new RegExp("\\bPaxil\\b", "gi")},
+        { text: "Paxil CR", regex: new RegExp("\\bPaxil\\sCR\\b", "gi")},
+        { text: "Percocet", regex: new RegExp("\\bPercocet\\b", "gi")},
+        { text: "Phentermine", regex: new RegExp("\\bPhentermine\\b", "gi")},
+        { text: "Pioglitazone", regex: new RegExp("\\bPioglitazone\\b", "gi")},
+        { text: "Plavix", regex: new RegExp("\\bPlavix\\b", "gi")},
+        { text: "Pregabalin", regex: new RegExp("\\bPregabalin\\b", "gi")},
+        { text: "Priligy", regex: new RegExp("\\bPriligy\\b", "gi")},
+        { text: "Propecia", regex: new RegExp("\\bPropecia\\b", "gi")},
+        { text: "Proscar", regex: new RegExp("\\bProscar\\b", "gi")},
+        { text: "Provigil", regex: new RegExp("\\bProvigil\\b", "gi")},
+        { text: "Prozac", regex: new RegExp("\\bProzac\\b", "gi")},
+        { text: "Quetiapine", regex: new RegExp("\\bQuetiapine\\b", "gi")},
+        { text: "Rimonabant", regex: new RegExp("\\bRimonabant\\b", "gi")},
+        { text: "Retin-A", regex: new RegExp("\\bRetin\\x2dA\\b", "gi")},
+        { text: "Ritalin", regex: new RegExp("\\bRitalin\\b", "gi")},
+        { text: "Ritalin LA", regex: new RegExp("\\bRitalin\\sLA\\b", "gi")},
+        { text: "Rosuvastatin", regex: new RegExp("\\bRosuvastatin\\b", "gi")},
+        { text: "Salmeterol", regex: new RegExp("\\bSalmeterol\\b", "gi")},
+        { text: "Semaglutide", regex: new RegExp("\\bSemaglutide\\b", "gi")},
+        { text: "Seroquel", regex: new RegExp("\\bSeroquel\\b", "gi")},
+        { text: "Seroquel XR", regex: new RegExp("\\bSeroquel\\sXR\\b", "gi")},
+        { text: "Sildenafil", regex: new RegExp("\\bSildenafil\\b", "gi")},
+        { text: "Simvastatin", regex: new RegExp("\\bSimvastatin\\b", "gi")},
+        { text: "Singulair", regex: new RegExp("\\bSingulair\\b", "gi")},
+        { text: "Soma", regex: new RegExp("\\bSoma\\b", "gi")},
+        { text: "Synthroid", regex: new RegExp("\\bSynthroid\\b", "gi")},
+        { text: "Tadalafil", regex: new RegExp("\\bTadalafil\\b", "gi")},
+        { text: "Tamoxifen", regex: new RegExp("\\bTamoxifen\\b", "gi")},
+        { text: "Valium", regex: new RegExp("\\bValium\\b", "gi")},
+        { text: "Vardenafil", regex: new RegExp("\\bVardenafil\\b", "gi")},
+        { text: "Varenicline", regex: new RegExp("\\bVarenicline\\b", "gi")},
+        { text: "Venlafaxine", regex: new RegExp("\\bVenlafaxine\\b", "gi")},
+        { text: "Viamax", regex: new RegExp("\\bViamax\\b", "gi")},
+        { text: "Viagra", regex: new RegExp("\\bViagra\\b", "gi")},
+        { text: "Vicodin", regex: new RegExp("\\bVicodin\\b", "gi")},
+        { text: "Vicodin ES", regex: new RegExp("\\bVicodin\\sES\\b", "gi")},
+        { text: "Vytorin", regex: new RegExp("\\bVytorin\\b", "gi")},
+        { text: "Wegovy", regex: new RegExp("\\bWegovy\\b", "gi")},
+        { text: "Xanax", regex: new RegExp("\\bXanax\\b", "gi")},
+        { text: "Xanax XR", regex: new RegExp("\\bXanax\\sXR\\b", "gi")},
+        { text: "Xenical", regex: new RegExp("\\bXenical\\b", "gi")},
+        { text: "Zithromax", regex: new RegExp("\\bZithromax\\b", "gi")},
+        { text: "Zoloft", regex: new RegExp("\\bZoloft\\b", "gi")},
+        { text: "Zolpidem", regex: new RegExp("\\bZolpidem\\b", "gi")},
+        { text: "Zyban", regex: new RegExp("\\bZyban\\b", "gi")},
+        { text: "Zyprexa", regex: new RegExp("\\bZyprexa\\b", "gi")}
+
+
     ];
 
     const deepLinks = [
@@ -4035,6 +4276,8 @@
         { text: "BuzzSprout Podcast", regex: new RegExp("http(s)?\\x3a\\x2f\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})\\x2ebuzzsprout\\x2ecom\\x2f", "gi")},
 
         { text: "Spreaker Podcast", regex: new RegExp("http(s)?\\x3a\\x2f\\x2f(www\\x2e)?spreaker\\x2ecom\\x2fpodcast\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})", "gi")},
+
+        { text: "Discord DeepLink", regex: new RegExp("http(s)?\\x3a\\x2f\x2fdiscord\\x2egg\\x2f([a-z0-9\\x2d\\x2e\\x5f]{1,})", "gi")},
 
         /* Telegram */
         { text: "Telegram Phonenumber", regex: new RegExp("https\\x3a\\x2f\\x2ft\\x2eme\\x2f\\x2b(\\d{1,})", "gi")},
@@ -4151,6 +4394,19 @@
         target.setAttribute('title', existingTitle ? `${existingTitle}, ${matchText}` : matchText);
     }
 
+    function flagElementUnknown(element, matchText, highlightWholeCard = false) {
+        const target = highlightWholeCard ? element.closest('div.curate-card') : element;
+        if (!target) return;
+
+        target.style.color = "white";
+        target.style.border = "2px solid red";
+        target.style.backgroundColor = "orange";
+        target.style.padding = "2px";
+
+        const existingTitle = target.getAttribute('title');
+        target.setAttribute('title', existingTitle ? `${existingTitle}, ${matchText}` : matchText);
+    }
+
     function flagElementSecurity(element, matchText, highlightWholeCard = false) {
         const target = highlightWholeCard ? element.closest('div.curate-card') : element;
         if (!target) return;
@@ -4196,6 +4452,9 @@
     const ownerLegitPatterns = ownersTextsLegit.map(text => ({ text, regex: new RegExp(escapeRegExp(text), "gi") }));
 
     const feedLegit = feedURLlegit.map(text => ({ text, regex: new RegExp(escapeRegExp(text), "gi") }));
+
+    const tagPatterns = tagSallad.map(text => ({ text, regex: new RegExp(escapeRegExp(text), "gi") } ));
+
 
     const nakedLinkPatterns = targetTLDs.map(tld => ({ tld, regex: new RegExp(`http(s)?\\x3a\\x2f\\x2f[a-z0-9\x2d\x2e]{1,}\\x2e${tld}\\s`, "gi") }));
     const nakedLinkDomainPatterns = targetTLDs.map(tld => ({ tld, regex: new RegExp(`([a-z0-9\x2d\x2e]{1,})\\x2e${tld}`, "gi") }));
@@ -4250,6 +4509,14 @@
                     }
                 });
 
+                // Highlight bad keywords
+                descPatterns.forEach(item => {
+                    if (title.match(item.regex)) {
+                        flagElement(titleEl, item.text);
+                        podcast_desc = true;
+                    }
+                });
+
                 titles.forEach(item => {
                     if (title.match(item.regex)) {
                         flagElement(titleEl, 'TitleFrags ' + item.text);
@@ -4260,6 +4527,13 @@
                 casinoFrags.forEach(item => {
                     if (title.match(item.regex)) {
                         flagElement(titleEl, 'CasinoFrags ' + item.text);
+                        podcast_desc = true;
+                    }
+                });
+
+                prescriptionDrugsList.forEach(item => {
+                    if (title.match(item.regex)) {
+                        flagElement(titleEl, 'Prescription drugs ' + item.text);
                         podcast_desc = true;
                     }
                 });
@@ -4354,6 +4628,20 @@
                 descPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
                         flagElement(descEl, item.text);
+                        podcast_desc = true;
+                    }
+                });
+
+                tagPatterns.forEach(item => {
+                    if (descText.match(item.regex)) {
+                        flagElement(descEl, 'TagSallad ' + item.text);
+                        podcast_desc = true;
+                    }
+                });
+
+                prescriptionDrugsList.forEach(item => {
+                    if (descText.match(item.regex)) {
+                        flagElement(descEl, 'Prescription drugs ' + item.text);
                         podcast_desc = true;
                     }
                 });
@@ -4489,7 +4777,7 @@
 
                     if (podcast_generator === false) {
                         console.log('generator', generator, ascii_to_hexadecimal(generator));
-                        flagElementInvalid(extra, 'Not recognized');
+                        flagElementUnknown(extra, 'Unknown');
                     }
 
                 }
@@ -4618,7 +4906,7 @@
                 // Highlight naked link formats
                 nakedLinkPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
-                        flagElement(podcast, item.tld);
+                        flagElement(descEl, 'Naked Links' + item.tld);
                         isFlaggedDomain = true; // Fixed logic: registers that we found a TLD hit!
                     }
                 });
@@ -4626,9 +4914,22 @@
                 // Highlight naked domains (Runs correctly now if a domain hit occurred)
                 nakedDomainPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
-                        flagElement(podcast, item.tld);
+                        flagElement(descEl, 'Naked Domains ' + item.tld);
                     }
                 });
+
+                prescriptionDrugsList.forEach(item => {
+                    if (descText.match(item.regex)) {
+                        flagElement(descEl, 'Prescription drugs ' + item.text);
+                    }
+                });
+
+                tagPatterns.forEach(item => {
+                    if (descText.match(item.regex)) {
+                        flagElement(descEl, 'TagSallad ' + item.text);
+                    }
+                });
+
 
                 // Highlight bad keywords
                 descPatterns.forEach(item => {
@@ -4790,6 +5091,29 @@
                     }
                 }, 250);
 
+            }
+
+            if(
+                bylineText.match(/Voice\sVault/gi)
+            ) {
+                if(
+                    url.match(/\x2eaudiobookzap\x2ecom/gi)
+                    ||
+                    url.match(/\x2eesound\x2espace/gi)
+                    ||
+                    url.match(/\x2elibranovo\x2ecom/gi)
+                    ||
+                    url.match(/litupbook\x2ecom/gi)
+                ) {
+                    const spamButton = podcast.querySelector('div.spam-dropdown a.feedSpamMenu');
+                    spamButton.click();
+                    const spamMenu = podcast.querySelector('div.spam-menu a[data-reason="6"]');
+                    setTimeout(() => {
+                        if (spamMenu) {
+                            spamMenu.click();
+                        }
+                    }, 250);
+                }
             }
 
             if (url.match(/https\x3a\x2f\x2ffeeds\x2emegaphone\x2efm\x2fUPIAO/gi)) {
