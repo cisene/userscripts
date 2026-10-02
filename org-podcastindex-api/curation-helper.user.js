@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PodcastIndex.org Curation Helper
 // @namespace    http://tampermonkey.net/
-// @version      2026-09-21-0059
+// @version      2026-10-02-2237
 // @description  Highlights known-bad actors and helps with curation of podcast feeds on PodcastIndex.org
 // @author       Christopher Isene <christopher.isene@gmail.com>
 // @match        https://api.podcastindex.org/dashboard*
@@ -18,117 +18,766 @@
     // --- Configurations ---
     const tagSallad = [
         '#1111推流特惠',
-        '#Apple产品推荐',
-        '#Apple手机降价',
-        '#AutumnLive',
-        '#BlackFridayDealsOnline',
-        '#BlackFridayPhoneDeals',
-        '#ChristmasDiscount2026',
-        '#ChristmasGiftsIdeas',
-        '#ChristmasShoppingDeals',
-        '#CyberMonday',
-        '#FallLive',
-        '#HalloweenDecor',
-        '#HalloweenFashion',
-        '#HalloweenFestival2026',
-        '#HalloweenVibes',
-        '#iPhone18ProMax',
-        '#iPhone18ProMax外观',
-        '#iPhone18ProMax影像升级',
-        '#iPhone18ProMax评测体验',
-        '#iPhone18ProMax降价幅度',
-        '#iPhone18Pro性能实测',
-        '#iPhone18Pro购买攻略',
-        '#iPhone18设计亮点',
-        '#Mac直播体验',
-        '#OBSStudio技巧',
-        '#Streamlabs教程',
-        '#Thanksgiving2026',
-        '#ThanksgivingDiscounts',
-        '#ThanksgivingLive',
-        '#vMix直播导播',
+        '#appleevent2026直播',
+        '#appleeventlive',
+        '#apple产品推荐',
+        '#apple手机',
+        '#apple手机降价',
+        '#apple新品亮点',
+        '#apple新品资讯',
+        '#apple新品速递',
+        '#apple新机',
+        '#apple新机推荐',
+        '#apple新机资讯',
+        '#autumnlive',
+        '#blackfriday',
+        '#blackfriday2026deals',
+        '#blackfridaydeals2026',
+        '#blackfridaydealsonline',
+        '#blackfridaydiscount',
+        '#blackfridayevent',
+        '#blackfridayphonedeals',
+        '#blackfridaypromotion',
+        '#blackfridaysale2026',
+        '#blackfridaysales',
+        '#blackfridaytechdeals',
+        '#christmas',
+        '#christmasdeals2026',
+        '#christmasdecor',
+        '#christmasdiscount',
+        '#christmasdiscount2026',
+        '#christmasevent2026',
+        '#christmasgift',
+        '#christmasgift2026',
+        '#christmasgifts2026',
+        '#christmasgiftsideas',
+        '#christmasparty2026',
+        '#christmasshopping2026',
+        '#christmasshoppingdeals',
+        '#christmasvibes',
+        '#christmasvibes2026',
+        '#cybermonday',
+        '#falllive',
+        '#halloween',
+        '#halloweencostume',
+        '#halloweendecor',
+        '#halloweendecoration',
+        '#halloweenfashion',
+        '#halloweenfestival',
+        '#halloweenfestival2026',
+        '#halloweengift',
+        '#halloweenideas2026',
+        '#halloweenpartyideas',
+        '#halloweenshopping',
+        '#halloweenshopping2026',
+        '#halloweenspooky',
+        '#halloweenvibes',
+        '#iphone18promax',
+        '#iphone18promax价格',
+        '#iphone18promax优惠',
+        '#iphone18promax优惠攻略',
+        '#iphone18promax体验',
+        '#iphone18promax参数',
+        '#iphone18promax外观',
+        '#iphone18promax开箱',
+        '#iphone18promax影像升级',
+        '#iphone18promax性能',
+        '#iphone18promax推荐',
+        '#iphone18promax摄像',
+        '#iphone18promax真机',
+        '#iphone18promax续航',
+        '#iphone18promax续航测评',
+        '#iphone18promax评测',
+        '#iphone18promax评测体验',
+        '#iphone18promax购买攻略',
+        '#iphone18promax配置',
+        '#iphone18promax降价幅度',
+        '#iphone18pro体验',
+        '#iphone18pro值得买吗',
+        '#iphone18pro参数',
+        '#iphone18pro性能实测',
+        '#iphone18pro芯片',
+        '#iphone18pro购买攻略',
+        '#iphone18价格攻略',
+        '#iphone18外观设计',
+        '#iphone18相机体验',
+        '#iphone18芯片',
+        '#iphone18设计亮点',
+        '#iphone18评测',
+        '#iphone数码指南',
+        '#mac直播体验',
+        '#newyear',
+        '#obsstudio技巧',
+        '#streamlabs教程',
+        '#thanksgiving',
+        '#thanksgiving2026',
+        '#thanksgivingdeals',
+        '#thanksgivingdinner2026',
+        '#thanksgivingdiscounts',
+        '#thanksgivingfood',
+        '#thanksgivinggift',
+        '#thanksgivinggifts',
+        '#thanksgivinglive',
+        '#thanksgivingparty',
+        '#thanksgivingshopping',
+        '#thanksgivingshopping2026',
+        '#vmix直播导播',
         '#万圣节主题派对',
+        '#万圣节创意',
+        '#万圣节好物推荐',
         '#万圣节妆容教程',
+        '#万圣节恐怖之夜',
+        '#万圣节搞怪装扮',
+        '#万圣节服装',
+        '#万圣节氛围',
+        '#万圣节活动',
+        '#万圣节派对装扮',
+        '#万圣节特惠',
         '#万圣节直播特效',
+        '#万圣节礼物',
+        '#万圣节礼物清单',
+        '#万圣节购物攻略',
+        '#万圣节购物清单',
+        '#万圣节限定',
         '#中秋假期直播',
         '#中秋团圆直播',
         '#中秋直播连麦',
+        '#低成本获客',
+        '#元旦假期去哪儿',
+        '#元旦出游',
         '#元旦出行推荐',
+        '#元旦好物种草',
+        '#元旦快乐',
+        '#元旦旅游',
+        '#元旦营销活动',
+        '#元旦购物',
         '#元旦跨年',
+        '#元旦跨年活动',
+        '#元旦跨年派对',
+        '#全域营销布局',
+        '#全渠道运营策略',
+        '#全网引流秘籍',
+        '#全网曝光方案',
+        '#公私域联动',
+        '#内容分发技巧',
+        '#内容商业化',
         '#冬季直播充电',
-        '#双11iPhone优惠券',
+        '#双11iphone优惠',
+        '#双11iphone优惠券',
+        '#双11大促',
+        '#双11大促攻略',
+        '#双11数码优惠',
+        '#双11购物清单',
+        '#双12好物推荐',
+        '#双12好物节',
+        '#双12必买清单',
         '#双12手机优惠攻略',
+        '#双12手机推荐',
         '#双12数码好物推荐',
+        '#双12数码推荐',
+        '#双12爆单技巧',
+        '#双12省钱攻略',
+        '#双12购物优惠',
+        '#双12购物清单',
         '#双12软件返场',
         '#双十一优惠券',
         '#双十一全网比价',
+        '#双十一手机优惠',
+        '#双十一手机降价',
+        '#双十一数码优惠',
         '#双十一直播大促',
+        '#双十一苹果手机',
+        '#双十二优惠券',
+        '#双十二好物清单',
         '#双十二必买',
+        '#双十二攻略',
+        '#双十二爆款推荐',
+        '#双十二省钱攻略',
+        '#双十二苹果优惠',
         '#双十二苹果优惠券',
+        '#双十二购物攻略',
         '#双旦导播好物',
+        '#品牌声量联动',
+        '#品牌破圈指南',
+        '#品牌营销策略',
+        '#商家获客指南',
+        '#国庆优惠',
+        '#国庆假期',
+        '#国庆假期出游',
+        '#国庆出游',
+        '#国庆出游指南',
         '#国庆出游直播',
         '#国庆出行攻略',
+        '#国庆大促活动',
+        '#国庆小长假',
+        '#国庆手机',
+        '#国庆打卡',
+        '#国庆数码好物',
+        '#国庆旅游',
+        '#国庆旅游打卡',
+        '#国庆旅游攻略',
+        '#国庆旅行推荐',
+        '#国庆景点推荐',
+        '#国庆消费',
+        '#国庆消费攻略',
         '#国庆热门景点',
         '#国庆特惠活动',
+        '#国庆礼物',
+        '#国庆礼物推荐',
+        '#国庆美食攻略',
         '#国庆自驾游攻略',
+        '#国庆自驾游路线',
         '#国庆节庆祝',
         '#国庆购物优惠',
+        '#国庆购物攻略',
         '#国庆购物狂欢',
+        '#国庆黄金周',
+        '#国庆黄金周出游',
+        '#圣诞促销活动',
+        '#圣诞好物推荐',
+        '#圣诞姜饼屋',
+        '#圣诞折扣',
+        '#圣诞活动攻略',
         '#圣诞活动方案',
         '#圣诞礼物攻略',
+        '#圣诞礼物清单',
+        '#圣诞节促销',
         '#圣诞节好物推荐',
+        '#圣诞节日装饰',
+        '#圣诞节购物攻略',
+        '#圣诞购物清单',
         '#圣诞跨年演播室',
         '#年度直播盘点',
         '#年货节直播必备',
+        '#感恩节优惠攻略',
         '#感恩节促销活动',
+        '#感恩节大回馈',
+        '#感恩节大餐筹备',
+        '#感恩节好物',
+        '#感恩节快乐',
+        '#感恩节快乐2026',
+        '#感恩节折扣攻略',
+        '#感恩节活动',
+        '#感恩节清单',
+        '#感恩节特惠活动',
         '#感恩节直播灵感',
+        '#感恩节礼物',
         '#感恩节礼物推荐',
+        '#感恩节美食',
         '#感恩节美食攻略',
+        '#感恩节购物优惠',
+        '#感恩节购物攻略',
         '#感恩节购物节',
+        '#抖音带货干货',
+        '#数码产品精选',
+        '#数码新品发布',
+        '#数码新品推荐',
         '#新年直播清单',
+        '#流量护城河',
+        '#流量矩阵搭建',
+        '#爆款文案拆解',
+        '#电商冲刺',
+        '#电商冲刺指南',
+        '#电商精细化运营',
         '#直播工具生态',
         '#直播软件评测',
+        '#矩阵化运营',
+        '#短视频变现',
+        '#私域变现实操',
+        '#私域社群裂变',
         '#科技好物推荐',
         '#科技数码生活',
+        '#科技新品发布',
+        '#粉丝经济变现',
+        '#粉丝资产增长',
+        '#自媒体变现闭环',
+        '#自媒体进阶课',
         '#苹果创意工具',
+        '#苹果发布会新品',
+        '#苹果手机新品',
+        '#苹果手机新品推荐',
+        '#苹果手机测评',
+        '#苹果手机购买攻略',
+        '#苹果新品发布',
         '#苹果新品发布会回放',
         '#苹果新品好物',
+        '#苹果新品手机推荐',
+        '#苹果新品测评',
+        '#苹果新品评测',
+        '#苹果新品购买攻略',
+        '#苹果新机价格',
+        '#苹果新机发布',
         '#苹果新机购买攻略',
         '#苹果新机首发体验',
         '#苹果直播生态',
+        '#超级个人ip',
+        '#跨境电商新风口',
+        '#跨平台引流',
+        '#跨年倒计时',
+        '#跨年倒计时2027',
+        '#跨年倒计时活动',
+        '#跨年去哪儿',
+        '#跨年夜倒计时',
+        '#跨年夜好去处',
+        '#跨年夜攻略',
+        '#跨年夜活动',
+        '#跨年夜活动指南',
         '#跨年夜活动推荐',
+        '#跨年夜狂欢攻略',
+        '#跨年夜直播',
         '#跨年旅行',
+        '#跨年旅行攻略',
+        '#跨年活动推荐',
+        '#跨年营销方案',
+        '#跨年许愿树',
         '#跨年迎新派对',
+        '#转化率提升',
         '#高性价比数码',
-        '#黑五iPhone优惠',
+        '#黑五iphone优惠',
+        '#黑五优惠',
+        '#黑五优惠攻略',
+        '#黑五促销活动',
+        '#黑五大促指南',
+        '#黑五大折扣',
+        '#黑五好物推荐',
+        '#黑五手机',
+        '#黑五数码优惠',
+        '#黑五数码大促',
         '#黑五数码大促2026',
+        '#黑五数码榜单',
         '#黑五数码购物',
+        '#黑五海外直邮',
+        '#黑五海淘攻略',
         '#黑五海淘清单',
         '#黑五直播直邮',
+        '#黑五礼物',
+        '#黑五苹果优惠',
+        '#黑五苹果手机',
+        '#黑五购物推荐',
+        '#黑五购物清单',
+        '#黑人大折扣',
 
     ];
     const spamDomains = [
 
-        'kol666.com',
-        'fensi3.top',
-        'dyfensi.top',
-        '94KOL.top',
-        '94fen.cc',
-        '94fen.top',
-        '8mcn.cc',
-        '8xhs.cc',
-        '54pm6.cc',
-        '54gpt.cc',
-        '8kuaishou.cc',
-        '7x24h.cc',
-        '4web3.cc',
-        '4remen.cc',
+        '1000fen.cc',
+        '24bili.cc',
+        '24dy8.cc',
+        '24fen.cc',
+        '24fs8.cc',
         '24h1v1.cc',
         '24hai.cc',
+        '2fen1.top',
+        '33.wuaze.com',
+        '3zan.cc',
+        '3zan.top',
+        '4remen.cc',
+        '4vlog.cc',
+        '4web3.cc',
+        '52fans.cc',
+        '52fans.top',
+        '52fen1.top',
+        '52fen2.top',
+        '52fen3.top',
+        '52fen4.top',
+        '52fen5.top',
+        '52kol.top',
+        '52xhs.top',
+        '52yyb.top',
+        '52zan.top',
+        '54gpt.cc',
+        '54pm6.cc',
+        '5npc.cc',
+        '5zan.cc',
+        '5zan.top',
+        '66ks.top',
+        '6zan.cc',
+        '6zan.top',
+        '777fans.com',
+        '77dy.top',
+        '77sp.top',
+        '77up.top',
+        '77xhs.top',
+        '77zan.top',
+        '7x24h.cc',
+        '8kuaishou.cc',
+        '8mcn.cc',
+        '8xhs.cc',
+        '8zan.cc',
+        '8zan.top',
+        '909jt.cc',
+        '91dyhao.com',
+        '94fen.cc',
+        '94fen.top',
+        '94kol.top',
+        '98kk.top',
+        '99xhs.top',
+        '99zan.top',
+        '9zan.cc',
+        'acast.com',
+        'adq6.cc',
+        'ai1v1.cc',
+        'aigc9.cc',
+        'baizi.top',
+        'bible4jesus.com',
+        'blfen.top',
+        'buyfen.top',
+        'cpz33.cc',
+        'dk99.top',
+        'dyfen.top',
+        'dyfensi.top',
+        'dyhgg.com',
+        'dyhpifa.com',
+        'dyzh9.com',
+        'fbfensi.com',
+        'fenba.top',
+        'fensi1.top',
+        'fensi2.top',
+        'fensi3.top',
+        'fs688.com',
+        'ga66.top',
+        'hot66.top',
+        'kaiyun.io',
+        'kaiyunwc.com',
+        'kaiyunyx.com',
+        'kol666.com',
+        'ksfen.top',
+        'ksfensi.top',
+        'kuaishou123.cc',
+        '8kuaishou.cc',
+        'maifen.cc',
+        'maifen.dyks8.xyz',
+        'maifensi.top',
+        'mairenqi.top',
+        'meitgou.cn',
+        'mixdo.top',
+        'mk66.top',
+        'mm66.top',
+        'onbet8.info',
+        'pk77.top',
+        'podcastindex.org',
+        'riverside.fm',
+        'rss.com',
+        'shuafensi.vip',
+        'skp77.top',
+        'sph365.top',
+        'sphfen.top',
+        'taozia.top',
+        'top1bet.cc',
+        'upzan.cc',
+        'upzan.top',
+        'va66.top',
+        'va77.top',
+        'wbfen.top',
+        'weibofen.cc',
+        'weibofen.top',
+        'woaifen.top',
+        'wzw77.cc',
+        'xhfzs.com',
+        'xhs91.top',
+        'xhsfans.top',
+        'xhsfen.top',
+        'xhszh8.com',
+        'yh139.cc',
+        'yikesup.top',
+        'yyb365.top',
+        'yybao.top',
+        'zan10.top',
+        'zan3.cc',
+        'zan3.top',
+        'zan5.cc',
+        'zan5.top',
+        'zan55.cc',
+        'zan55.top',
+        'zan6.cc',
+        'zan6.top',
+        'zan66.cc',
+        'zan66.top',
+        'zan7.cc',
+        'zan7.top',
+        'zan8.cc',
+        'zan8.top',
+        'zan88.cc',
+        'zan88.top',
+        'zan9.cc',
+        'zan9.top',
+        'zansu.cc',
+        'zansu.top',
+        'zanup.cc',
+        'zanup.top',
+        '98wintop.com',
+        '98win3h.com',
+        '98win.surf',
+        '98win.expert',
+        '98win.giving',
+        '98wint6.com',
+        '98winvn.io',
+        '98winn.feedback',
+        '98winn.uno',
+        '98win68.bet',
+        '98wingy.com',
+        '98win.courses',
+        '98winstar.com',
+        '98win.promo',
+        '98wincom.skin',
+        '98winz.live',
+        '98wincom.supply',
+        '98wintt.com',
+        '1198win.app',
+        '98win.health',
+        '98winn.bike',
+        '98win.dating',
+        '98winzz.com',
+        '98winazz.com',
+        '98wins.live',
+        '98winnes.com',
+        '98winnew.com',
+        '98win58.fun',
+        '98win.limited',
+        '99win.dad',
+        'u88games.com',
 
 
         'yo88s.vin',
         'zowin1.site'
+    ];
+
+    const casinoFrags = [
+
+
+        { text: "UNMATCHED", regex: new RegExp("/(?:(?:\\d+)?(?:zan|fen|fensi|upzan|zanup|zansu)\\d*|\\d*(?:dy|fs|xhs|kuaishou|mcn|kol|remen|vlog|web3|gpt)\\d*)\\x2e(?:cc|top)/", "gi")},
+
+        { text: "dyfensi.top", regex: new RegExp("dyfensi\\x2etop", "gi")},
+        { text: "fenba.top", regex: new RegExp("fenba\\x2etop", "gi")},
+        { text: "upzan.top", regex: new RegExp("upzan\\x2etop", "gi")},
+        { text: "zansu.cc", regex: new RegExp("zansu\\x2ecc", "gi")},
+        { text: "zansu.top", regex: new RegExp("zansu\\x2etop", "gi")},
+        { text: "zanup.cc", regex: new RegExp("zanup\\x2ecc", "gi")},
+        { text: "zanup.top", regex: new RegExp("zanup\\x2etop", "gi")},
+
+
+        { text: "ADQ{number}.cc", regex: new RegExp("adq\\d{1,}\\x2ecc", "gi")},
+        { text: "AIGC{number}.cc", regex: new RegExp("aigc\\d{1,}\\x2ecc", "gi")},
+        { text: "AI{number}V{number}.cc", regex: new RegExp("ai\\d{1,}v\\d{1,}\\x2ecc", "gi")},
+        { text: "ALO{number}ONE.com", regex: new RegExp("alo\\d{1,}one\\x2ecom", "gi")},
+        { text: "ALO{number}RANK.com", regex: new RegExp("alo\\d{1,}rank\\x2ecom", "gi")},
+        { text: "ALO{number}SO{number}.com", regex: new RegExp("alo\\d{1,}so\\d{1,}\\x2ecom", "gi")},
+        { text: "ALO{number}TOP{number}.com", regex: new RegExp("alo\\d{1,}top\\d{1,}\\x2ecom", "gi")},
+        { text: "BJ{number}V{number}.com", regex: new RegExp("bj\\d{1,}v\\d{1,}\\x2ecom", "gi")},
+        { text: "CM{number}SS.com", regex: new RegExp("cm\\d{1,}ss\\x2ecom", "gi")},
+        { text: "CM{number}TOP{number}.com", regex: new RegExp("cm\\d{1,}top\\d{1,}\\x2ecom", "gi")},
+        { text: "DK{number}.top", regex: new RegExp("dk\\d{1,}\\x2etop", "gi")},
+        { text: "DN{number}TIPS.com", regex: new RegExp("dn\\d{1,}tips\\x2ecom", "gi")},
+        { text: "FENSI{number}.top", regex: new RegExp("fensi\\d{1,}\\x2etop", "gi")},
+        { text: "F{number}BETSS.com", regex: new RegExp("f\\d{1,}betss\\x2ecom", "gi")},
+        { text: "GA{number}.top", regex: new RegExp("ga\\d{1,}\\x2etop", "gi")},
+        { text: "HB{number}S{number}.com", regex: new RegExp("hb\\d{1,}s\\d{1,}\x2ecom", "gi")},
+        { text: "HELLO{number}A{number}.com", regex: new RegExp("hello\\d{1,}a\\d{1,}\\x2ecom", "gi")},
+        { text: "HITCLUB{number}.cz", regex: new RegExp("hitclub\\d{1,}.cz", "gi")},
+        { text: "JUN{number}.black", regex: new RegExp("jun\\d{1,}\\x2eblack", "gi")},
+        { text: "KOL{number}.com", regex: new RegExp("kol\\d{1,}\\x2ecom", "gi")},
+        { text: "KY{number}.xyz", regex: new RegExp("ky(\\d{1,})\\x2exyz", "gi")},
+        { text: "MK{number}.top", regex: new RegExp("mk\\d{1,}\\x2etop", "gi")},
+        { text: "MM{number}.top", regex: new RegExp("mm\\d{1,}\\x2etop", "gi")},
+        { text: "RS{number}.tech", regex: new RegExp("rs\\d{1,}\\x2etech", "gi")},
+        { text: "PK{number}.top", regex: new RegExp("pk\\d{1,}\\x2etop", "gi")},
+        { text: "SC{number}RANK.com", regex: new RegExp("sc\\d{1,}rank\\x2ecom", "gi")},
+        { text: "SC{number}SEO{number}.com", regex: new RegExp("sc\\d{1,}seo\\d{1,}\\x2ecom", "gi")},
+        { text: "SHBET{number}.com", regex: new RegExp("shbet\\d{1,}\\x2ecom", "gi")},
+        { text: "SKP{number}.top", regex: new RegExp("skp\\d{1,}\\x2etop", "gi")},
+        { text: "SPH{number}.top", regex: new RegExp("sph\\d{1,}\\x2etop", "gi")},
+        { text: "TAYA{number}bet.net", regex: new RegExp("taya\\d{1,}bet\\x2enet", "gi")},
+        { text: "TG{number}ONE.com", regex: new RegExp("tg\\d{1,}one\\x2ecom", "gi")},
+        { text: "TG{number}TOP{number}.com", regex: new RegExp("tg\\d{1,}top\\d{1,}\\x2ecom", "gi")},
+        { text: "VA{number}.top", regex: new RegExp("va\\d{1,}\\x2etop", "gi")},
+        { text: "XHS{alpha}.top", regex: new RegExp("xhs([a-z]{1,})\\x2etop", "gi")},
+        { text: "XHS{number}.top", regex: new RegExp("xhs\\d{1,}\\x2etop", "gi")},
+        { text: "XIN{number}.express", regex: new RegExp("xin\\d{1,}\\x2eexpress", "gi")},
+        { text: "ZAN{number}.cc", regex: new RegExp("zan\\d{1,}\\x2ecc", "gi")},
+        { text: "ZAN{number}.top", regex: new RegExp("zan\\d{1,}\\x2etop", "gi")},
+        { text: "U{number}GAMES.com", regex: new RegExp("u\\d{1,}games\\x2ecom", "gi")},
+        { text: "M{number}CASINOS.com", regex: new RegExp("m\\d{1,}casinos\\x2ecom", "gi")},
+        { text: "MM{number}.press", regex: new RegExp("mm\\d{1,}\\x2epress", "gi")},
+        { text: "WINBOX{number}ME.com", regex: new RegExp("winbox\\d{1,}me\\x2ecom", "gi")},
+        { text: "XOSO{number}ZZ.com", regex: new RegExp("xoso\\d{1,}zz\\x2ecom", "gi")},
+        { text: "{number}VBETZ.com", regex: new RegExp("\\d{1,}vbetz\\x2ecom", "gi")},
+        { text: "XOSO{number}.net.co", regex: new RegExp("xoso\\d{1,}\\x2enet\\x2eco", "gi")},
+        { text: "{number}VBET.mx", regex: new RegExp("\\d{1,}vbet\\x2emx", "gi")},
+        { text: "{alpha}.llc", regex: new RegExp("([a-z0-9]{4})\\x2ellc", "gi")},
+        { text: "{alpha}BETA{number}.ink", regex: new RegExp("([a-z0-9]{1,})beta\\d{1,}\\x2eink", "gi")},
+        { text: "{alpha}FANS.top", regex: new RegExp("([a-z]{1,})fans\\x2etop", "gi")},
+        { text: "{alpha}FEN.cc", regex: new RegExp("([a-z]{2,5})fen\\x2ecc", "gi")},
+        { text: "{alpha}FEN.top", regex: new RegExp("([a-z]{2,5})fen\\x2etop", "gi")},
+        { text: "{alpha}SUP.top", regex: new RegExp("([a-z]{2,})sup\\x2etop", "gi")},
+        { text: "{alpha}UP.top", regex: new RegExp("([a-z]{2,})up\\x2etop", "gi")},
+        { text: "{alpha}ZAN.cc", regex: new RegExp("([a-z]{2,5})zan\\x2ecc", "gi")},
+        { text: "{number}BETV{number}.com", regex: new RegExp("\\d{1,}betv\\d{1,}\\x2ecom", "gi")},
+        { text: "{number}BILI.cc", regex: new RegExp("\\d{1,}bili\\x2ecc", "gi")},
+        { text: "{number}CLBPLUS.co", regex: new RegExp("(\\d{1,})clbplus\\x2eco", "gi")},
+        { text: "{number}CLBRANK.com", regex: new RegExp("\\d{1,}clbrank\\x2ecom", "gi")},
+        { text: "{number}DY.top", regex: new RegExp("\\d{1,}dy\\x2etop", "gi")},
+        { text: "{number}DY{number}.cc", regex: new RegExp("\\d{1,}dy\\d{1,}\\x2ecc", "gi")},
+        { text: "{number}FANS.top", regex: new RegExp("\\d{1,}fans\\x2etop", "gi")},
+        { text: "{number}FEN.cc", regex: new RegExp("\\d{1,}fen\\x2ecc", "gi")},
+        { text: "{number}FEN.top", regex: new RegExp("\\d{1,}fen\\x2etop", "gi")},
+        { text: "{number}FEN{number}.top", regex: new RegExp("\\d{1,}fen\\d{1,}\\x2etop", "gi")},
+        { text: "{number}FS{number}.cc", regex: new RegExp("\\d{1,}fs\\d{1,}\\x2ecc", "gi")},
+        { text: "{number}GPT.cc", regex: new RegExp("\\d{1,}gpt\\x2ecc", "gi")},
+        { text: "{number}HAI.cc", regex: new RegExp("\\d{1,}hai\\x2ecc", "gi")},
+        { text: "{number}H{number}V{number}.cc", regex: new RegExp("\\d{1,}h\\d{1,}v\\d{1,}\\x2ecc", "gi")},
+        { text: "{number}KK.top", regex: new RegExp("\\d{1,}kk\\x2etop", "gi")},
+        { text: "{number}KOL.top", regex: new RegExp("\\d{1,}kol\\x2etop", "gi")},
+        { text: "{number}KS.top", regex: new RegExp("\\d{1,}ks\\x2etop", "gi")},
+        { text: "{number}KUAISHOU.cc", regex: new RegExp("\\d{1,}kuaishou\\x2ecc", "gi")},
+        { text: "{number}MCN.cc", regex: new RegExp("\\d{1,}mcn\\x2ecc", "gi")},
+        { text: "{number}NPC.cc", regex: new RegExp("\\d{1,}npc\\x2ecc", "gi")},
+        { text: "{number}PM{number}.cc", regex: new RegExp("\\d{1,}pm\\d{1,}\\x2ecc", "gi")},
+        { text: "{number}PM{number}.cm", regex: new RegExp("\\d{1,}pm\\d{1,}\\x2ecm", "gi")},
+        { text: "{number}REMEN.cc", regex: new RegExp("\\d{1,}remen\\x2ecc", "gi")},
+        { text: "{number}SP.top", regex: new RegExp("\\d{1,}sp\\x2etop", "gi")},
+        { text: "{number}UP.top", regex: new RegExp("\\d{1,}up\\x2etop", "gi")},
+        { text: "{number}VLOG.cc", regex: new RegExp("\\d{1,}vlog\\x2ecc", "gi")},
+        { text: "{number}WEB{number}.cc", regex: new RegExp("\\d{1,}web\\d{1,}\\x2ecc", "gi")},
+        { text: "{number}WINN.vip", regex: new RegExp("\\d{1,}winn\\x2evip", "gi")},
+        { text: "{number}WIN{number}.com", regex: new RegExp("\\d{1,}win\\d{1,}\\x2ecom", "gi")},
+        { text: "{number}XHS.cc", regex: new RegExp("\\d{1,}xhs\\x2ecc", "gi")},
+        { text: "{number}XHS.top", regex: new RegExp("\\d{1,}xhs\\x2etop", "gi")},
+        { text: "{number}X{number}H.cc", regex: new RegExp("\\d{1,}x\\d{1,}h\\x2ecc", "gi")},
+        { text: "{number}ZAN.cc", regex: new RegExp("\\d{1,}zan\\x2ecc", "gi")},
+        { text: "{number}ZAN.top", regex: new RegExp("\\d{1,}zan\\x2etop", "gi")},
+
+
+        { text: "OKVIP", regex: new RegExp("ok(\\x2d)?vip", "gi")},
+        { text: "IWIN", regex: new RegExp("iwin", "gi")},
+
+        { text: "LUCKY{number}", regex: new RegExp("lucky(\\d{1,})", "gi")},
+        { text: "KING{number}", regex: new RegExp("king(\\d{1,})", "gi")},
+
+        { text: "ABC{number}", regex: new RegExp("abc(\\d{1,})", "gi")},
+        { text: "JUN{number}", regex: new RegExp("jun(\\d{1,})", "gi")},
+
+        { text: "NET{number}", regex: new RegExp("\\bnet\\d{1,}\\b", "gi")},
+        { text: "NEW{number}", regex: new RegExp("\\bnew\\d{1,}\\b", "gi")},
+        { text: "BJ{number}", regex: new RegExp("\\bbj\\d{1,}\\b", "gi")},
+        { text: "BET{number}", regex: new RegExp("\\bbet\\d{1,}\\b", "gi")},
+        { text: "SO{number}", regex: new RegExp("\\bso\\d{1,}\\b", "gi")},
+        { text: "FB{number}", regex: new RegExp("\\bfb\\d{1,}\\b", "gi")},
+        { text: "FC{number}", regex: new RegExp("\\bfc\\d{1,}\\b", "gi")},
+        { text: "EE{number}", regex: new RegExp("\\bee\\d{1,}\\b", "gi")},
+        { text: "GK{number}", regex: new RegExp("\\bgk\\d{1,}\\b", "gi")},
+        { text: "TG{number}", regex: new RegExp("\\btg\\d{1,}\\b", "gi")},
+        { text: "LV{number}", regex: new RegExp("\\blv\\d{1,}\\b", "gi")},
+        { text: "VN{number}", regex: new RegExp("\\bvn\\d{1,}\\b", "gi")},
+        { text: "GO{number}", regex: new RegExp("\\bgo\\d{1,}\\b", "gi")},
+        { text: "KP{number}", regex: new RegExp("\\bkp\\d{1,}\\b", "gi")},
+        { text: "TR{number}", regex: new RegExp("\\btr\\d{1,}\\b", "gi")},
+        { text: "BD{number}", regex: new RegExp("\\bbd\\d{1,}\\b", "gi")},
+        { text: "KO{number}", regex: new RegExp("\\bko\\d{1,}\\b", "gi")},
+        { text: "SV{number}", regex: new RegExp("\\bsv\\d{1,}\\b", "gi")},
+
+        { text: "VIN{number}", regex: new RegExp("\\bvin\\d{1,}\\b", "gi")},
+        { text: "WIN{number}", regex: new RegExp("\\bwin\\d{1,}\\b", "gi")},
+        { text: "TOP{number}", regex: new RegExp("\\btop\\d{1,}\\b", "gi")},
+        { text: "LEO{number}", regex: new RegExp("\\bleo\\d{1,}\\b", "gi")},
+
+        { text: "{number}CL", regex: new RegExp("\\b\\d{1,}cl\\b", "gi")},
+
+        { text: "{number}WIN", regex: new RegExp("(\\b\\d{1,})win\\b", "gi")},
+        { text: "{number}WIZ", regex: new RegExp("(\\b\\d{1,})wiz\\b", "gi")},
+        { text: "{number}BET", regex: new RegExp("\\b(\\d{1,})bet\\b", "gi")},
+
+        { text: "{alpha}BET", regex: new RegExp("\\b([a-z]{1,4})bet\\b", "gi")},
+
+
+        { text: "JILIBET.it.com", regex: new RegExp("jilibet\\x2eit\\x2ecom", "gi")},
+
+        /* Tells - email and twitter */
+        { text: "@tw{number}tech", regex: new RegExp("\\x40tw(\\d{1,})tech", "gi")},
+        { text: "@twl{number}tech", regex: new RegExp("\\x40twl\\d{1,5}tech", "gi")},
+        { text: "@giugno{number}", regex: new RegExp("\\x40giugno(\\d{4})", "gi")},
+        { text: "@shanmu{number}", regex: new RegExp("\\x40shanmu(\\d{1,})", "gi")},
+        { text: "@usaChang", regex: new RegExp("\\x40usachang", "gi")},
+        { text: "mifen{number}@gmail.com", regex: new RegExp("mifen\\d{4,8}\\x40gmail\\x2ecom", "gi")},
+        { text: "tip-club.app@gmail.com", regex: new RegExp("tip\\x2dclub\\x2eapp\\x40gmail\\x2ecom", "gi")},
+        { text: "@giugno{number}", regex: new RegExp("\\x40giugno\\d{1,5}", "gi")},
+        { text: "kolkocXXX@gmail.com", regex: new RegExp("kolkoc\\d{1,5}\\x40gmail\\x2ecom", "gi")},
+        { text: "aotelaisichn@gmail.com", regex: new RegExp("aotelaisichn\\x40gmail\\x2ecom", "gi")},
+        { text: "09384726{number}", regex: new RegExp("09384726(\\d{2})", "gi")},
+
+        /* Hashtags */
+        { text: "#fairplay", regex: new RegExp("\\x23fairplay\\b", "gi")},
+        { text: "#fairplaycasino", regex: new RegExp("\\x23fairplaycasino\\b", "gi")},
+        { text: "#fairplayph", regex: new RegExp("\\x23fairplayph\\b", "gi")},
+        { text: "#fairplaycomph", regex: new RegExp("\\x23fairplaycomph\\b", "gi")},
+        { text: "#taya{number}", regex: new RegExp("\\x23taya(\\d{2,})\\b", "gi")},
+        { text: "#taya{number}ph", regex: new RegExp("\\x23taya(\\d{2,})ph\\b", "gi")},
+        { text: "#taya{number}comph", regex: new RegExp("\\x23taya(\\d{2,})comph\\b", "gi")},
+        { text: "#onlinecasino", regex: new RegExp("\\x23onlinecasino\\b", "gi")},
+        { text: "#casino", regex: new RegExp("\\x23casino\\b", "gi")},
+        { text: "#tipclub", regex: new RegExp("\\x23tipclub", "gi")},
+        { text: "#tipclub_bet", regex: new RegExp("\\x23tipclub\\x5fbet", "gi")},
+        { text: "#tipclub_casino", regex: new RegExp("\\x23tipclub\\x5fcasino", "gi")},
+        { text: "tipclub{number}.org", regex: new RegExp("tipclub(\\d{1,3})\\x2eorg", "gi")},
+
+        /* Casino names */
+        { text: "22Bet Casino", regex: new RegExp("22Bet\\sCasino", "gi")},
+        { text: "5Gringos", regex: new RegExp("5Gringos", "gi")},
+        { text: "Abu King", regex: new RegExp("Abu\\sKing", "gi")},
+        { text: "Atlantic Casino Club", regex: new RegExp("Atlantic\\sCasino\\sClub", "gi")},
+        { text: "AUDPokies888", regex: new RegExp("AUDPokies888", "gi")},
+        { text: "Bankonbet", regex: new RegExp("Bankonbet", "gi")},
+        { text: "BetAlice", regex: new RegExp("BetAlice", "gi")},
+        { text: "Bison Casino", regex: new RegExp("Bison\\sCasino", "gi")},
+        { text: "Boomerang Casino", regex: new RegExp("Boomerang\\sCasino", "gi")},
+        { text: "Bovada Casino", regex: new RegExp("Bovada\\sCasino", "gi")},
+        { text: "Casinoly", regex: new RegExp("Casinoly", "gi")},
+        { text: "Club World Casino", regex: new RegExp("Club\\sWorld\\sCasino", "gi")},
+        { text: "Cosmik Casino", regex: new RegExp("Cosmik\\sCasino", "gi")},
+        { text: "CryptoBoss Casino", regex: new RegExp("CryptoBoss\\sCasino", "gi")},
+        { text: "Deuce Club Casino", regex: new RegExp("Deuce\\sClub\\sCasino", "gi")},
+        { text: "Dragon Slots", regex: new RegExp("Dragon\\sSlots", "gi")},
+        { text: "EuroMoon Casino", regex: new RegExp("EuroMoon\\sCasino", "gi")},
+        { text: "Golden Star Casino", regex: new RegExp("Golden\\sStar\\sCasino", "gi")},
+        { text: "GREATwin", regex: new RegExp("GREATwin", "gi")},
+        { text: "HugoBets Casino", regex: new RegExp("HugoBets\\sCasino", "gi")},
+        { text: "Immerion Casino", regex: new RegExp("Immerion\\sCasino", "gi")},
+        { text: "JokaRoom", regex: new RegExp("JokaRoom", "gi")},
+        { text: "Lucky Red Casino", regex: new RegExp("Lucky\\sRed\\sCasino", "gi")},
+        { text: "Lukki Casino", regex: new RegExp("Lukki\\sCasino", "gi")},
+        { text: "Manga Casino", regex: new RegExp("Manga\\sCasino", "gi")},
+        { text: "MoonWin", regex: new RegExp("MoonWin", "gi")},
+        { text: "N1 Bet", regex: new RegExp("N1\\sBet", "gi")},
+        { text: "Nomini", regex: new RegExp("Nomini", "gi")},
+        { text: "Nova Jackpot", regex: new RegExp("Nova\\sJackpot", "gi")},
+        { text: "Osiris Casino", regex: new RegExp("Osiris\\sCasino", "gi")},
+        { text: "Park Lane Casino", regex: new RegExp("Park\\sLane\\sCasino", "gi")},
+        { text: "Planet 7 Casino", regex: new RegExp("Planet\\s7\\sCasino", "gi")},
+        { text: "Playzilla", regex: new RegExp("Playzilla", "gi")},
+        { text: "Power Up Casino", regex: new RegExp("Power\\sUp\\sCasino", "gi")},
+        { text: "PowerBet", regex: new RegExp("PowerBet", "gi")},
+        { text: "Queen Casino", regex: new RegExp("Queen\\sCasino", "gi")},
+        { text: "QuickWin", regex: new RegExp("QuickWin", "gi")},
+        { text: "Rabona", regex: new RegExp("Rabona", "gi")},
+        { text: "Raging Bull Slots Casino", regex: new RegExp("Raging\\sBull\\sSlots Casino", "gi")},
+        { text: "Rebellion Casino", regex: new RegExp("Rebellion\\sCasino", "gi")},
+        { text: "Roby Casino", regex: new RegExp("Roby\\sCasino", "gi")},
+        { text: "Rocketspin", regex: new RegExp("Rocketspin", "gi")},
+        { text: "Rooster Bet", regex: new RegExp("Rooster\\sBet", "gi")},
+        { text: "Silver Oak Casino", regex: new RegExp("Silver\\sOak\\sCasino", "gi")},
+        { text: "SlotsPalace", regex: new RegExp("SlotsPalace", "gi")},
+        { text: "SpinsUP", regex: new RegExp("SpinsUP", "gi")},
+        { text: "Staxino Casino", regex: new RegExp("Staxino\\sCasino", "gi")},
+        { text: "Trygamb.cc", regex: new RegExp("Trygamb\\x2ecc", "gi")},
+        { text: "Vanguard Casino", regex: new RegExp("Vanguard\\sCasino", "gi")},
+        { text: "Vegas Now", regex: new RegExp("Vegas\\sNow", "gi")},
+        { text: "Vegas Rush Casino", regex: new RegExp("Vegas\\sRush\\sCasino", "gi")},
+        { text: "Vegasino", regex: new RegExp("Vegasino", "gi")},
+        { text: "Wazamba", regex: new RegExp("Wazamba", "gi")},
+        { text: "Wild Pokies", regex: new RegExp("Wild\\sPokies", "gi")},
+        { text: "Winbay Casino", regex: new RegExp("Winbay\\sCasino", "gi")},
+        { text: "Winport Casino", regex: new RegExp("Winport\\sCasino", "gi")},
+        { text: "WinSpirit Casino", regex: new RegExp("WinSpirit\\sCasino", "gi")}
+
     ];
 
     const targetTLDs = [
@@ -309,7 +958,9 @@
         "KI-generierte Stimmen",
         "KI-generierte Inhalte",
         "AI-generated synthetic voice",
+        "Produced with an AI-generated voice",
 
+        "Debt Collection Services",
         "betting in ethiopia",
         "telebirr betting",
         "ethiopia betting",
@@ -322,6 +973,7 @@
         "Online Dating",
         "Tinder",
         "Grindr",
+        "IPTV ",
 
         "managed IT services",
         "comprehensive solutions",
@@ -900,7 +1552,7 @@
         "code de parrainage",
         "code promo",
         "codice sconto",
-        "collaboration",
+        // "collaboration",
         "collateral",
         "colorful balloons",
         "commercial construction",
@@ -1809,7 +2461,7 @@
         "Gratta e vinci", /* Scratch card */
 
         // Betting & Promotional Terminology
-        "Quote", /* Odds */
+        // "Quote", /* Odds */
         "Quota", /* Odd / Price */
         "Pronostici", /* Predictions / Betting tips */
         "Pronostico", /* Prediction / Tip */
@@ -2867,9 +3519,12 @@
         /* The usual suspects ... */
 
         "https://rss.pdrl.fm/",
+        "https://eu2.contabostorage.com/",
 
         "https://feeds.megaphone.fm/TAL", /* Trinity Studios */
         "https://feeds.megaphone.fm/IMP",
+
+        "https://feeds.hustlestudios.net/", /* HustleStudios Podcast Network */
 
         "https://feeds.fexingo.com/", /* Fexingo */
 
@@ -2957,8 +3612,10 @@
         "https://radiotuungane.info/feed/podcast/",
         "https://www.radioara.org/feed/podcast/",
         "https://podcast.orf.at/podcast/",
+        "https://www.wesanews.org/podcast/",
         "https://listen.theqonline.net/public/1/podcast/",
-
+        "https://radio.kphred.com/public/",
+        "https://wfhb.org/category/",
         "https://feed.sermonaudio.com/",
         "https://podcast.npo.nl/feed/",
         "https://www.fred.fm/category/",
@@ -2977,6 +3634,9 @@
         "https://wlrh.org/podcast-feed/",
         "https://podcast.uniroma3.it/podcast/",
         "https://nextnation.mx/feed/podcast/",
+        "https://wbcradio.com/feed/podcast/",
+        "https://muddyriver.tv/feed/podcast/",
+        "https://www.theguardian.com/australia-news/series/",
 
         "http://www.radio.rai.it/rss/podcast/",
         "http://www.radio.rai.it/wr6/podcast/",
@@ -3010,19 +3670,25 @@
         "https://www.unicaradio.it/feed/podcast/",
         "https://www.schlagerradio.de/",
         "http://podcasts.euronewsradio.com/podcast/",
+        "https://bramfm.com/feed/podcast/",
+        "https://jornal.usp.br/feed-podcasts/",
 
         "https://deutsch.radio.cz/rcz-rss/",
+        "https://dinamics.3cat.cat/public/podcast/catradio/xml/",
+        "https://remradio.fr/podcast/feed/",
 
         "https://www.freie-radios.net/portal/",
         "https://media.rtv.rs/",
         "http://media.radio21.de/podcast/",
         "https://www.radiosaw.de/interaktiv/",
+        "https://www.altitudefm.com/feed/podcast/",
 
         "https://rss.jewishpodcasts.fm/rss/",
         "https://www.raiplaysound.it/programmi/",
         "https://radiofrance-podcast.net/",
         "https://podcast.college-de-france.fr/",
         "http://mauvaisgenre.org/",
+        "https://www.lyondemain.fr/feed/podcast/",
 
         "https://www.voanews.com/podcast/",
         "https://www.voaindonesia.com/podcast/",
@@ -3039,6 +3705,11 @@
         "https://mk.voanews.com/podcast/",
         "https://www.amerikaovozi.com/podcast/",
         "https://learningenglish.voanews.com/rss/",
+        "https://250andcounting.com/",
+        "https://www.radioiulm.it/feed/podcast/",
+        "https://aae.org.tr/feed/podcast/",
+        "https://inkandescentradio.com/feed/podcast/",
+        "https://mainebeacon.com/feed/podcast/",
 
         "https://podcast.cism893.ca/radioshows/",
         "https://promodj.com/",
@@ -3051,6 +3722,9 @@
         "https://vn.rti.org.tw/",
         "https://id.rti.org.tw/",
         "https://fr.rti.org.tw/",
+
+        "https://103fm.maariv.co.il/rss/mediarss.aspx?",
+        "https://podcast.onionunlimited.com.au/rss/xml/",
 
         "https://www.radiola.media/feed/podcast/",
         "https://www.horizonradio.com/podcasts/",
@@ -3075,11 +3749,17 @@
         "http://www.radioomega.fr/site/specific/rssEmission",
         "https://feeds.360.audion.fm/",
         "https://www.retetoscanaclassica.it/feed/podcast/",
+        "https://rss.102fm.co.il/rss-feed/get-feed?",
+        "https://podcasts.ckiafm.org/emission/",
+        "https://wp.eastsidefm.org/feed/podcast/",
 
         "https://100komma7.lu/show/",
         "https://feed.symbol.fm/",
         "https://feeds.yle.fi/areena/v1/series/",
         "https://podcast.cfrc.ca/feed/podcast/",
+        "https://digradio.fr/feed/podcast/",
+        "https://campusgrenoble.org/feed/podcast/",
+        "https://rtvnoord.bbvms.com/vodcast/",
 
         "https://www.interlochenpublicradio.org/podcast/",
         "https://www.fedeviva.it/feed/podcast/",
@@ -3100,6 +3780,8 @@
         "https://content.zdf.de/podcast/",
         "https://www.3sat.de/rss/podcast/video/zdf/",
         "https://radio7.cz/podcast.php",
+        "https://podcast.rtvslo.si/",
+        "https://canadaspodcast.com/feed/podcast/",
 
         "https://feeds.soundcloud.com/users/soundcloud:users:",
 
@@ -3112,6 +3794,7 @@
         "https://feeds.megaphone.fm/POM",
         "https://feeds.megaphone.fm/COR",
         "https://feeds.megaphone.fm/FOX",
+        "https://feeds.megaphone.fm/DEARMEDIALLC",
         "https://feeds.megaphone.fm/ACECREATORSPTYLTD",
         "https://feeds.megaphone.fm/YOSHIMOTOKOGYOCOLTD",
         "https://feeds.megaphone.fm/NIPPONTELEVISIONNETWORKCORPORATION",
@@ -3143,11 +3826,33 @@
         "https://feeds.megaphone.fm/CLR",
         "https://feeds.megaphone.fm/DFT",
         "https://feeds.megaphone.fm/BMD",
+        "https://feeds.megaphone.fm/YFL",
+        "https://feeds.megaphone.fm/TBS",
+        "https://feeds.megaphone.fm/TPC",
+        "https://feeds.megaphone.fm/UOR",
+        "https://feeds.megaphone.fm/ASEMS",
+        "https://feeds.megaphone.fm/SONOR",
+        "https://feeds.megaphone.fm/LGGIG",
+        "https://feeds.megaphone.fm/COMG",
+        "https://feeds.megaphone.fm/BVDWV",
+        "https://feeds.megaphone.fm/TISWI",
+        "https://feeds.megaphone.fm/PMSL",
+        "https://feeds.megaphone.fm/GLOBO",
         "https://rss.podplaystudio.com/",
         "https://podcast.stream.schibsted.media/",
         "https://feed.pod.space/",
         "https://pod.mittmedia.se/",
         "https://video-api.wsj.com/podcast/rss/",
+        "https://radiox.com/feed/podcast/",
+        "https://www.childrenshour.org/category/",
+        "https://cmp.thruthebible.io/v1/feeds/",
+        "https://www.frequence3.com/feed/podcast/",
+        "https://www.ondacero.es/rss/podcast/",
+
+        "https://podfeed.apple.com/api/v1/show/",
+        "https://www.patreon.com/public-rss/",
+        "https://medimix.be/app/feed/podcast/",
+        "https://podcast.sepia.sk/storage/radio-group/",
 
         "https://podcast.radio.gov.pk/",
         "https://sbs-ondemand.streamguys1.com/",
@@ -3492,186 +4197,10 @@
 
     ];
 
-    const casinoFrags = [
-
-        { text: "@tw{number}tech", regex: new RegExp("\\x40tw(\\d{1,})tech", "gi")},
-        { text: "@twl{number}tech", regex: new RegExp("\\x40twl\\d{1,5}tech", "gi")},
-
-        { text: "@giugno{number}", regex: new RegExp("\\x40giugno(\\d{4})", "gi")},
-        { text: "@shanmu{number}", regex: new RegExp("\\x40shanmu(\\d{1,})", "gi")},
-
-
-        { text: "@usaChang", regex: new RegExp("\\x40usachang", "gi")},
-        { text: "mifen{number}@gmail.com", regex: new RegExp("mifen\\d{4,8}\\x40gmail\\x2ecom", "gi")},
-
-        { text: "09384726{number}", regex: new RegExp("09384726(\\d{2})", "gi")},
-        { text: "tip-club.app@gmail.com", regex: new RegExp("tip\\x2dclub\\x2eapp\\x40gmail\\x2ecom", "gi")},
-
-        { text: "@giugno{number}", regex: new RegExp("\\x40giugno\\d{1,5}", "gi")},
-        { text: "kolkocXXX@gmail.com", regex: new RegExp("kolkoc\\d{1,5}\\x40gmail\\x2ecom", "gi")},
-
-        { text: "aotelaisichn@gmail.com", regex: new RegExp("aotelaisichn\\x40gmail\\x2ecom", "gi")},
-
-
-        { text: "dyfensi.top", regex: new RegExp("dyfensi\\x2etop", "gi")},
-        { text: "fenba.top", regex: new RegExp("fenba\\x2etop", "gi")},
-        { text: "upzan.top", regex: new RegExp("upzan\\x2etop", "gi")},
-        { text: "zansu.cc", regex: new RegExp("zansu\\x2ecc", "gi")},
-        { text: "zansu.top", regex: new RegExp("zansu\\x2etop", "gi")},
-        { text: "zanup.cc", regex: new RegExp("zanup\\x2ecc", "gi")},
-        { text: "zanup.top", regex: new RegExp("zanup\\x2etop", "gi")},
-
-
-        { text: "ADQ{number}.cc", regex: new RegExp("adq\\d{1,}\\x2ecc", "gi")},
-        { text: "AIGC{number}.cc", regex: new RegExp("aigc\\d{1,}\\x2ecc", "gi")},
-        { text: "AI{number}V{number}.cc", regex: new RegExp("ai\\d{1,}v\\d{1,}\\x2ecc", "gi")},
-        { text: "ALO{number}ONE.com", regex: new RegExp("alo\\d{1,}one\\x2ecom", "gi")},
-        { text: "ALO{number}RANK.com", regex: new RegExp("alo\\d{1,}rank\\x2ecom", "gi")},
-        { text: "ALO{number}SO{number}.com", regex: new RegExp("alo\\d{1,}so\\d{1,}\\x2ecom", "gi")},
-        { text: "ALO{number}TOP{number}.com", regex: new RegExp("alo\\d{1,}top\\d{1,}\\x2ecom", "gi")},
-        { text: "BJ{number}V{number}.com", regex: new RegExp("bj\\d{1,}v\\d{1,}\\x2ecom", "gi")},
-        { text: "CM{number}SS.com", regex: new RegExp("cm\\d{1,}ss\\x2ecom", "gi")},
-        { text: "CM{number}TOP{number}.com", regex: new RegExp("cm\\d{1,}top\\d{1,}\\x2ecom", "gi")},
-        { text: "DK{number}.top", regex: new RegExp("dk\\d{1,}\\x2etop", "gi")},
-        { text: "DN{number}TIPS.com", regex: new RegExp("dn\\d{1,}tips\\x2ecom", "gi")},
-        { text: "FENSI{number}.top", regex: new RegExp("fensi\\d{1,}\\x2etop", "gi")},
-        { text: "F{number}BETSS.com", regex: new RegExp("f\\d{1,}betss\\x2ecom", "gi")},
-        { text: "GA{number}.top", regex: new RegExp("ga\\d{1,}\\x2etop", "gi")},
-        { text: "HB{number}S{number}.com", regex: new RegExp("hb\\d{1,}s\\d{1,}\x2ecom", "gi")},
-        { text: "HELLO{number}A{number}.com", regex: new RegExp("hello\\d{1,}a\\d{1,}\\x2ecom", "gi")},
-        { text: "HITCLUB{number}.cz", regex: new RegExp("hitclub\\d{1,}.cz", "gi")},
-        { text: "JUN{number}.black", regex: new RegExp("jun\\d{1,}\\x2eblack", "gi")},
-        { text: "KOL{number}.com", regex: new RegExp("kol\\d{1,}\\x2ecom", "gi")},
-        { text: "KY{number}.xyz", regex: new RegExp("ky(\\d{1,})\\x2exyz", "gi")},
-        { text: "MK{number}.top", regex: new RegExp("mk\\d{1,}\\x2etop", "gi")},
-        { text: "MM{number}.top", regex: new RegExp("mm\\d{1,}\\x2etop", "gi")},
-        { text: "PK{number}.top", regex: new RegExp("pk\\d{1,}\\x2etop", "gi")},
-        { text: "SC{number}RANK.com", regex: new RegExp("sc\\d{1,}rank\\x2ecom", "gi")},
-        { text: "SC{number}SEO{number}.com", regex: new RegExp("sc\\d{1,}seo\\d{1,}\\x2ecom", "gi")},
-        { text: "SHBET{number}.com", regex: new RegExp("shbet\\d{1,}\\x2ecom", "gi")},
-        { text: "SKP{number}.top", regex: new RegExp("skp\\d{1,}\\x2etop", "gi")},
-        { text: "SPH{number}.top", regex: new RegExp("sph\\d{1,}\\x2etop", "gi")},
-        { text: "TAYA{number}bet.net", regex: new RegExp("taya\\d{1,}bet\\x2enet", "gi")},
-        { text: "TG{number}ONE.com", regex: new RegExp("tg\\d{1,}one\\x2ecom", "gi")},
-        { text: "TG{number}TOP{number}.com", regex: new RegExp("tg\\d{1,}top\\d{1,}\\x2ecom", "gi")},
-        { text: "VA{number}.top", regex: new RegExp("va\\d{1,}\\x2etop", "gi")},
-        { text: "XHS{alpha}.top", regex: new RegExp("xhs([a-z]{1,})\\x2etop", "gi")},
-        { text: "XHS{number}.top", regex: new RegExp("xhs\\d{1,}\\x2etop", "gi")},
-        { text: "XIN{number}.express", regex: new RegExp("xin\\d{1,}\\x2eexpress", "gi")},
-        { text: "ZAN{number}.cc", regex: new RegExp("zan\\d{1,}\\x2ecc", "gi")},
-        { text: "ZAN{number}.top", regex: new RegExp("zan\\d{1,}\\x2etop", "gi")},
-        { text: "{alpha}.llc", regex: new RegExp("([a-z0-9]{4})\\x2ellc", "gi")},
-        { text: "{alpha}BETA{number}.ink", regex: new RegExp("([a-z0-9]{1,})beta\\d{1,}\\x2eink", "gi")},
-        { text: "{alpha}FANS.top", regex: new RegExp("([a-z]{1,})fans\\x2etop", "gi")},
-        { text: "{alpha}FEN.cc", regex: new RegExp("([a-z]{2,5})fen\\x2ecc", "gi")},
-        { text: "{alpha}FEN.top", regex: new RegExp("([a-z]{2,5})fen\\x2etop", "gi")},
-        { text: "{alpha}SUP.top", regex: new RegExp("([a-z]{2,})sup\\x2etop", "gi")},
-        { text: "{alpha}UP.top", regex: new RegExp("([a-z]{2,})up\\x2etop", "gi")},
-        { text: "{alpha}ZAN.cc", regex: new RegExp("([a-z]{2,5})zan\\x2ecc", "gi")},
-        { text: "{number}BETV{number}.com", regex: new RegExp("\\d{1,}betv\\d{1,}\\x2ecom", "gi")},
-        { text: "{number}BILI.cc", regex: new RegExp("\\d{1,}bili\\x2ecc", "gi")},
-        { text: "{number}CLBPLUS.co", regex: new RegExp("(\\d{1,})clbplus\\x2eco", "gi")},
-        { text: "{number}CLBRANK.com", regex: new RegExp("\\d{1,}clbrank\\x2ecom", "gi")},
-        { text: "{number}DY.top", regex: new RegExp("\\d{1,}dy\\x2etop", "gi")},
-        { text: "{number}DY{number}.cc", regex: new RegExp("\\d{1,}dy\\d{1,}\\x2ecc", "gi")},
-        { text: "{number}FANS.top", regex: new RegExp("\\d{1,}fans\\x2etop", "gi")},
-        { text: "{number}FEN.cc", regex: new RegExp("\\d{1,}fen\\x2ecc", "gi")},
-        { text: "{number}FEN.top", regex: new RegExp("\\d{1,}fen\\x2etop", "gi")},
-        { text: "{number}FEN{number}.top", regex: new RegExp("\\d{1,}fen\\d{1,}\\x2etop", "gi")},
-        { text: "{number}FS{number}.cc", regex: new RegExp("\\d{1,}fs\\d{1,}\\x2ecc", "gi")},
-        { text: "{number}GPT.cc", regex: new RegExp("\\d{1,}gpt\\x2ecc", "gi")},
-        { text: "{number}HAI.cc", regex: new RegExp("\\d{1,}hai\\x2ecc", "gi")},
-        { text: "{number}H{number}V{number}.cc", regex: new RegExp("\\d{1,}h\\d{1,}v\\d{1,}\\x2ecc", "gi")},
-        { text: "{number}KK.top", regex: new RegExp("\\d{1,}kk\\x2etop", "gi")},
-        { text: "{number}KOL.top", regex: new RegExp("\\d{1,}kol\\x2etop", "gi")},
-        { text: "{number}KS.top", regex: new RegExp("\\d{1,}ks\\x2etop", "gi")},
-        { text: "{number}KUAISHOU.cc", regex: new RegExp("\\d{1,}kuaishou\\x2ecc", "gi")},
-        { text: "{number}MCN.cc", regex: new RegExp("\\d{1,}mcn\\x2ecc", "gi")},
-        { text: "{number}NPC.cc", regex: new RegExp("\\d{1,}npc\\x2ecc", "gi")},
-        { text: "{number}PM{number}.cc", regex: new RegExp("\\d{1,}pm\\d{1,}\\x2ecc", "gi")},
-        { text: "{number}PM{number}.cm", regex: new RegExp("\\d{1,}pm\\d{1,}\\x2ecm", "gi")},
-        { text: "{number}REMEN.cc", regex: new RegExp("\\d{1,}remen\\x2ecc", "gi")},
-        { text: "{number}SP.top", regex: new RegExp("\\d{1,}sp\\x2etop", "gi")},
-        { text: "{number}UP.top", regex: new RegExp("\\d{1,}up\\x2etop", "gi")},
-        { text: "{number}VLOG.cc", regex: new RegExp("\\d{1,}vlog\\x2ecc", "gi")},
-        { text: "{number}WEB{number}.cc", regex: new RegExp("\\d{1,}web\\d{1,}\\x2ecc", "gi")},
-        { text: "{number}WINN.vip", regex: new RegExp("\\d{1,}winn\\x2evip", "gi")},
-        { text: "{number}WIN{number}.com", regex: new RegExp("\\d{1,}win\\d{1,}\\x2ecom", "gi")},
-        { text: "{number}XHS.cc", regex: new RegExp("\\d{1,}xhs\\x2ecc", "gi")},
-        { text: "{number}XHS.top", regex: new RegExp("\\d{1,}xhs\\x2etop", "gi")},
-        { text: "{number}X{number}H.cc", regex: new RegExp("\\d{1,}x\\d{1,}h\\x2ecc", "gi")},
-        { text: "{number}ZAN.cc", regex: new RegExp("\\d{1,}zan\\x2ecc", "gi")},
-        { text: "{number}ZAN.top", regex: new RegExp("\\d{1,}zan\\x2etop", "gi")},
-
-
-        { text: "OKVIP", regex: new RegExp("ok(\\x2d)?vip", "gi")},
-        { text: "IWIN", regex: new RegExp("iwin", "gi")},
-
-        { text: "LUCKY{number}", regex: new RegExp("lucky(\\d{1,})", "gi")},
-        { text: "KING{number}", regex: new RegExp("king(\\d{1,})", "gi")},
-
-        { text: "ABC{number}", regex: new RegExp("abc(\\d{1,})", "gi")},
-        { text: "JUN{number}", regex: new RegExp("jun(\\d{1,})", "gi")},
-
-        { text: "NET{number}", regex: new RegExp("\\bnet\\d{1,}\\b", "gi")},
-        { text: "NEW{number}", regex: new RegExp("\\bnew\\d{1,}\\b", "gi")},
-        { text: "BJ{number}", regex: new RegExp("\\bbj\\d{1,}\\b", "gi")},
-        { text: "BET{number}", regex: new RegExp("\\bbet\\d{1,}\\b", "gi")},
-        { text: "SO{number}", regex: new RegExp("\\bso\\d{1,}\\b", "gi")},
-        { text: "FB{number}", regex: new RegExp("\\bfb\\d{1,}\\b", "gi")},
-        { text: "FC{number}", regex: new RegExp("\\bfc\\d{1,}\\b", "gi")},
-        { text: "EE{number}", regex: new RegExp("\\bee\\d{1,}\\b", "gi")},
-        { text: "GK{number}", regex: new RegExp("\\bgk\\d{1,}\\b", "gi")},
-        { text: "TG{number}", regex: new RegExp("\\btg\\d{1,}\\b", "gi")},
-        { text: "LV{number}", regex: new RegExp("\\blv\\d{1,}\\b", "gi")},
-        { text: "VN{number}", regex: new RegExp("\\bvn\\d{1,}\\b", "gi")},
-        { text: "GO{number}", regex: new RegExp("\\bgo\\d{1,}\\b", "gi")},
-        { text: "KP{number}", regex: new RegExp("\\bkp\\d{1,}\\b", "gi")},
-        { text: "TR{number}", regex: new RegExp("\\btr\\d{1,}\\b", "gi")},
-        { text: "BD{number}", regex: new RegExp("\\bbd\\d{1,}\\b", "gi")},
-        { text: "KO{number}", regex: new RegExp("\\bko\\d{1,}\\b", "gi")},
-        { text: "SV{number}", regex: new RegExp("\\bsv\\d{1,}\\b", "gi")},
-
-
-        { text: "VIN{number}", regex: new RegExp("\\bvin\\d{1,}\\b", "gi")},
-        { text: "WIN{number}", regex: new RegExp("\\bwin\\d{1,}\\b", "gi")},
-        { text: "TOP{number}", regex: new RegExp("\\btop\\d{1,}\\b", "gi")},
-        { text: "LEO{number}", regex: new RegExp("\\bleo\\d{1,}\\b", "gi")},
-
-
-        { text: "{number}CL", regex: new RegExp("\\b\\d{1,}cl\\b", "gi")},
-
-        { text: "{number}WIN", regex: new RegExp("(\\b\\d{1,})win\\b", "gi")},
-        { text: "{number}WIZ", regex: new RegExp("(\\b\\d{1,})wiz\\b", "gi")},
-        { text: "{number}BET", regex: new RegExp("\\b(\\d{1,})bet\\b", "gi")},
-
-        { text: "{alpha}BET", regex: new RegExp("\\b([a-z]{1,4})bet\\b", "gi")},
-
-
-
-        { text: "#fairplay", regex: new RegExp("\\x23fairplay\\b", "gi")},
-        { text: "#fairplaycasino", regex: new RegExp("\\x23fairplaycasino\\b", "gi")},
-        { text: "#fairplayph", regex: new RegExp("\\x23fairplayph\\b", "gi")},
-        { text: "#fairplaycomph", regex: new RegExp("\\x23fairplaycomph\\b", "gi")},
-
-
-        { text: "#taya{number}", regex: new RegExp("\\x23taya(\\d{2,})\\b", "gi")},
-        { text: "#taya{number}ph", regex: new RegExp("\\x23taya(\\d{2,})ph\\b", "gi")},
-        { text: "#taya{number}comph", regex: new RegExp("\\x23taya(\\d{2,})comph\\b", "gi")},
-
-        { text: "#onlinecasino", regex: new RegExp("\\x23onlinecasino\\b", "gi")},
-        { text: "#casino", regex: new RegExp("\\x23casino\\b", "gi")},
-
-
-        { text: "#tipclub", regex: new RegExp("\\x23tipclub", "gi")},
-        { text: "#tipclub_bet", regex: new RegExp("\\x23tipclub\\x5fbet", "gi")},
-        { text: "#tipclub_casino", regex: new RegExp("\\x23tipclub\\x5fcasino", "gi")},
-
-        { text: "tipclub{number}.org", regex: new RegExp("tipclub(\\d{1,3})\\x2eorg", "gi")}
-
-    ];
-
     const owners = [
+
+        "SOL Podcast Productions",
+
 
         "3 peaks studios",
         "3peaks",
@@ -3728,6 +4257,7 @@
         "sol good media",
         "sol good network",
         "solgoodmedia.com",
+        "SOL Podcast Productions",
         "spellbound audio",
         "storyflo",
         "sunnyverse ai labs",
@@ -4077,7 +4607,8 @@
         { text: "Warmtepomp", regex: new RegExp("Warmtepomp", "gi")},
         { text: "Waterontharder", regex: new RegExp("Waterontharder", "gi")},
         { text: "Webdesign", regex: new RegExp("Webdesign", "gi")},
-        { text: "Zonnepanelen", regex: new RegExp("Zonnepanelen", "gi")}
+        { text: "Zonnepanelen", regex: new RegExp("Zonnepanelen", "gi")},
+        { text: "Bedrijfsjurist", regex: new RegExp("Bedrijfsjurist", "gi")}
     ];
 
     const prescriptionDrugsList = [
@@ -4351,6 +4882,147 @@
     ];
 
 
+    const spammyPhrases = [
+        /* Coupons */
+        { text: "Coupons", regex: new RegExp("Using\\sthe\\s([a-z0-9\\s\\x2d]{1,})\\sdiscount\\scode\\s\\x2a([a-z0-9\\s\\x2d]{1,})\\x2a\\sgave\\sme\\san\\sinstant\\s\\x2a(\\d{1,3})\\x25\\sdiscount\\x2a\\son\\smy\\sorder", "gi")},
+        { text: "Coupons", regex: new RegExp("Using\\sthe\\sdiscount\\scode\\s([a-z0-9\\s\\x2d]{1,})\\swhen\\screating\\san\\saccount\\sor\\sshopping\\sat\\s", "gi")},
+        { text: "Coupons", regex: new RegExp("Beneunder\\sDiscount\\sCode\\s([a-z0-9\\s\\x2d]{1,})\\sgives\\sregistered\\scustomers\\s(\\d{1,3})\\x25\\soff", "gi")},
+        { text: "Coupons", regex: new RegExp("Discount\\sCode\\s([a-z0-9\\s\\x2d]{1,})\\sallows\\sregistered\\scustomers", "gi")},
+        { text: "Coupons", regex: new RegExp("Using\\sthe\\sdiscount\\scode\\s([a-z0-9\\s\\x2d]{1,})\\sat\\scheckout\\sgave\\sme\\san\\sinstant\\s(\\d{1,3})\\x25\\sdiscount\\s", "gi")},
+
+        { text: "Coupons", regex: new RegExp("helps\\snew\\scustomers\\ssave\\s\\d{1,3}}\\25\\son\\stheir\\sfirst\\month", "gi")},
+
+
+        /* Promo Code */
+        { text: "Promo Code", regex: new RegExp("Promo\\sCode", "gi")},
+        { text: "Referral Code", regex: new RegExp("Prime\\sReferral\\sCode", "gi")},
+        { text: "Refeffal Code", regex: new RegExp("Referral\\sCode", "gi")},
+        { text: "Bonus Code", regex: new RegExp("Bonus\\sCode", "gi")},
+        { text: "Coupon Code", regex: new RegExp("Coupon\\sCode", "gi")},
+        { text: "Rebate Code", regex: new RegExp("Rebate\\sCode", "gi")},
+        { text: "Partner Code", regex: new RegExp("Partner\\sCode", "gi")},
+
+
+        /* Make money */
+        { text: "Make money", regex: new RegExp("actually\\smake\\smoney", "gi")},
+        { text: "Make money", regex: new RegExp("trusted\\sforex\\scashback", "gi")},
+        { text: "Make money", regex: new RegExp("maximize\\syour\\sprofitability\\sas\\sa\\sretail\\strader", "gi")},
+
+        /* Casino & Betting */
+        { text: "Casino", regex: new RegExp("online\\scasino\\sexperience", "gi")},
+        { text: "Casino", regex: new RegExp("premium\\sonline\\sgaming\\sexperience", "gi")},
+        { text: "Casino", regex: new RegExp("live\\scasino\\swith\\sprofessional\\sdealers", "gi")},
+
+        /* Credit repair */
+        { text: "Credit Repair", regex: new RegExp("credit\\srepair\\sservices", "gi")},
+
+        { text: "Debt Collection", regex: new RegExp("corporate\\sdebt\\scollection", "gi")},
+
+        /* Service companies */
+        // { text: "Company services", regex: new RegExp("A\\scompany\\sdedicated\\sto\\sexcellence\\s", "gi")},
+        { text: "Company services", regex: new RegExp("Choosing\\sthis\\scompany\\smeans\\schoosing\\strust\\sand\\sefficiency\\x2e", "gi")},
+        { text: "Company services", regex: new RegExp("Practical\\saudio\\sguides\\sfor\\s", "gi")},
+
+        { text: "Business Inquiries", regex: new RegExp("Business\\sInquiries", "gi")},
+
+        { text: "Auto Detailing", regex: new RegExp("auto\\sdetailing\\sbusiness(es)?", "gi")},
+
+        { text: "IT Services", regex: new RegExp("Co\\x2dmanaged\\sIT\\sservices", "gi")},
+
+        { text: "Decking", regex: new RegExp("offering\\spremium\\swood\\s\\x26\\scomposite\\sdecks", "gi")},
+
+        { text: "Painting", regex: new RegExp("painting\\sexperts", "gi")},
+
+        { text: "Tree Service", regex: new RegExp("reliable\\stree\\sservice", "gi")},
+
+        { text: "Rental Experience", regex: new RegExp("real\\srental\\sexperiences", "gi")},
+
+        // { text: "Relocation Service", rege: new RegExp("long\\x2ddistance\\srelocation", "gi")},
+
+        { text: "HVAC", regex: new RegExp("leading\\sHVAC\\sprovider", "gi")},
+        { text: "HVAC", regex: new RegExp("HVAC\\scontractors", "gi")},
+        { text: "HVAC", regex: new RegExp("Air\\sConditioning", "gi")},
+
+
+        { text: "Warmtepomp", regex: new RegExp("gebruik\\svan\\swarmtepomp(en)?", "gi")},
+
+        { test: "Custom Built PCs", regex: new RegExp("Custom\\sBuilt\\sIndustrial\\sPC", "gi")},
+
+
+        { text: "Cheap Cigarettes", regex: new RegExp("Cheap\\sCigarettes\\sOnline", "gi")},
+        { text: "Vaping Device", regex: new RegExp("state\\x2dof\\x2dthe\\x2dart\\svaping\\sdevice", "gi")},
+        { text: "Vaping Sessions", regex: new RegExp("\\svaping\\ssessions", "gi")},
+
+        { text: "Jewelery", regex: new RegExp("Engagement\\sring\\sand\\swedding\\sring\\sspecialist", "gi")},
+
+        { text: "Junk Removal", regex: new RegExp("what\\sto\\sexpect\\sfrom\\sa\\sprofessional\\sjunk\\sremoval\\sservice", "gi")},
+
+        { text: "AI-powered eviction", regex: new RegExp("AI\\x2dpowered\\seviction", "gi")},
+        { text: "AI-powered manufacturing", regex: new RegExp("agentic\\sAI\\sin\\smanufacturing", "gi")},
+        { text: "AI-generated", regex: new RegExp("AI\\sGenerated", "gi")},
+        { text: "AI nudifier", regex: new RegExp("AI\\snudifier", "gi")},
+        { text: "AI-powered intimacy", regex: new RegExp("AI\\x2dpowered\\sintimacy", "gi")},
+        { text: "AI-powered businesses", regex: new RegExp("AI\\x2dpowered\\sbusiness(es)?", "gi")},
+        { text: "AI-generated nude", regex: new RegExp("AI\\x2dgenerated\\snude\\simagery", "gi")},
+        { text: "AI nude generation", regex: new RegExp("AI\\snude\\sgeneration", "gi")},
+        { text: "AI-driven intimacy", regex: new RegExp("AI\\x2ddriven\\sintimacy", "gi")},
+
+        /* Video editing */
+        // { text: "Video Editing", rege: new RegExp("Video\\sEditor\\s", "gi")},
+
+        /* IPTV */
+        { text: "IPTV", regex: new RegExp("IPTV\\sservices", "gi")},
+        { text: "IPTV", regex: new RegExp("IPTV\\stechnology", "gi")},
+        { text: "TV Installation", regex: new RegExp("reliable\\sTV\\sinstallation", "gi")},
+        { text: "TV Installation", regex: new RegExp("Smart\\sTV\\ssetup\\sassistance", "gi")},
+
+
+        /* Dentristry */
+        { text: "Dentristry", regex: new RegExp("provide\\sdurable\\2c\\snatural\\x2dlooking\\ssolutions\\sto\\smissing\\steeth", "gi")},
+        { text: "Dentristry", regex: new RegExp("explore\\sthe\\sbest\\simplant\\soption\\sfor\\syou", "gi")},
+
+        /* Free Audiobooks */
+        { text: "Audiobook on Audible", regex: new RegExp("listen\\sto\\sfull\\saudiobook\\sfor\\sfree\\son\\sAudible", "gi")},
+        { text: "Audiobook on Audible", regex: new RegExp("\\sfull\\saudiobook\\sfor\\sfree\\son\\sAudible", "gi")},
+        { text: "Audiobook on Audible", regex: new RegExp("Only\\sfrom\\sAudible", "gi")},
+
+        { text: "Audiobooks Hustle Studios", regex: new RegExp("Produced\\sby\\sHustleStudios\\sPodcast\\sNetwork\\x2e", "gi")},
+        { text: "Audiobooks Hustle Studios", regex: new RegExp("HustleStudios\\sPodcast\\sNetwork\\sproduction", "gi")},
+        { text: "Audiobooks Pidgeon Publishing House", regex: new RegExp("\\x40PigeonPublishingHouse", "gi")},
+        { text: "Audiobooks Pidgeon Casa Editorial", regex: new RegExp("\\x40PigeonCasaEditorial", "gi")},
+        { text: "Audiobooks Booksreader.space", regex: new RegExp("customer\\x40booksreader\\x2espace", "gi")},
+
+
+        /* Modded APKs for Android */
+        { text: "APK", regex: new RegExp("modified\\sAPKs\\sfor\\sAndroid", "gi")},
+        { text: "APK", regex: new RegExp("Android\\smodding", "gi")},
+        { text: "APK", regex: new RegExp("Smart\\sPlay\\sAPK", "gi")},
+
+        /* Wedding Music */
+        { text: "Wedding Music Service", regex: new RegExp("offer\\sentertainment\\stailored\\sto\\syour\\swedding", "gi")},
+        { text: "Wedding Music Service", regex: new RegExp("provides\\sprofessional\\swedding\\smusic\\sservice(s)?", "gi")},
+
+
+
+        { text: "Cory with a story", regex: new RegExp("Hosted\\sby\\sCorey\\swith\\sthe\\sStory", "gi")},
+
+        /* Synthetic voice */
+        { text: "Synthetic Voice", regex: new RegExp("sintetiche\\se\\sgenerate\\scon\\sl\\x27aiuto\\sdell\\x27Intelligenza\\sArtificiale", "gi")},
+        { text: "Synthetic Voice", regex: new RegExp("KI\\x2dgenerierte\\sStimmen", "gi")},
+        { text: "Synthetic Voice", regex: new RegExp("KI\\x2dgenerierte\\sInhalte", "gi")},
+        { text: "Synthetic Voice", regex: new RegExp("AI\\x2dgenerated\\ssynthetic\\svoice", "gi")},
+        { text: "Synthetic Voice", regex: new RegExp("Produced\\swith\\san\\sAI\\x2dgenerated\\svoice", "gi")},
+
+        { text: "Synthetic Voice", regex: new RegExp("narration\\sand\\svisuals\\sare\\sAI\\x2dgenerated", "gi")},
+
+        { text: "Synthetic Voice", regex: new RegExp("read\\sby\\san\\sAI\\svoice", "gi")},
+        { text: "Synthetic Voice", regex: new RegExp("Narrado\\scon\\svoz\\sgenerada\\spor\\sIA", "gi")},
+        { text: "Synthetic Voice", regex: new RegExp("Narrated\\swith\\san\\sAI\\x2dgenerated\\svoice", "gi")},
+        { text: "Synthetic Voice", regex: new RegExp("talks\\sin\\splain\\slanguage", "gi")},
+        { text: "Synthetic Voice", regex: new RegExp("presented\\sby\\sthe\\ssynthetic\\svoice\\sof\\s", "gi")},
+        { text: "Synthetic Voice", regex: new RegExp("\\sare\\sAI\\svoices\\x2e", "gi")}
+    ];
+
     // --- Helper Functions ---
     function extractiTunesId(string) {
         string = string.replace(/^itunes\x3a\s/gi,'');
@@ -4474,9 +5146,23 @@
         var podcast_language = false;
         var podcast_generator = false;
 
+        var podcast_description_expand = false;
+
+        if (window.location.href.match(/curatekilled/)) {
+            podcast_description_expand = true;
+        }
+
         var bylineText = '';
 
         cards.forEach((podcast) => {
+
+            var title = '';
+            var url = '';
+            var descText = '';
+            var bylineText = '';
+            var language = '';
+            var generator = '';
+
 
             podcast_id = null;
             podcast_byline = false;
@@ -4498,11 +5184,10 @@
                 podcastIdEl.parentElement.replaceChild(linkPodcastId, podcastIdEl);
             }
 
-
             /* 1. Extract & Test Title */
             const titleEl = podcast.querySelector('h3 a');
             if (titleEl && titleEl.innerText.trim().length > 0) {
-                const title = titleEl.innerText;
+                title = titleEl.innerText;
                 titlePatterns.forEach(item => {
                     if (title.match(item.regex)) {
                         flagElement(titleEl, item.text);
@@ -4570,7 +5255,7 @@
             /* 2. Extract & Test feedURL */
             const feedUrlEl = podcast.querySelector('a.feedurl');
             if (feedUrlEl && feedUrlEl.href.length > 0) {
-                const url = feedUrlEl.href;
+                url = feedUrlEl.href;
 
                 /* Compare to known domains */
                 feedPatterns.forEach(item => {
@@ -4608,8 +5293,14 @@
 
             /* 3. Extract & Test Description */
             const descEl = podcast.querySelector('div.description');
+
+            /* Expand description if we are in curatekilled */
+            if (podcast_description_expand == true) {
+                descEl.style = "-webkit-line-clamp: none;";
+            }
+
             if (descEl && descEl.innerText.trim().length > 0) {
-                const descText = descEl.innerText;
+                descText = descEl.innerText;
 
                 /* Add fancy expand functionality to description block */
                 descEl.addEventListener('click', () => {
@@ -4619,7 +5310,15 @@
                 /* Look for feedPrefixes */
                 feedPrefixPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
-                        flagElement(descEl, item.tld);
+                        flagElement(descEl, item.text);
+                        podcast_desc = true;
+                    }
+                });
+
+                /* Spammy Phrases */
+                spammyPhrases.forEach(item => {
+                    if (descText.match(item.regex)) {
+                        flagElement(descEl, 'Spammy Phrases ' + item.text);
                         podcast_desc = true;
                     }
                 });
@@ -4627,7 +5326,7 @@
                 // Highlight bad keywords
                 descPatterns.forEach(item => {
                     if (descText.match(item.regex)) {
-                        flagElement(descEl, item.text);
+                        flagElement(descEl, 'Bad Keywords ' + item.text);
                         podcast_desc = true;
                     }
                 });
@@ -4753,7 +5452,7 @@
                 }
 
                 if (extra.innerText.match(/Lang\x3a/gi)) {
-                    const language = extra.innerText.replace('lang: ', '');
+                    language = extra.innerText.replace('lang: ', '');
                     extraLanguages.forEach(item => {
                         if (language.match(item.regex)) {
                             flagElementLegit(extra, item.text);
@@ -4767,7 +5466,7 @@
                 }
 
                 if (extra.innerText.match(/gen\x3a/gi)) {
-                    const generator = extra.innerText.replace('gen: ', '');
+                    generator = extra.innerText.replace('gen: ', '');
                     extraGenerators.forEach(item => {
                         if (generator.match(item.regex)) {
                             flagElementLegit(extra, item.text);
@@ -4785,10 +5484,36 @@
             });
 
 
+            /* Description - Use prefixed tagged detections to remove feeds */
+            if (descEl.title.length > 0) {
+
+                if (descEl.title.match(/Spammy\sPhrases/gi)) {
+                    const spamButton = podcast.querySelector('div.spam-dropdown button.btn-spam');
+                    if(spamButton) {
+                        spamButton.click();
+                        const spamMenu = podcast.querySelector('div.spam-menu a[data-reason="1"]');
+                        setTimeout(() => {
+                            if (spamMenu) {
+                                spamMenu.click();
+                            }
+                        }, 250);
+                    }
+                }
+
+            }
+
             /* Auto-kill for certain types of tagged podcasts */
-            if (feedUrlEl.href.match(/feed\x2efirstory\x2eme/gi)) {
+            if (
+                (feedUrlEl.href.match(/feed\x2efirstory\x2eme/gi))
+                ||
+                (feedUrlEl.href.match(/media\x2erss\x2ecom/gi))
+            ) {
                 if (descEl.title.length > 0) {
-                    if (descEl.title.match(/CasinoFrags/gi)) {
+                    if (
+                        (descEl.title.match(/CasinoFrags/gi))
+                        ||
+                        (descEl.title.match(/TagSallad/gi))
+                    ) {
                         /* CasioFrags - typically chinese CasinoFrags matched - kill it */
                         const spamButton = podcast.querySelector('div.spam-dropdown button.btn-spam');
                         if(spamButton) {
@@ -4821,6 +5546,59 @@
                     }, 250);
                 }
 
+            }
+
+            if (url.match(/spreaker\x2ecom/gi)) {
+                console.log(bylineText, url);
+                console.log(ascii_to_hexadecimal(bylineText));
+                if (bylineText.match(/^by\s([a-z]{2,5})\s\xb7/g)) {
+                    console.log('******', bylineText, url);
+                    flagElement(podcast, 'Hijack-suspect');
+                }
+            }
+
+
+            if(
+                (title.match(/El\spodcast\sde\s/gi) && language.match(/^(es|en)/gi))
+                ||
+                (title.match(/\x27s\spodcast/gi))
+                ||
+                (title.match(/podcast\sde\s/gi) && language.match(/(pt|es|en)/gi))
+                ||
+                (title.match(/My\sFirst\sPodcast/gi) && language.match(/en/gi))
+                ||
+                (title.match(/Il\spodcast\sdi\s/gi) && language.match(/it/gi))
+                ||
+                (title.match(/Mi\sPodcast\s/gi) && language.match(/es/gi))
+                ||
+                (title.match(/Il\spodcast\sdi\s/gi) && language.match(/(it|en)/gi))
+                ||
+                (title.match(/Evidencia\sde\sIngl(e|é)s/gi))
+                ||
+                (title.match(/Evidencia\saudio/gi))
+                ||
+                (title.match(/Audio\sCondicionales/gi))
+                ||
+                (title.match(/Audio\singl(e|é)s\s/gi))
+                ||
+                (title.match(/AUDIO\sDE\sINGLES/gi))
+                ||
+                (title.match(/^AUDIO$/gi))
+                ||
+                (title.match(/^My\sFirst\sPodcast$/gi))
+                ||
+                (title.match(/Transcript(ion)?\s\d{1,}/gi))
+            ) {
+                const spamButton = podcast.querySelector('div.spam-dropdown button.btn-spam');
+                if(spamButton) {
+                    spamButton.click();
+                    const spamMenu = podcast.querySelector('div.spam-menu a[data-reason="1"]');
+                    setTimeout(() => {
+                        if (spamMenu) {
+                            spamMenu.click();
+                        }
+                    }, 250);
+                }
             }
 
 
@@ -5193,6 +5971,19 @@
         textBtn.classList.add("btn", "btn-outline-success", "my-2", "my-sm-0");
         textBtn.innerText = 'Text';
 
+        /* Create button and set up */
+        const domainBtn = document.createElement('button');
+        domainBtn.id = "randomDomain";
+        domainBtn.classList.add("btn", "btn-outline-success", "my-2", "my-sm-0");
+        domainBtn.innerText = 'Domain';
+
+        /* Create button and set up */
+        const tagBtn = document.createElement('button');
+        tagBtn.id = "randomDomain";
+        tagBtn.classList.add("btn", "btn-outline-success", "my-2", "my-sm-0");
+        tagBtn.innerText = 'Tag';
+
+
         if (!targetNav) {
             console.warn("Element with id 'navbarSupportedContent' not found.");
         }
@@ -5304,12 +6095,56 @@
             }
         });
 
+        domainBtn.addEventListener('click', () => {
+            // Pick a random author
+            const randomDomain = spamDomains[Math.floor(Math.random() * spamDomains.length)];
+
+            // Find the input element and populate it
+            const searchInput = document.getElementById('searchText');
+            if (searchInput) {
+                searchInput.value = randomDomain.replace(/\x2e/gi, ' ');
+                searchInput.name = "q";
+            }
+
+            // Find the trigger button and click it
+            const searchTrigger = document.getElementById('searchTrigger');
+            if (searchTrigger) {
+                if(searchInput.value.length > 0) {
+                    searchInput.dispatchEvent(new KeyboardEvent('keyup', { bubbles: true }));
+                    searchTrigger.click();
+                }
+            }
+        });
+
+        tagBtn.addEventListener('click', () => {
+            // Pick a random author
+            const randomTag = tagSallad[Math.floor(Math.random() * tagSallad.length)];
+
+            // Find the input element and populate it
+            const searchInput = document.getElementById('searchText');
+            if (searchInput) {
+                searchInput.value = randomTag.replace(/\x23/gi, '');
+                searchInput.name = "q";
+            }
+
+            // Find the trigger button and click it
+            const searchTrigger = document.getElementById('searchTrigger');
+            if (searchTrigger) {
+                if(searchInput.value.length > 0) {
+                    searchInput.dispatchEvent(new KeyboardEvent('keyup', { bubbles: true }));
+                    searchTrigger.click();
+                }
+            }
+        });
+
 
         targetNav.appendChild(authorBtn);
         targetNav.appendChild(genreBtn);
         targetNav.appendChild(ownerBtn);
         targetNav.appendChild(titleBtn);
         targetNav.appendChild(textBtn);
+        targetNav.appendChild(domainBtn);
+        targetNav.appendChild(tagBtn);
     }
 
 
